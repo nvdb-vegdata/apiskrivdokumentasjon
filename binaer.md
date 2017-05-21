@@ -1,4 +1,5 @@
 #Binær
+
 ##Last opp binærdata
 Laster opp binærdata og responderer med en id som deretter kan brukes som referanse i et endringssett.
 
@@ -34,9 +35,11 @@ Content-Disposition: filename="N808080-1.png"
 ```
 Svar
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Location|URI|Angir hvor en kan lese ressursen.|
+
 Kropp
 Eksempel
 ```
@@ -67,6 +70,7 @@ GET /nvdb/apiskriv/rest/v2/binaer/e62a6896-ff48-474c-a5f3-bb5ccc45c9c9 HTTP/1.1
 ```
 Svar
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Content-Type|MediaType|Angitt hvis den ble angitt under opplasting|
