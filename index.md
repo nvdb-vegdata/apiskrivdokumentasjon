@@ -5,8 +5,9 @@ Endringer i NVDB gjennomføres ved hjelp av endringssett. Et endringssett er en 
 
 
 ##Tilgjengelige ressurser
+
 |VERB|URI|Beskrivelse|Dokumentasjon|
-|-|-|-|-|
+|:---|:---|:---|:---:|
 |POST|/nvdb/apiskriv/rest/v2/endringssett/validator|Valider et endringssett.|dokumentasjon|
 |POST|/nvdb/apiskriv/rest/v2/endringssett|Registrer et endringssett.|dokumentasjon|
 |GET|/nvdb/apiskriv/rest/v2/endringssett|Se oversikt over endringssett.|dokumentasjon|
