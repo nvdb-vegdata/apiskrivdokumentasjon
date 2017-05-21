@@ -316,7 +316,7 @@ Kontrollpanelet finnes på [https://www.test.vegvesen.no/nvdb/apiskriv/kontrollp
 
 ## Mer dokumentasjon
 
-APIet har [online dokumentasjon](https://www.test.vegvesen.no/nvdb/apiskriv/v2/doc) som går dypere inn i detaljene enn denne presentasjonen.
+APIet har [online dokumentasjon](https://nvdb-vegdata.github.io/apiskrivdokumentasjon/apidoc) som går dypere inn i detaljene enn denne presentasjonen.
 
 XML Schema for alle entiteter brukt i requester og responser kan lastes ned fra APIet: [endringssett.xsd](https://www.test.vegvesen.no/nvdb/apiskriv/v2/endringssett/endringssett.xsd), [ressurser.xsd](https://www.test.vegvesen.no/nvdb/apiskriv/v2/endringssett/ressurser.xsd), [fremdrift.xsd](https://www.test.vegvesen.no/nvdb/apiskriv/v2/endringssett/fremdrift.xsd)
 og [status.xsd](https://www.test.vegvesen.no/nvdb/apiskriv/v2/endringssett/status.xsd)
