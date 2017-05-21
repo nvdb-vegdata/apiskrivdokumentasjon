@@ -51,7 +51,7 @@ HTTP/1.1 200 OK
 Følgende koder benyttes i forbindelse med feil og advarsler:
 
 |Kode|Type|Beskrivelse|
-|=|=|=|
+|-|-|-|
 |IKKE_GJELDENDE_DATAKATALOGVERSJON|Advarsel|Datakatalogversjonen i endringssettet er ulik nåværende datakatalogversjon.|
 |MANGLER_TILGANG|Feil|Brukeren mangler rettigheter til å utføre endringer på en vegobjekttype, eller mangler rettigheter til å endre vegobjekter som er stedfestet på en vegkategori, eller innenfor en kommune.|
 |UFULLSTENDIG_VEGOBJEKT|Feil|Det er benyttet delvis oppdatering eller korrigering uten å angi minst én egenskap eller assosiasjon.|
