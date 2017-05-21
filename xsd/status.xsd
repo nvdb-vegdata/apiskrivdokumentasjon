@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema elementFormDefault="qualified" version="1.0" targetNamespace="http://nvdb.vegvesen.no/apiskriv/domain/v2" xmlns:tns="http://nvdb.vegvesen.no/apiskriv/domain/v2" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="fremdrift" type="tns:Fremdrift"/>
+
+  <xs:element name="status" type="tns:Status"/>
+
+  <xs:complexType name="Status">
+    <xs:all>
+      <xs:element name="mottatt" type="xs:dateTime"/>
+      <xs:element ref="tns:fremdrift"/>
+      <xs:element name="vente&#229;rsak" type="tns:Vente&#197;rsak" minOccurs="0"/>
+      <xs:element name="avvist&#229;rsak" type="tns:Avvist&#197;rsak" minOccurs="0"/>
+      <xs:element name="resultat" type="tns:Resultat"/>
+      <xs:element name="eier" type="xs:string"/>
+      <xs:element name="klient" type="xs:string" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="Resultat">
+    <xs:all>
+      <xs:element name="vegObjekter" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="vegObjekt" type="tns:VegObjektResultat" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="feil" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="feil" type="tns:Feil" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="advarsel" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="advarsel" type="tns:Advarsel" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="VegObjektResultat">
+    <xs:all>
+      <xs:element name="feil" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="feil" type="tns:Feil" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="advarsel" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="advarsel" type="tns:Advarsel" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="tempId" type="xs:string"/>
+    <xs:attribute name="nvdbId" type="xs:long"/>
+  </xs:complexType>
+
+  <xs:complexType name="Feil">
+    <xs:all>
+      <xs:element name="melding" type="xs:string"/>
+      <xs:element name="referanse" type="xs:string"/>
+      <xs:element name="egenskapTypeId" type="xs:int" minOccurs="0"/>
+    </xs:all>
+    <xs:attribute name="kode" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="Advarsel">
+    <xs:all>
+      <xs:element name="melding" type="xs:string"/>
+      <xs:element name="referanse" type="xs:string"/>
+      <xs:element name="egenskapTypeId" type="xs:int" minOccurs="0"/>
+    </xs:all>
+    <xs:attribute name="kode" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:simpleType name="Fremdrift">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="IKKE_STARTET"/>
+      <xs:enumeration value="KANSELLERT"/>
+      <xs:enumeration value="BEHANDLES"/>
+      <xs:enumeration value="VENTER"/>
+      <xs:enumeration value="AVVIST"/>
+      <xs:enumeration value="UTF&#216;RT"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Vente&#197;rsak">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="VENTER_P&#197;_DATAKATALOG"/>
+      <xs:enumeration value="VENTER_P&#197;_L&#197;S"/>
+      <xs:enumeration value="I_K&#216;"/>
+      <xs:enumeration value="SYSTEMFEIL"/>
+      <xs:enumeration value="SYSTEMFEIL_VED_OPPL&#197;SING"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Avvist&#197;rsak">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="IKKE_AUTORISERT"/>
+      <xs:enumeration value="VALIDERINGSFEIL"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+
