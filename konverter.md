@@ -12,10 +12,12 @@ POST /nvdb/apiskriv/rest/v2/konverter/sosiGeoJson
 ```
 Forespørsel
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Accept|MediaType|Angir på hvilken media-type en ønsker svar. application/json eller application/xml. {Content-Type} benyttes hvis ikke annet er oppgitt.|
 |Content-Type|MediaType|application/json|
+
 Kropp
 Eksempel
 
@@ -72,6 +74,7 @@ Hode
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Content-Type|MediaType|Angir hvilken media-type kroppen er. application/json eller application/xml.|
+
 Kropp
 Eksempel
 
@@ -130,6 +133,7 @@ POST /nvdb/apiskriv/rest/v2/konverter/sosi
 
 Forespørsel
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Accept|MediaType|Angir på hvilken media-type en ønsker svar. application/json eller application/xml. {Content-Type} benyttes hvis ikke annet er oppgitt.|
@@ -191,6 +195,7 @@ Content-Type: text/plain
 
 Svar
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Content-Type|MediaType|Angir hvilken media-type kroppen er. application/json eller application/xml.|
