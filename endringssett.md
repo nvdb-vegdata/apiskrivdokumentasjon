@@ -11,6 +11,7 @@ POST /nvdb/apiskriv/rest/v2/endringssett/validator
 
 Forespørsel
 Parametere
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |skipLocation|Boolean|Angir om stedfesting (lokasjon) skal valideres|
@@ -18,6 +19,7 @@ Parametere
 |useObjectList|Boolean|Gjør validering mot objektlista i stedet for datakatalogen.|
 
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Content-Type|MediaType	Angir hvilken media-type kroppen er. application/json eller application/xml.|
@@ -92,6 +94,7 @@ POST /nvdb/apiskriv/rest/v2/endringssett
 
 Forespørsel
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Content-Type|MediaType|Angir hvilken media-type kroppen er. application/json eller application/xml.|
@@ -163,6 +166,7 @@ POST /nvdb/apiskriv/rest/v2/endringssett/{endringssettId}/start
 
 Forespørsel
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Accept|MediaType|Angir på hvilken media-type en ønsker svar. application/json eller application/xml. application/json benyttes hvis ikke annet er oppgitt.|
@@ -201,6 +205,7 @@ POST /nvdb/apiskriv/rest/v2/endringssett/{endringssettId}/kanseller
 
 Forespørsel
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Accept|MediaType|Angir på hvilken media-type en ønsker svar. application/json eller application/xml. application/json benyttes hvis ikke annet er oppgitt.|
@@ -237,6 +242,7 @@ POST /nvdb/apiskriv/rest/v2/endringssett/{endringssettId}/restart
 ```
 Forespørsel
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Accept|MediaType|Angir på hvilken media-type en ønsker svar. application/json eller application/xml. application/json benyttes hvis ikke annet er oppgitt.|
@@ -275,6 +281,7 @@ GET /nvdb/apiskriv/rest/v2/endringssett/{endringssettId}/fremdrift
 
 Forespørsel
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Accept|MediaType|Angir på hvilken media-type en ønsker svar. application/json eller application/xml. application/json benyttes hvis ikke annet er oppgitt.|
@@ -304,10 +311,12 @@ GET /nvdb/apiskriv/rest/v2/endringssett/{endringssettId}/status
 ```
 Forespørsel
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Accept|MediaType|Angir på hvilken media-type en ønsker svar. application/json eller application/xml. application/json benyttes hvis ikke annet er oppgitt.|
 |x-client|Tekst|Angir navnet på klientapplikasjonen.|
+
 Eksempel
 ```
 GET /nvdb/apiskriv/rest/v2/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/status HTTP/1.1
@@ -344,6 +353,7 @@ GET /nvdb/apiskriv/rest/v2/endringssett/{endringssettId}
 
 Forespørsel
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Accept|MediaType|Angir på hvilken media-type en ønsker svar. application/json eller application/xml. application/json benyttes hvis ikke annet er oppgitt.|
@@ -411,6 +421,7 @@ GET /nvdb/apiskriv/rest/v2/endringssett
 
 Forespørsel
 Parametere
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |max|Long|Maksimum antall endringssett i svaret.|
@@ -419,13 +430,15 @@ Parametere
 |fra|Long|Les kun endringssett innenfor et tidsrom. Angir tidsrommets begynnelse. Angis i antall millisekunder fra 1. januar 1970|
 |til|Long|Les kun endringssett innenfor et tidsrom. Angir tidsrommets slutt. Angis i antall millisekunder fra 1. januar 1970|
 |status|Status|Les kun endringssett med gitt {status}.|
-|årsak	VenteÅrsak eller AvvistÅrsak	Les kun endringssett som er stanset eller venter med gitt {årsak}.|
+|årsak|VenteÅrsak eller AvvistÅrsak|Les kun endringssett som er stanset eller venter med gitt {årsak}.|
 
 Hode
+
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Accept|MediaType|Angir på hvilken media-type en ønsker svar. application/json eller application/xml. application/json benyttes hvis ikke annet er oppgitt.|
 |x-client|Tekst|Angir navnet på klientapplikasjonen.|
+
 Eksempel
 ```
 GET /nvdb/apiskriv/rest/v2/endringssett?max=1 HTTP/1.1
