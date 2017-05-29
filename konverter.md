@@ -1,16 +1,18 @@
-#Konvertering
+# Konvertering
 
-##Konverter SOSI-GeoJSON til endringssett
+## Konverter SOSI-GeoJSON til endringssett
 Det er følgende begrensninger:
 
 - effektDato settes til dagens dato.
 - feature[n] blir til registrer.vegObjekter[n]
 - registrer.vegObjekter[n].lokasjon blir ikke satt.
+
 Mønster
 ```
 POST /nvdb/apiskriv/rest/v2/konverter/sosiGeoJson
 ```
 Forespørsel
+
 Hode
 
 |Navn|Type|Beskrivelse|
@@ -119,7 +121,7 @@ Content-Type: application/json
 }
 ```
 
-##Konverter SOSI-NVDB til endringssett
+## Konverter SOSI-NVDB til endringssett
 Det er følgende begrensninger:
 - effektDato settes til dagens dato.
 - krever KOORDSYS 23 og VERT-DATUM NN54.

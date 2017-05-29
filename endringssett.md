@@ -1,7 +1,7 @@
-#Endringssett
+# Endringssett
 Et endringssett er en liste med vegobjekter som skal registreres, oppdateres, korrigeres eller slettes i NVDB.
 
-##Valider et endringssett
+## Valider et endringssett
 Gjør det mulig å kontrollere innholdet i et endringssett uten å måtte registrere det og deretter starte behandling. Det gjøres bare validering mot datakatalogen. Kontroll av sammenhengregler og annen mer kompleks validering utføres ikke. Denne ressursen gir synkron respons og gjøre ingen endringer i NVDB.
 
 Mønster
@@ -9,8 +9,9 @@ Mønster
 POST /nvdb/apiskriv/rest/v2/endringssett/validator
 ```
 
-Forespørsel
-Parametere
+**Forespørsel**
+
+Parametre
 
 |Navn|Type|Beskrivelse|
 |-|-|-|
@@ -85,14 +86,15 @@ HTTP/1.1 200 OK
 </status>
 ```
 
-##Registrer et endringssett
+## Registrer et endringssett
 Etter at endringssettet er registrert må start-URI benyttes for å starte behandling.
 Mønster
 ```
 POST /nvdb/apiskriv/rest/v2/endringssett
 ```
 
-Forespørsel
+**Forespørsel**
+
 Hode
 
 |Navn|Type|Beskrivelse|
@@ -129,7 +131,7 @@ X-Client: MinKlientApplikasjon
   </registrer>
 </endringssett>
 ```
-Svar
+**Svar**
 Hode
 
 |Navn|Type|Beskrivelse|

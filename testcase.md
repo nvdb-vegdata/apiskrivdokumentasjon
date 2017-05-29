@@ -1,4 +1,4 @@
-#Testcase
+# Testcase
 Testcase kan hentes programmatisk for å inkluderes i applikasjoner som vil kjøre disse.
 
 Et testcase består av et endringssett og en liste med validatorer. Validatorer beskriver det forventede resultatet fra behandlingen av endringssettet.
@@ -43,7 +43,7 @@ Eksempel
             <assert notcontains="ERROR"/>
         </validation>
     </testcase>
-    
+
     <!-- ... -->
 
     <testcase id="29" title="Objekt med ugyldig stedfesting">

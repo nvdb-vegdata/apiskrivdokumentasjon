@@ -1,11 +1,11 @@
 NVDBs API SKRIV lar deg oppdatere eksisterende, registrere nye eller slette vegobjekter i NVDB.
 
-##Endringssett
+## Endringssett
 
 Endringer i NVDB gjennomføres ved hjelp av endringssett. Et endringssett er en liste med vegobjekter som skal registreres, oppdateres, korrigeres eller slettes i NVDB. Et endringssett har en id, effektdato, datakatalogversjon og ansvarlig, og består av registrer, oppdater, delvisOppdater, korriger, delvisKorriger, slett, status og etterbehandling. Registrer, oppdater, delvisOppdater, korriger, delvisKorriger, slett består igjen av vegobjekter.
 
 
-##Tilgjengelige ressurser
+## Tilgjengelige ressurser
 
 |VERB|URI|Beskrivelse|Dokumentasjon|
 |:---|:---|:---|:---:|
@@ -25,14 +25,14 @@ Endringer i NVDB gjennomføres ved hjelp av endringssett. Et endringssett er en 
 |GET|/nvdb/apiskriv/rest/v2/binaer/{ressursId}|Last ned binærdata.|dokumentasjon|
 
 
-##Retningslinjer for klientutvikling
+## Retningslinjer for klientutvikling
 Alle klienter som sender forespørsler til APIet skal identifisere seg via header-parameteren X-Client.
 
 For å undersøke behandlingsfremdriften på et endringssett, er det anbefalt å benytte Se fremdrift fremfor Se status.
 
 Se status bør kun benyttes for å hente nvdbId på registrerte objekter, eller for å se eventuelle feilmeldinger etter at behandlingen har stanset.
 
-##Livssyklus for endringssett
+## Livssyklus for endringssett
 Oppdatering av vegobjekter i NVDB skjer ved å sende inn et endringssett som beskriver endringene. Klienten mottar umiddelbart en URI til endringssettet.
 
 Når et endringssett er registrert kan klienten starte asynkron behandling av endringssettet ved å kalle endringssettets start-URI.
@@ -40,13 +40,13 @@ Når et endringssett er registrert kan klienten starte asynkron behandling av en
 Klienter kan kontrollere forløpet for behandlingen av et endringssett ved å gjøre et kall til endringssettets fremdrift-URI og status-URI.
 
 
-##Endringssettet kan avvises dersom:
+## Endringssettet kan avvises dersom:
 
 En automatisk validering feiler. [Les mer...]
 Ett eller flere av vegobjektene som skal endres er allerede blitt endret av andre og har fått høyere versjonsnummer enn i dette endringssettet.
 Hvis endringssettet feiler må klienten korrigere feilene og registrere et nytt endringssett.
 
-##Mediatyper
+## Mediatyper
 APIet støtter både XML og JSON.
 
 Klienter angir ønsket MediaType-representasjon fra serveren ved å sette "Content-Type"/"Accept"-header i request.
@@ -56,7 +56,7 @@ Klienter angir ønsket MediaType-representasjon fra serveren ved å sette "Conte
 |JSON|application/json|
 |XML|application/xml|
 
-##Feilhåndtering
+## Feilhåndtering
 Feil kan oppstå på to stadier:
 
 Det kan oppstå feil når klienten registrerer eller henter et endringssett.

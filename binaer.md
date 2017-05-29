@@ -1,6 +1,6 @@
-#Binær
+# Binær
 
-##Last opp binærdata
+## Last opp binærdata
 Laster opp binærdata og responderer med en id som deretter kan brukes som referanse i et endringssett.
 
 ```xml
@@ -57,7 +57,7 @@ Mønster
   <input type="submit"/>
 </form>
 ```
-##Last ned binærdata
+## Last ned binærdata
 Tillater nedlasting av tidligere opplastede binærdata.
 Mønster
 ```

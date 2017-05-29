@@ -31,7 +31,7 @@ Eksempel-forespørsel:
 ```
 curl -H "Cookie: iPlanetDirectoryProOAM= AQIC5wM2LY4SfcyhHz1Irgsf6pbxoeuY3k9XqvbRtB4-4No.*AAJTSQACMDIAAlNLABMzMDUyMTI1NzE2ODA4ODU0OTczAAJTMQACMDM.*" https://www.vegvesen.no/nvdb/apiskriv/rest/v2/endringssett
 ```
-Autentiseringstokenet varer i 6 timer er inntil https://www.vegvesen.no/openam/UI/Logout anropes eksplisit (med token i header).
+Autentiseringstokenet varer i 6 timer eller inntil https://www.vegvesen.no/openam/UI/Logout anropes eksplisit (med token i header).
 
 Logout:
 ```
