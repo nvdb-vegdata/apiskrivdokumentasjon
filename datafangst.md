@@ -22,9 +22,6 @@ Før vi beskriver normal arbeidsflyt i Datafangst og APIet definerer vi noen ter
  attributter objektet har, påkrevd-nivå, og relasjoner til andre vegobjekt-typer. Et eksempel på en vegobjekt-type er «Fartsgrense».
 * Vegobjekt (feature) - en instans av en vegobjekt-type, for eksempel en enkelt fartsgrense.
 
-## Endring av eksisterende vegobjekter i Datafangst<a name="endredeobjekter"></a>
- Per oktober 2016 er det kun støtte for nye objekter i Datafangst, endringer på objekter som allerede finnes i NVDB er ikke mulig.
- Støtte for å inkludere eksisterende objekter er planlagt støttet.
 
 ## Roller og tilganger i Datafangst
 
@@ -78,6 +75,8 @@ Datafangst har et API som støtter geoJSON.
 
 |Sti|Verb|Beskrivelse|
 |-|-|
+|api/v1/contract/|GET|Gir deg liste over alle kontraktsid'er + navn du har tilgang til|
+|api/v1/contract/{id}/|GET|Gir deg informasjon om kontrakten, herunder også tilgang til objektlista for kontrakten|
 |/api/v1/contract/{kontraktsid}/featurecollection|POST|POST en komplett «feature collection» til en kontrakt. Behandling og validering tar noe tid, derfor er denne operasjonen aynkron. Responser: 202 Accepted + payload med URI for polling av status.|
 |/api/v1/contract/{contractId}/featurecollection/{collectionId}|GET|Henter oppgitt feature collection. Responser: 200 OK + payload med feature collection som geoJSON|
 |/api/v1/contract/{contractId}/featurecollection/{featurecollectionid}|PUT|Erstatt den oppgitte feature collection Responser: 202 Accepted + payload med URI for polling av status.|
@@ -126,17 +125,26 @@ Datafangst-APIet bruker [geoJSON](https://tools.ietf.org/html/rfc7946) som paylo
   ]
 }
 ```
-Geometriseksjonen i dette objektet er standard geoJSON. *properties* delen av objektet inneholder de attributtene som hører til
-vegobjektet.
+
+Geometriseksjonen i dette objektet er standard geoJSON. *properties* delen av objektet inneholder de attributtene som hører til vegobjektet.
 
 ### Properties
-* tag (påkrevd)- Dette er et navn på vegobjektet som er ment brukt for å gjøre det lettere å referere til objekter, og lett identifisere
-dem med et lettlest navn.
-* dataCatalogVersion - Hvilken versjon av Datakatalogen som er brukt som grunnlag ved opprettelse av objektet. Siste versjonsnummer
- finner man på https://www.vegvesen.no/nvdb/api/v2/status.json. Datakatalogdefinisjoner er tilgjengelige på https://www.vegvesen.no/nvdb/api/v2/vegobjekttyper/{FeatureTypeId}.json og http://labs.vegdata.no/nvdb-datakatalog
+* tag (påkrevd)- Dette er et navn på vegobjektet som er ment brukt for å gjøre det lettere å referere til objekter, og lett identifisere dem med et lettlest navn.
+* dataCatalogVersion - Hvilken versjon av Datakatalogen som er brukt som grunnlag ved opprettelse av objektet. Siste versjonsnummer  finner man på https://www.vegvesen.no/nvdb/api/v2/status.json. Datakatalogdefinisjoner er tilgjengelige på https://www.vegvesen.no/nvdb/api/v2/vegobjekttyper/{FeatureTypeId}.json og http://labs.vegdata.no/nvdb-datakatalog
 * typeId (påkrevd) - Id for vegobjekttypen dette vegobjektet er en instans av
 * comment - kommentar for vegobjektet
-* attributes (påkrevd) - NVDB-attributtene for vegobjektet på format "attributtid" : "verdi". Datakatalogversjonen definerer hva som er påkrevde
-attributter, så dersom påkrevde attributter som mangler vil gi valideringsfeil ved Datakatalog-validering.
+* attributes (påkrevd) - NVDB-attributtene for vegobjektet på format "attributtid" : "verdi". Datakatalogversjonen definerer hva som er påkrevde attributter, så dersom påkrevde attributter som mangler vil gi valideringsfeil ved Datakatalog-validering.
+
+## Endring av eksisterende vegobjekter i Datafangst<a name="endredeobjekter"></a>
+ Per oktober 2016 er det kun støtte for nye objekter i Datafangst, endringer på objekter som allerede finnes i NVDB er ikke mulig. Støtte for å inkludere eksisterende objekter er planlagt tidlig høst 2017.
+
+Properties-elementet vil da få følgende nye elementer:
+
+```json
+        "nvdbId": 'id',
+        "nvdbVersion": 'versjonsid',
+        "operation": "CORRECT" eller "DELETE"
+
+```
 
 [Postman collection for API-operasjoner](https://www.getpostman.com/collections/ef3fc73342f94df0585d)
