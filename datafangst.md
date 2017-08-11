@@ -130,7 +130,7 @@ Geometriseksjonen i dette objektet er standard geoJSON. *properties* delen av ob
 
 ### Properties
 * tag (påkrevd)- Dette er et navn på vegobjektet som er ment brukt for å gjøre det lettere å referere til objekter, og lett identifisere dem med et lettlest navn.
-* dataCatalogVersion - Hvilken versjon av Datakatalogen som er brukt som grunnlag ved opprettelse av objektet. Siste versjonsnummer  finner man på https://www.vegvesen.no/nvdb/api/v2/status.json. Datakatalogdefinisjoner er tilgjengelige på https://www.vegvesen.no/nvdb/api/v2/vegobjekttyper/{FeatureTypeId}.json og http://labs.vegdata.no/nvdb-datakatalog
+* dataCatalogVersion (påkrevd) - Hvilken versjon av Datakatalogen som er brukt som grunnlag ved opprettelse av objektet. Siste versjonsnummer  finner man på https://www.vegvesen.no/nvdb/api/v2/status.json. Datakatalogdefinisjoner er tilgjengelige på https://www.vegvesen.no/nvdb/api/v2/vegobjekttyper/{FeatureTypeId}.json og http://labs.vegdata.no/nvdb-datakatalog
 * typeId (påkrevd) - Id for vegobjekttypen dette vegobjektet er en instans av
 * comment - kommentar for vegobjektet
 * attributes (påkrevd) - NVDB-attributtene for vegobjektet på format "attributtid" : "verdi". Datakatalogversjonen definerer hva som er påkrevde attributter, så dersom påkrevde attributter som mangler vil gi valideringsfeil ved Datakatalog-validering.
