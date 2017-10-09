@@ -1,0 +1,22 @@
+{% assign cats = site.pages | group_by: 'dir' | sort: 'name'%}
+
+{% for cat in cats %}
+{% unless cat.name contains '/assets/' %}
+
+{% assign name = cat.name | replace:'/',' ' | strip %}
+
+{% if name != '' %}
+
+<h2>{{name | capitalize }}</h2>
+{% endif %}
+<ul>
+
+{% assign items = cat.items | sort: 'order' %}
+{% for node in items | sort: 'order' %}
+{% unless node.hide %}
+<li><a href='{{site.baseurl}}{{node.url}}'>{{node.title}}</a></li>
+{% endunless %}
+{% endfor %}
+</ul>
+{% endunless %}
+{% endfor %}
