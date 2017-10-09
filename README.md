@@ -1,3 +1,6 @@
+---
+order: 0
+---
 # Overblikk over NVDB API Skriv
 
 Denne presentasjonen krever kjennskap til NVDBs datamodell inkludert metadata som beskrevet i datakatalogen.
