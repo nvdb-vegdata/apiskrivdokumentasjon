@@ -9,7 +9,7 @@ X-Client: DinKlient
 ```
 
 
-## Autorisasjon
+## Autentisering
 Login-request:
 ```
 curl -d "{}"
