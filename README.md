@@ -5,6 +5,10 @@ order: 0
 
 Denne presentasjonen krever kjennskap til NVDBs datamodell inkludert metadata som beskrevet i datakatalogen.
 
+## Docker
+Det er mulig å starte en versjon av [API skriv lokalt med Docker](https://hub.docker.com/r/nvdbapnevegdata/nvdb-skriveapi/).
+Denne starter Skrive-APIet lokalt, så du kan test både API og web-grensesnitt.
+
 ## Hovedprinsipper
 
 NVDB API Skriv har følgende kjennetegn:

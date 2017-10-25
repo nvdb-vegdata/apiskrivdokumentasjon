@@ -14,6 +14,10 @@ Tradisjonelt har data blitt levert på [SOSI-format](http://www.kartverket.no/so
 I tillegg til å støtte opplasting av SOSI-filer til NVDB og [FKB](http://www.kartverket.no/kart/kartdata/vektorkart/fkb/),
 har Datafangst også et API for å sende inn vegobjekter som  [geoJSON](http://geojson.org) - dette APIet vil bli beskrevet i dette dokumentet.
 
+## Docker
+Det er mulig å starte en versjon av [Datafangst lokalt med Docker](https://hub.docker.com/r/nvdbapnevegdata/nvdb-datafangst/).
+Denne starter Datafangst-webapplikasjonen og Skrive-APIet lokalt, så du kan test både API og web-grensesnitt. 
+
 ## Definisjoner
 Før vi beskriver normal arbeidsflyt i Datafangst og APIet definerer vi noen termer som er brukt i NVDB-domenet. Engelsk oversettelse i parantes.
 * Kontrakt (contract) - Alle data hører til en kontrakt som representerer den faktiske kontrakten de innsamlede data tilhører. En kontrakt har
