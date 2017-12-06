@@ -1,4 +1,4 @@
-#Datafangst
+# Datafangst
 
 Datafangst er et web-basert system for innsending, kontroll, redigering, og på sikt direkte registrering i [NVDB](http://www.vegvesen.no/fag/Teknologi/Nasjonal+vegdatabank).
 Systemet skal ta i mot - GPS-stedfestede data - for alle vegobjekter konstruert ([eller endret](#endredeobjekter))
