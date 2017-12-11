@@ -1,0 +1,1505 @@
+{
+	"info": {
+		"name": "Datafangst API doc",
+		"_postman_id": "d52379e9-6bd9-d74d-bcec-9d7714849337",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API",
+			"description": "",
+			"item": [
+				{
+					"name": "send featurecollection (geojson)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8a6b595b-15d8-4045-961e-7fea342369b4",
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"contractId\", \"contract-ID\");",
+									"",
+									"postman.setEnvironmentVariable(\"authorization\", \"Basic XYZ\");"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "3cc805e3-004c-4c7b-94f5-b60d5f03844f",
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 202;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    postman.setEnvironmentVariable(\"featureCollectionId\", response.featureCollectionId);",
+									"",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n          [ [10.39241731, 63.43053048],\n            [10.39495434, 63.43043698],\n            [10.39579151, 63.42898665],\n            [10.39272171, 63.42909269],\n            [10.39241731, 63.43053048] ]\n        ]\n      },\n      \"properties\": {\n        \"tag\": \"Forsterkningslag#1\",\n        \"dataCatalogVersion\": \"2.07\",\n        \"typeId\": 227,\n        \"comment\": \"Usikker på måledatoen\",\n        \"attributes\": {\n          \"5543\": \"20160802\"\n        }\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent featurecollection status (json)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    tests[\"Correct featureCollection\"] = response.featureCollectionId == environment.featureCollectionId;",
+									"    tests[\"Status is ACCEPTED\"] = response.validationStatus == \"ACCEPTED\";",
+									"",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"status"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent featurecollection status (xml)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    tests[\"Correct featureCollection\"] = responseBody.has(\"<featureCollectionId>\"+ environment.featureCollectionId + \"</featureCollectionId>\");",
+									"    tests[\"Status is ACCEPTED\"] = responseBody.has(\"<validationStatus>ACCEPTED</validationStatus>\");",
+									"",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"status"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent featurecollection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    tests[\"Correct features are included\"] = responseBody.has(\"\\\"attributes\\\":{\\\"5543\\\":\\\"20160802\\\"}\");",
+									"    ",
+									"    if (response.features.length > 0){",
+									"        postman.setEnvironmentVariable(\"featureId\", response.features[0].id);",
+									"    }",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "endre featurecollection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 202;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    tests[\"Correct featurecollection\"] = response.featureCollectionId == environment.featureCollectionId;",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n          [ [10.39241731, 63.43053048],\n            [10.39495434, 63.43043698],\n            [10.39579151, 63.42898665],\n            [10.39272171, 63.42909269],\n            [10.39241731, 63.43053048] ]\n        ]\n      },\n      \"properties\": {\n        \"tag\": \"Forsterkningslag#1\",\n        \"dataCatalogVersion\": \"2.06\",\n        \"typeId\": 227,\n        \"comment\": \"Usikker på måledatoen\",\n        \"attributes\": {\n          \"5543\": \"20160909\"\n        }\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent oppdatert featurecollection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    tests[\"Correct updated features are included\"] = responseBody.has(\"\\\"attributes\\\":{\\\"5543\\\":\\\"20160909\\\"}\");",
+									"    ",
+									"    if (response.features.length > 0){",
+									"        postman.setEnvironmentVariable(\"featureId\", response.features[0].id);",
+									"    }",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "send feature #2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    tests[\"Correct featurecollection\"] = response.featureCollectionId == environment.featureCollectionId;",
+									"    tests[\"Feature is accepted\"] = response.validationStatus == \"ACCEPTED\";",
+									"    ",
+									"    postman.setEnvironmentVariable(\"featureId_no2\", response.featureIdMappings[0].featureId);    ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"Feature\",\n  \"geometry\": {\n    \"type\": \"Polygon\",\n    \"coordinates\": [\n      [ [10.39241731, 63.43053048],\n        [10.39495434, 63.43043698],\n        [10.39579151, 63.42898665],\n        [10.39272171, 63.42909269],\n        [10.39241731, 63.43053048] ]\n    ]\n  },\n  \"properties\": {\n    \"tag\": \"Busker#1\",\n    \"dataCatalogVersion\": \"2.06\",\n    \"typeId\": 511,\n    \"comment\": \"Aner ikke hvilken type det er, alt er buskas for meg...\",\n    \"attributes\": {\n      \"4131\": \"Buskas\",\n      \"10280\": \"2016\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent oppdatert featurecollection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    var forsterkningsTag = false;",
+									"    var buskTag = false;",
+									"    for (i = 0; i < response.features.length; i++){",
+									"        if (response.features[i].properties.tag == \"Forsterkningslag#1\") forsterkningsTag = true;",
+									"        if (response.features[i].properties.tag == \"Busker#1\") buskTag = true;",
+									"    }",
+									"    ",
+									"    tests[\"Tag 'Forsterkningslag#1' is a feature\"] = forsterkningsTag;",
+									"    tests[\"Tag 'Busker#1' is a feature\"] = buskTag;",
+									"    ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent feature #1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    tests[\"Feature has correct tag 'Forsterkningslag#1'\"] = response.properties.tag == \"Forsterkningslag#1\";",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature/{{featureId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature",
+								"{{featureId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent featurestatus #1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    tests[\"Feature has correct tag 'Forsterkningslag#1'\"] = response.properties.tag == \"Forsterkningslag#1\";",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature/{{featureId}}/status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature",
+								"{{featureId}}",
+								"status"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent feature #2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    tests[\"Feature has correct tag 'Busker#1'\"] = response.properties.tag == \"Busker#1\";",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature/{{featureId_no2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature",
+								"{{featureId_no2}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent featurestatus #2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    tests[\"Feature has correct tag 'Busker#1'\"] = response.properties.tag == \"Busker#1\";",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature/{{featureId_no2}}/status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature",
+								"{{featureId_no2}}",
+								"status"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "endre feature #2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    tests[\"Correct featurecollection\"] = response.featureCollectionId == environment.featureCollectionId;",
+									"    tests[\"Feature is accepted\"] = response.validationStatus == \"ACCEPTED\";",
+									"    tests[\"Feature has correct tag 'Busker#1'\"] = response.featureIdMappings[0].tag == \"Busker#1\";",
+									"    ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"Feature\",\n  \"geometry\": {\n    \"type\": \"Polygon\",\n    \"coordinates\": [\n      [ [10.39241731, 63.43053048],\n        [10.39495434, 63.43043698],\n        [10.39579151, 63.42898665],\n        [10.39272171, 63.42909269],\n        [10.39241731, 63.43053048] ]\n    ]\n  },\n  \"properties\": {\n    \"tag\": \"Busker#1\",\n    \"dataCatalogVersion\": \"2.06\",\n    \"typeId\": 511,\n    \"comment\": \"Aner ikke hvilken type det er, alt er buskas for meg...\",\n    \"attributes\": {\n      \"4131\": \"Buskas\",\n      \"10280\": \"2015\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature/{{featureId_no2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature",
+								"{{featureId_no2}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent oppdatert featurecollection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    var forsterkningsTag = false;",
+									"    var buskTag = false;",
+									"    for (i = 0; i < response.features.length; i++){",
+									"        if (response.features[i].properties.tag == \"Forsterkningslag#1\") forsterkningsTag = true;",
+									"        if (response.features[i].properties.tag == \"Busker#1\") {",
+									"            buskTag = true;",
+									"            tests[\"Oppdatert verdi for busker: 2015\"] = responseBody.has(\"\\\"10280\\\":\\\"2015\\\"\");",
+									"        }",
+									"    }",
+									"    ",
+									"    tests[\"Tag 'Forsterkningslag#1' is a feature\"] = forsterkningsTag;",
+									"    tests[\"Tag 'Busker#1' is a feature\"] = buskTag;",
+									"    ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "slett feature #2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 204;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature/{{featureId_no2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature",
+								"{{featureId_no2}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent oppdatert featurecollection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    var forsterkningsTag = false;",
+									"    var buskTag = true;",
+									"    for (i = 0; i < response.features.length; i++){",
+									"        if (response.features[i].properties.tag == \"Forsterkningslag#1\") forsterkningsTag = true;",
+									"        if (response.features[i].properties.tag == \"Busker#1\") buskTag = false;",
+									"    }",
+									"    ",
+									"    tests[\"Tag 'Forsterkningslag#1' is a feature\"] = forsterkningsTag;",
+									"    tests[\"Tag 'Busker#1' is NOT a feature\"] = buskTag;",
+									"    tests[\"Only one feature is in the collection\"] = response.features.length == 1;",
+									"    ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent feature #2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 404;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature/{{featureId_no2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature",
+								"{{featureId_no2}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent kontrakter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent gitt kontrakt",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "hent alle featurecollections på kontrakt",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dG9ybW9zQGthbnRlZ2Eubm86bWFyaXRidDk5"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Extra",
+			"description": "",
+			"item": [
+				{
+					"name": "send featurecollection FKB (geojson)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b2f9feea-f216-4cb2-879c-0aa78286fa79",
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"contractId\", \"contract-ID\");",
+									"",
+									"postman.setEnvironmentVariable(\"authorization\", \"Basic XYZ\");"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "0c2018c8-79b9-47a5-b513-4a83e0b6c3d8",
+								"type": "text/javascript",
+								"exec": [
+									"//console.log(responseBody);",
+									"",
+									"//Test: ResponseCode",
+									"var assertion_responsecode = 202;",
+									"",
+									"var statusCode = responseCode.code == assertion_responsecode;",
+									"if (statusCode){",
+									"    tests[\"Response code is \" + assertion_responsecode] = true;",
+									"}",
+									"else {",
+									"    tests[\"Response code should be \" + assertion_responsecode + \", but is \" + responseCode.code + \" (\" + ",
+									"    responseCode.name + \")\"] = false;",
+									"}",
+									"",
+									"if (statusCode){",
+									"",
+									"    var response = JSON.parse(responseBody);",
+									"    ",
+									"    postman.setEnvironmentVariable(\"featureCollectionId\", response.featureCollectionId);",
+									"",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"LineString\",\n        \"coordinates\": [\n          [10.39241731, 63.43053048],\n          [10.39495434, 63.43043698],\n          [10.39579151, 63.42898665],\n          [10.39272171, 63.42909269]\n        ]\n      },\n      \"properties\": {\n        \"tag\": \"Rekkverk#1\",\n        \"typeName\": \"Vegrekkverk\",\n        \"comment\": \"Usikker på måledatoen\",\n        \"geometryAttributes\": {\n          \"captureDate\": \"2016-08-02\",\n          \"length\": \"12.3\",\n          \"measurementMethod\": \"96\",\n          \"measurementMethodHeight\": \"96\",\n          \"accuracy\": \"5\",\n          \"accuracyHeight\": \"6\",\n          \"visibility\": \"2\",\n          \"tolerance\": \"4\",\n          \"themeCode\": \"9999\",\n          \"medium\": \"3\",\n          \"municipality\": \"1601\",\n          \"heightRef\": \"0\",\n          \"referenceGeometry\": \"true\"\n        }\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/?destination=FKB",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								""
+							],
+							"query": [
+								{
+									"key": "destination",
+									"value": "FKB",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
