@@ -224,4 +224,28 @@ dem med et lettlest navn.
 * attributes (påkrevd) - NVDB-attributtene for vegobjektet på format "attributtid" : "verdi". Datakatalogversjonen definerer hva som er påkrevde 
 attributter, så dersom påkrevde attributter som mangler vil gi valideringsfeil ved Datakatalog-validering.
  
+### Levering av featureCollection med FKB
+For å sende inn FKB-objekter må request-parameter `destination=FKB` legges til, og for hver feature droppes `dataCatalogVersion`
+og `typeName` brukes for for hver feature i stedet for `typeId`.
+
+`POST /api/v1/contract/{contractId}/featurecollection?destination=FKB`
+```json
+{
+"type": "FeatureCollection",
+  "features": [
+    {
+      ... ,
+      "properties": {
+        "tag": "Stikkrenne#1",
+        "typeName": "Stikkrenne",
+        "comment": "Usikker på måledatoen",
+        "attributes": {
+          ...
+         }
+       }
+    }
+  ]
+}
+```
+ 
 [Postman collection for API-operasjoner](https://www.getpostman.com/collections/ef3fc73342f94df0585d)
