@@ -22,3 +22,9 @@ NVDB API Skriv setter strenge krav til mottatte data:
 * Kun data som er komplette og korrekte ihht definisjonene i datakatalogen vil bli lagret i NVDB
 * Data valideres også opp mot allerede lagrede data
 * Alle data som skrives vha APISKRIV må være stedfestet med veglenkeposisjon. Klienter er selv ansvarlig for å sende inn korrekte veglenkeposisjoner for sine objekter.  
+
+## API V3
+
+NVDB API V3 vil utvikles som en del av regionsreformprosjektet og skal gå i produksjon høsten 2019. API V3 skal være i drift fra 1.1.2020 med nytt nasjonalt vegreferansesystem.
+
+* [https://apiskriv.docs.apiary.io/#](API V3 dokumentasjon med eksempel-responser finnes her)
