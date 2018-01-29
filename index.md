@@ -27,4 +27,4 @@ NVDB API Skriv setter strenge krav til mottatte data:
 
 NVDB API V3 vil utvikles som en del av regionsreformprosjektet og skal gå i produksjon høsten 2019. API V3 skal være i drift fra 1.1.2020 med nytt nasjonalt vegreferansesystem.
 
-* API V3 dokumentasjon med eksempel-responser finnes her: [https://apiskriv.docs.apiary.io/]
+* API V3 dokumentasjon med eksempel-responser finnes her: [https://apiskriv.docs.apiary.io/](https://apiskriv.docs.apiary.io/)
