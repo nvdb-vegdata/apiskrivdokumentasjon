@@ -52,7 +52,7 @@ https://hub.docker.com/u/nvdbapnevegdata/. Det er også mulig å få tildelt en 
 
 
 ## Dataflyt i Datafangst
-![Dataflyt i Datafangst](img/workflow.png)
+![Dataflyt i Datafangst](bilder/workflow.png)
 
 Innsending av data og eventuell registrering av «Ferdigvegsdata» følger en definert arbeidsflyt som nå vil bli beskrevet.
 
