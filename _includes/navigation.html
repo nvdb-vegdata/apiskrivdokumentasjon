@@ -1,7 +1,7 @@
 {% assign cats = site.pages | group_by: 'dir' | sort: 'name'%}
 
 {% for cat in cats %}
-{% unless cat.name contains '/assets/' %}
+{% unless cat.name contains '/assets/' OR cat.name contains '/Postman/'  %}
 
 {% assign name = cat.name | replace:'/',' ' | strip %}
 
