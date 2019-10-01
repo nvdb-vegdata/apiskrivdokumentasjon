@@ -28,7 +28,7 @@ Responsen fra login inneholder tre felt:
  
 ```json
 {  
-  'status': True, 
+  'status': 'True', 
   'token': 'AQIC5wM2LY4SfcyhHz1Irgsf6pbxoeuY3k9XqvbRtB4-4No.*AAJTSQACMDIAAlNLABMzMDUyMTI1NzE2ODA4ODU0OTczAAJTMQACMDM.*',
   'tokenname': 'iPlanetDirectoryProOAM'
 }
@@ -49,7 +49,7 @@ Responsen fra valider forteller om tokenet fremdeles er gyldig og hvilket bruker
 
 ```json
 {  
-  'valid': True, 
+  'valid': 'True', 
   'uid': 'USERNAME', 
   'realm': '/external'
 }
