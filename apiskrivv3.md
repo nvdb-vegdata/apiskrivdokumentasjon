@@ -108,11 +108,14 @@ etter uthenting av vegobjekter fra NVDB API Les og angis slik i endringssett:
       </vegObjekter>
     </korriger>
     ```
-  * V3: Overskriving angis som attributt til operasjon `Oppdater`:
-    ```xml  
+  * V3: Overskriving angis som attributt til operasjon `oppdater`:
+    ```xml
     <oppdater>
       <vegobjekter>
         <vegobjekt typeId="581" nvdbId="551800127" versjon="1" overskriv="JA">
+          <validering>
+            <lestFraNvdb>2019-10-29T12:23:56</lestFraNvdb>
+          </validering>
           <gyldighetsperiode>
             <startdato>2013-10-29</startdato>
           </gyldighetsperiode>
