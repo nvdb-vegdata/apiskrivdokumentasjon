@@ -64,30 +64,30 @@ må man for slike vegobjekter oppgi tidspunktet når vegobjektversjonen ble lest
 Dette gjøres enklest ved å hente ut tidspunkt for siste indekserte transaksjon i NVDB via NVDB API Les sitt statusendepunkt,
 [https://www.vegvesen.no/nvdb/api/v3/status](https://www.vegvesen.no/nvdb/api/v3/status). Tidspunktet må etableres umiddelbart
 etter uthenting av vegobjekter fra NVDB API Les og angis slik i endringssett:  
-    ```xml
-    <endringssett>
-      <oppdater>
-        <vegobjekter>
-          <vegobjekt typeId="581" nvdbId="551800127" versjon="1" overskriv="JA">
-            <validering>
-              <lestFraNvdb>2019-10-29T12:23:56</lestFraNvdb>
-            </validering>
-            ...
-          </vegobjekt>
-        </vegobjekter>
-      </oppdater>
-      <korriger>
-        <vegobjekter>
-          <vegobjekt typeId="95" nvdbId="34345656" versjon="2">
-            <validering>
-              <lestFraNvdb>2019-10-29T12:23:56</lestFraNvdb>
-            </validering>
-            ...
-          </vegobjekt>
-        </vegobjekter>
-      </korriger>
-    </endringssett>
-    ```
+  ```xml
+  <endringssett>
+    <oppdater>
+      <vegobjekter>
+        <vegobjekt typeId="581" nvdbId="551800127" versjon="1" overskriv="JA">
+          <validering>
+            <lestFraNvdb>2019-10-29T12:23:56</lestFraNvdb>
+          </validering>
+          ...
+        </vegobjekt>
+      </vegobjekter>
+    </oppdater>
+    <korriger>
+      <vegobjekter>
+        <vegobjekt typeId="95" nvdbId="34345656" versjon="2">
+          <validering>
+            <lestFraNvdb>2019-10-29T12:23:56</lestFraNvdb>
+          </validering>
+          ...
+        </vegobjekt>
+      </vegobjekter>
+    </korriger>
+  </endringssett>
+  ```
 
 * Operasjon `oppdater` med attributten `overskriv` erstatter dagens `korriger`, både helt og delvis:
   * V2: Korriger oppdaterer ikke versjon, men overskriver hele objektet:
@@ -178,61 +178,61 @@ etter uthenting av vegobjekter fra NVDB API Les og angis slik i endringssett:
   ```
 
 * Angivelse av geometri med kvalitetsparametre og tilleggsegenskaper har fått ny struktur. I V2 ble alle tilleggsegenskaper til en geometri angitt som verdier i EWKT syntaks, i V3 må tilleggsegenskaper angis som egne subelementer:
-  * Geometri med egenskaper i V2: 
-  ```xml
-  <egenskap typeId="8883">
-    <verdi>datafangstdato=2016-09-09;målemetode=96;målemetodeHøyde=96;nøyaktighet=1;nøyaktighetHøyde=1;synbarhet=0;maksimaltAvvik=1;temakode=9001;medium=1;sosinavn=FLATE;kommune=1601;verifiseringsdato=2016-09-10;oppdateringsdato=2016-09-11;høydereferanse=2;referansegeometri=1;srid=32633;POLYGON Z ((278220 7034016 123.45, 279220 7035016 246.78, 270220 7036016 226.78, 278220 7034016 123.45))</verdi>
-  </egenskap>
-  ```
+  * Geometri med egenskaper i V2:
+    ```xml
+    <egenskap typeId="8883">
+      <verdi>datafangstdato=2016-09-09;målemetode=96;målemetodeHøyde=96;nøyaktighet=1;nøyaktighetHøyde=1;synbarhet=0;maksimaltAvvik=1;temakode=9001;medium=1;sosinavn=FLATE;kommune=1601;verifiseringsdato=2016-09-10;oppdateringsdato=2016-09-11;høydereferanse=2;referansegeometri=1;srid=32633;POLYGON Z ((278220 7034016 123.45, 279220 7035016 246.78, 270220 7036016 226.78, 278220 7034016 123.45))</verdi>
+    </egenskap>
+    ```
   * Geometri med egenskaper i V3:
-  ```xml
-  <egenskap typeId="8883">
-    <geometri>
-      <srid>32633</srid>
-      <wkt>POLYGON Z ((278220 7034016 123.45, 279220 7035016 246.78, 270220 7036016 226.78, 278220 7034016 123.45))</wkt>
-      <lengde>4000.0</lengde>
-      <datafangstdato>2016-09-09</datafangstdato>
-      <temakode>9001</temakode>
-      <medium>1</medium>
-      <kommune>1601</kommune>
-      <høydereferanse>2</høydereferanse>
-      <sosinavn>FLATE</sosinavn>
-      <referansegeometri>true</referansegeometri>
-      <verifiseringsdato>2016-09-10</verifiseringsdato>
-      <oppdateringsdato>2016-09-11</oppdateringsdato>
-      <prosesshistorikk>gurba</prosesshistorikk>
-      <kvalitet>
-        <målemetode>96</målemetode>
-        <målemetodeHøyde>96</målemetodeHøyde>
-        <nøyaktighet>1</nøyaktighet>
-        <nøyaktighetHøyde>1</nøyaktighetHøyde>
-        <synbarhet>0</synbarhet>
-        <toleranse>1</toleranse>
-      </kvalitet>
-    </geometri>
-   </egenskap>
-   ```
+    ```xml
+    <egenskap typeId="8883">
+      <geometri>
+        <srid>32633</srid>
+        <wkt>POLYGON Z ((278220 7034016 123.45, 279220 7035016 246.78, 270220 7036016 226.78, 278220 7034016 123.45))</wkt>
+        <lengde>4000.0</lengde>
+        <datafangstdato>2016-09-09</datafangstdato>
+        <temakode>9001</temakode>
+        <medium>1</medium>
+        <kommune>1601</kommune>
+        <høydereferanse>2</høydereferanse>
+        <sosinavn>FLATE</sosinavn>
+        <referansegeometri>true</referansegeometri>
+        <verifiseringsdato>2016-09-10</verifiseringsdato>
+        <oppdateringsdato>2016-09-11</oppdateringsdato>
+        <prosesshistorikk>gurba</prosesshistorikk>
+        <kvalitet>
+          <målemetode>96</målemetode>
+          <målemetodeHøyde>96</målemetodeHøyde>
+          <nøyaktighet>1</nøyaktighet>
+          <nøyaktighetHøyde>1</nøyaktighetHøyde>
+          <synbarhet>0</synbarhet>
+          <toleranse>1</toleranse>
+        </kvalitet>
+      </geometri>
+     </egenskap>
+     ```
 
 * Operasjon `slett` heter nå `lukk` og har fått ny struktur. V2-attributten `kaskadeSletting` er nå et subelement: `kaskadelukking`. I tillegg må en eksplisitt `lukkedato` angis, også i et eget subelement. Begge deler må angis (påkrevd):
   * V2 - operasjon slett: 
-  ```xml
-  <slett>
-    <vegObjekter>
-      <vegObjekt typeId="3" nvdbId="91610862" versjon="1" kaskadeSletting="JA"/>
-    </vegObjekter>
-  </slett>
-  ```
+    ```xml
+    <slett>
+      <vegObjekter>
+        <vegObjekt typeId="3" nvdbId="91610862" versjon="1" kaskadeSletting="JA"/>
+      </vegObjekter>
+    </slett>
+    ```
   * V3 - operasjon lukk:
-  ```xml
-  <lukk>
-    <vegobjekter>
-      <vegobjekt typeId="3" nvdbId="91610862" versjon="1">
-        <lukkedato>2013-10-29</lukkedato>
-        <kaskadelukking>JA</kaskadelukking>
-      </vegobjekt>
-    </vegobjekter>
-  </lukk>
-  ```
+    ```xml
+    <lukk>
+      <vegobjekter>
+        <vegobjekt typeId="3" nvdbId="91610862" versjon="1">
+          <lukkedato>2013-10-29</lukkedato>
+          <kaskadelukking>JA</kaskadelukking>
+        </vegobjekt>
+      </vegobjekter>
+    </lukk>
+    ```
 
 
 ### Nye elementer
