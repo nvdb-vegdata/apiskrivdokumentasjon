@@ -141,6 +141,9 @@ etter uthenting av vegobjekter fra NVDB API Les og angis slik i endringssett:
   <korriger>
     <vegobjekter>
       <vegobjekt typeId="538" nvdbId="2099994" versjon="1">
+        <validering>
+          <lestFraNvdb>2019-10-29T12:23:56</lestFraNvdb>
+        </validering>
         <gyldighetsperiode>
           <startdato>1950-01-01</startdato>
           <sluttdato>2011-01-01</sluttdato>
@@ -158,6 +161,9 @@ etter uthenting av vegobjekter fra NVDB API Les og angis slik i endringssett:
         </stedfesting>
       </vegobjekt>
       <vegobjekt typeId="538" nvdbId="2099994" versjon="2">
+        <validering>
+          <lestFraNvdb>2019-10-29T12:23:56</lestFraNvdb>
+        </validering>
         <gyldighetsperiode>
           <startdato>2011-01-01</startdato>
         </gyldighetsperiode>
