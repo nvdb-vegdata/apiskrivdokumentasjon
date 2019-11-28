@@ -1,15 +1,11 @@
 # Binær
 
+Endringssett kan ikke ta i mot binære objekter (BLOB) som egenskapsverdier direkte. Binærobjektene må først lastes opp
+via et eget endepunkt. Opplastingen responderer med en ressursid som benyttes som egenskapsverdi i endringssettet.
+
 ## Last opp binærdata
 Laster opp binærdata og responderer med en id som deretter kan brukes som referanse i et endringssett.
 
-```xml
-...
-  <egenskap typeId="1234">
-    <binaer ressursId="e62a6896-ff48-474c-a5f3-bb5ccc45c9c9" format="image/png"/>
-  </egenskap>
-...
-```
 Mønster
 ```
 POST /nvdb/apiskriv/rest/v2/binaer
@@ -20,7 +16,7 @@ Hode
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Content-Type|MediaType|Hvilken som helst MediaType, f.eks. image/png|
-|Content-Disposition|MediaType|Hvis en ønsker å angi et filnavn for egen referanse. f.eks. filename="N808080-1.png"|
+|Content-Disposition|Tekst|Hvis en ønsker å angi et filnavn for egen referanse, f.eks. filename="N808080-1.png"|
 
 Kropp
 Binærdata
@@ -57,6 +53,7 @@ Mønster
   <input type="submit"/>
 </form>
 ```
+
 ## Last ned binærdata
 Tillater nedlasting av tidligere opplastede binærdata.
 Mønster
@@ -66,7 +63,7 @@ GET /nvdb/apiskriv/rest/v2/binaer/{ressursId}
 Forespørsel
 Eksempel
 ```
-GET /nvdb/apiskriv/rest/v2/binaer/e62a6896-ff48-474c-a5f3-bb5ccc45c9c9 HTTP/1.1
+GET /nvdb/apiskriv/rest/v2/binaer/e62a6896-ff48-474c-a5f3-bb5ccc45c9c9
 ```
 Svar
 Hode
@@ -88,3 +85,19 @@ Content-Disposition: filename="N808080-1.png"
 
 .PNG........IHDR.............:~.U....IDATx.cj.......U.o....IEND.B`.
 ```
+
+## Binærobjekt som egenskapsverdi
+
+For å angi binærobjekt som egenskapsverdi i et vegobjekt benyttes elementet `<binaer>`, f.eks.:
+```xml
+...
+  <egenskap typeId="7900">
+    <binaer ressursId="e62a6896-ff48-474c-a5f3-bb5ccc45c9c9" format="image/png"/>
+  </egenskap>
+...
+```
+
+|Attributt|Beskrivelse|
+|-|-|
+|ressursId|Id mottatt fra opplastingsendepunktet|
+|format|MediaType i henhold til [http://www.iana.org/assignments/media-types/media-types.xhtml]|

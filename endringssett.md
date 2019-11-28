@@ -172,7 +172,7 @@ Hode
 |Navn|Type|Beskrivelse|
 |-|-|-|
 |Accept|MediaType|Angir på hvilken media-type en ønsker svar. application/json eller application/xml. application/json benyttes hvis ikke annet er oppgitt.|
-|x-client	Tekst|Angir navnet på klientapplikasjonen.|
+|x-client|Tekst|Angir navnet på klientapplikasjonen.|
 
 Eksempel
 ```
