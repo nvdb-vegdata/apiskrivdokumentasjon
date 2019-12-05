@@ -140,7 +140,7 @@ ytterligere attributter (om datakatalogen krever det):
 
 * **sidePosisjon** - Angir plassering av objektet på tvers av vegen.
 * **felt** - Angir plassering i kjørefelt.
-* **retning** - Angir om objektet er vendt mot en bestemt retning (i forhold til metreringsretning).
+* **retning** - Angir om objektet er vendt mot en bestemt retning (i forhold til veglenkeretning).
 
 #### Assosiasjoner
 
