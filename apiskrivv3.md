@@ -11,6 +11,7 @@ funksjonelt og under panseret. Endringssett kan fortsatt leveres i V2-format, me
 flagget `overskriv='JA'` erstatter dagens `korriger`. Korrigering vil nå skje uten følgeoppdateringer, men med alle
 valideringer. Oppdater med overskriv=JA trigger følgeoppdateringer som før. 
 * Mulighet for å fjerne vegobjekter eller enkeltversjoner av et vegobjekt fra NVDB.
+* Mulighet for å legge til eller fjerne enkeltverdier fra stedfestingen eller assosiasjoner.
 * Korrigering av en vegobjektversjon vil ikke lenger overskrive korrigeringer utført av andre på samme objekt.  
 * Automatisk overlappshåndtering for vegobjekttyper som ikke tillater overlapp.
 * Automatisk forenkling av geometrier med for tette nabopunkter.
@@ -22,7 +23,7 @@ Endringene omfatter både navngivning, struktur og nye elementer.
 
 ### Navneendringer
 
-* Endringssettets `effektDato` er nå borte og erstattet med  `gyldighetsperiode` og `lukkedato` som nå må angis for hvert enkelt objekt (se _Strukturendringer_)
+* Endringssettets `effektDato` er nå borte og erstattet med  `gyldighetsperiode` og `lukkedato` som må angis for hvert enkelt objekt (se _Strukturendringer_)
 * `vegObjekt` skrives nå `vegobjekt`
 * `lokasjon`er omdøpt til `stedfesting`
 * Stedfesting: `lenkeId` er omdøpt til `veglenkesekvensNvdbId`
@@ -240,7 +241,55 @@ etter uthenting av vegobjekter fra NVDB API Les og angis slik i endringssett:
     </lukk>
     ```
 
+* Operasjon `delvisKorriger` og `delvisOppdater` tillater nå delvis manipulering av verdiene for `stedfesting`. I stedet for å angi komplett liste med stedfestingsverdier kan man oppgi bare
+  nye eller fjernede verdier via attributten `operasjon` på `<punkt>` og `<linje>`. Dersom man angir `operasjon="ny"` legges verdien til de eksisterende stedfestingsverdiene i NVDB. Dersom man angir `operasjon="slett"`
+  fjernes verdien fra den eksisterende stedfestingen i NVDB. Eksempel:
+ 
+  ```xml
+  <delvisOppdater>
+    <vegobjekter>
+      <vegobjekt typeId="538" nvdbId="2099994" versjon="1">
+        <gyldighetsperiode>
+          <startdato>2020-01-01</startdato>
+        </gyldighetsperiode>
+        <stedfesting operasjon="oppdater">
+          <linje veglenkesekvensNvdbId="1004667" fra="0.0" til="1.0" operasjon="ny"/>
+        </stedfesting>
+      </vegobjekt>
+    </vegobjekter>
+  </delvisOppdater>
+  ```
 
+  Attributten må angis på *alle* eller *ingen* verdier. Dersom attributten ikke er angitt på noen verdier, erstattes alle gjeldende verdier i NVDB med
+  de angitte verdiene (slik det har vært fram til nå). Det er ikke tillatt å fjerne alle gjeldende verdier fra stedfestingen (uten å legge til minst én ny).
+  Det er heller ikke tillatt å legge til en verdi som er identisk med eller overlapper en gjeldende verdi.
+
+* Operasjon `delvisKorriger` og `delvisOppdater` tillater nå delvis manipulering av verdiene for `assosiasjon`. I stedet for å angi komplett liste med datterobjektreferanser kan man oppgi bare
+  nye eller fjernede verdier via attributten `operasjon` på `<nvdbId>` og `<tempId>`. Dersom man angir `operasjon="ny"` legges verdien til de eksisterende datterobjektreferansene i NVDB. Dersom man angir `operasjon="slett"`
+  fjernes verdien fra den eksisterende assosiasjonen i NVDB. Eksempel:
+ 
+  ```xml
+  <delvisOppdater>
+    <vegobjekter>
+      <vegobjekt typeId="95" nvdbId="2454566" versjon="1" operasjon="oppdater">
+        <gyldighetsperiode>
+          <startdato>2020-01-01</startdato>
+        </gyldighetsperiode>
+        <assosiasjoner>
+          <assosiasjon typeId="220004">
+            <nvdbId operasjon="slett">37583</nvdbId>
+          </assosiasjon>
+        </assosiasjoner>
+      </vegobjekt>
+    </vegobjekter>
+  </delvisOppdater>
+  ```
+
+  Attributten må angis på *alle* eller *ingen* verdier. Dersom attributten ikke er angitt på noen verdier, erstattes alle gjeldende verdier i NVDB med
+  de angitte verdiene (slik det har vært fram til nå). Dersom alle gjeldende verdier fjernes fra assosiasjonen, fjernes assosiasjonsegenskapen i sin helhet fra NVDB.
+  Det er ikke tillatt å legge til en verdi som er identisk med en gjeldende verdi.
+    
+    
 ### Nye elementer
 
 * Klienten kan angi egen, valgfri kontekstinformasjon som fritekst i endringssettet:
