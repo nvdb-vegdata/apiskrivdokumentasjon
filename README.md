@@ -6,7 +6,7 @@ order: 1
 Denne presentasjonen krever kjennskap til NVDBs datamodell inkludert metadata som beskrevet i datakatalogen.
 
 ## Docker
-Det er mulig å starte en versjon av [API skriv lokalt med Docker](https://hub.docker.com/repository/docker/nvdbapnevegdata/nvdb-api-skriv).
+Det er mulig å starte en versjon av [NVDB API Skriv lokalt med Docker](https://hub.docker.com/repository/docker/nvdbapnevegdata/nvdb-api-skriv).
 Dette gjør det enkelt å prøve ut og integrere klienter under utvikling uten å ha tilgang til driftsmiljøer hos Statens vegvesen.
 
 ## Hovedprinsipper
