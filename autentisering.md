@@ -15,7 +15,7 @@ I versjon 2 av NVDB API Skriv var dette valgfritt, men fra versjon 3 er headeren
 Anrop fra klienter til NVDB API Skriv krever at requesten inneholder et autentiseringstoken, pakket i en cookie. Autentiseringstokenet etableres med et anrop til
 Statens vegvesen sin [AAA-tjeneste](https://en.wikipedia.org/wiki/AAA_(computer_security)).
  
-### Login
+### Innlogging
 
 Et autentiseringstoken etableres ved å sende inn brukernavn og passord slik:
 ```bash
@@ -26,7 +26,7 @@ Dersom passordet inneholder æ, ø, eller å må tegnsettet ISO 8859-1.
 
 Responsen fra login inneholder tre felt:
  
- 1. status: true|false - indikerer om autentisering var vellykket eller ikke
+ 1. status: indikerer om autentisering var vellykket eller ikke
  2. token: selve autentiseringstokenet, eller tom dersom login feiler
  3. tokenname: Navn på token. Må brukes i cookie.
  
@@ -38,7 +38,7 @@ Responsen fra login inneholder tre felt:
 }
 ```
 
-### Valider token
+### Validering av token
 
 Et token varer i 6 timer, eller til klienten eksplisitt kaller logout. Klienter kan ta vare på tokenet for å slippe å autentisere før hvert kall.
 Klienter kan sjekke om et token fremdeles er gyldig slik:
@@ -67,7 +67,7 @@ Tokenets navn og verdi settes som en cookie på alle kall mot NVDB API Skriv. Ek
       https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett
 ```
 
-### Logout 
+### Utlogging 
 
 Et token kan eksplisitt invalideres ved å kalle logout med tokenet som payload:
 
