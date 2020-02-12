@@ -6,8 +6,8 @@ order: 1
 Denne presentasjonen krever kjennskap til NVDBs datamodell inkludert metadata som beskrevet i datakatalogen.
 
 ## Docker
-Det er mulig å starte en versjon av [API skriv lokalt med Docker](https://hub.docker.com/r/nvdbapnevegdata/nvdb-skriveapi/).
-Denne starter Skrive-APIet lokalt, så du kan test både API og web-grensesnitt.
+Det er mulig å starte en versjon av [API skriv lokalt med Docker](https://hub.docker.com/repository/docker/nvdbapnevegdata/nvdb-api-skriv).
+Dette gjør det enkelt å prøve ut og integrere klienter under utvikling uten å ha tilgang til driftsmiljøer hos Statens vegvesen.
 
 ## Hovedprinsipper
 
@@ -256,14 +256,15 @@ Et endringssett under behandling vil ha ulike tilstander eller fremdriftsstatuse
 
 ![Tilstandsdiagram](bilder/Tilstander.png)
 
-| Tilstand      | Trigger                                        | Beskrivelse                                          |
-|---------------|------------------------------------------------|------------------------------------------------------|
-| IKKE_STARTET  | Mottak av endringssett                         | Endringssettet er mottatt, men ikke behandlingen er ikke startet. Det kan fortsatt kanselleres. |
-| KANSELLERT    | /kanseller anropt                              | Endringssettet er mottatt, men behandlingen ble kansellert av eier. |
-| BEHANDLES     | /start eller /restart anropt                   | Behandlingen av endringssettet er startet. Endringssettet kontrolleres mot datakatalogen og eksisterende objekter i NVDB. |
-| VENTER        | Låsekonflikt/datakatalogoppdatering            | Behandlingen av endringssettet er stanset og venter på å kunne starte igjen. Dette skjer automatisk etter en viss tid. |
-| AVVIST        | Valideringsfeil eller manglende autoriasjon    | Endringssettet er avvist. Det vil ikke bli fullført. |
-| UTFØRT        | Fullført behandling uten feil eller konflikter | Endringssettet er ferdig behandlet og alle vegobjekter er lagret i NVDB. |
+| Tilstand                 | Trigger                                        | Beskrivelse                                          |
+|--------------------------|------------------------------------------------|------------------------------------------------------|
+| IKKE_STARTET             | Mottak av endringssett                         | Endringssettet er mottatt, men ikke behandlingen er ikke startet. Det kan fortsatt kanselleres. |
+| KANSELLERT               | /kanseller anropt                              | Endringssettet er mottatt, men behandlingen ble kansellert av eier. |
+| BEHANDLES                | /start eller /restart anropt                   | Behandlingen av endringssettet er startet. Endringssettet kontrolleres mot datakatalogen og eksisterende objekter i NVDB. |
+| VENTER                   | Låsekonflikt/datakatalogoppdatering            | Behandlingen av endringssettet er stanset og venter på å kunne starte igjen. Dette skjer automatisk etter en viss tid. |
+| AVVIST                   | Valideringsfeil eller manglende autoriasjon    | Endringssettet er avvist. Det vil ikke bli fullført. |
+| UTFØRT                   | Fullført behandling uten feil eller konflikter | Endringssettet er ferdig behandlet og alle vegobjekter er lagret i NVDB. |
+| UTFØRT_OG_ETTERBEHANDLET | Indeksert i API Les                            | Registrerte og oppdaterte data er indeksert og tilgjengelig i API Les. |
 
 ## Behandlingsresultat
 
