@@ -22,7 +22,7 @@ Et autentiseringstoken etableres ved å sende inn brukernavn og passord slik:
  $ curl -d "{'username': 'olanor', 'password': 'hemmelig'}" -H "Content-Type: application/json"
       https://www.vegvesen.no/ws/no/vegvesen/ikt/sikkerhet/aaa/autentiser
 ```
-Dersom passordet inneholder æ, ø, eller å må tegnsettet ISO 8859-1.
+Dersom passordet inneholder æ, ø, eller å må tegnsettet ISO 8859-1 brukes i requesten.
 
 Responsen fra login inneholder tre felt:
  
