@@ -74,113 +74,324 @@ Innsending av data og eventuell registrering av «Ferdigvegsdata» følger en de
 7. Registrering til NVDB. Når alle data er godkjent og eventuelle valideringsfeil er rettet kan de sendes til NVDB. 
  Denne opersjonen er ikke enda fullt støttet i Datafangst per oktober 2017, men den vil komme på neste release, som er godt på vei.
  
- 
 # Datafangst API
-Datafangst har et API som støtter geoJSON. 
+Datafangst har et API som støtter [geoJSON-formatet](#format).
 
 ## Forutsetninger
-* Kontraktid - nåværende versjon støtter kun operasjoner på eksisterende kontrakter som er opprettet i webgrensesnittet.
-* Brukernavn og passord - Brukere kan opprettes fritt, men for å få tilgang til en gitt kontrakt må brukeren legges til
- i denne kontraktens brukere.
+### KontraktID
+Nåværende API-versjon støtter kun operasjoner på eksisterende kontrakter som er opprettet i webgrensesnittet.
+
+### Brukernavn og passord 
+Autentisering mot API skjer med brukernavn og passord. Brukeren må ha tilgang til operasjonen man ønsker å utføre på kontrakten. 
+Brukere kan opprettes fritt, men for å få tilgang til en gitt kontrakt må brukeren legges til i denne kontraktens brukere. Dette gjøres 
+i webgrensesnittet.
+
+---
+
+## Generelt for alle operasjoner
+**Responser:**
+
+Se beskrivelse per operasjon for hvilken status som angir vellykket innsending.
+
+Ved feilsituasjoner vil du kunne få følgende status-responser:
+
+* 404: Alle operasjoner returnerer med 404 Not found dersom objektet med den oppgitte id ikke finnes. 
+* 401: Om brukeren ikke er innlogget returneres 401 unauhtorized
+* 403: Om brukeren ikke har tilgang til kontrakten returneres 403 Forbidden. 
+* 400: Dersom innsendt payload ikke er velformet geoJSON vil 400 Bad request bli returnert. 
+
+**Forespørsler:**
+
+
+Alle POST og PUT må ha headeren Content-Type: application/geo+json
+```
+Content-Type: application/geo+json
+```
  
-## Operasjoner
-<table>
-<tr>
-    <th>Sti</th>
-    <th>Verb</th>
-    <th>Beskrivelse</th>
-</tr>
-<tr>
-    <td>/api/v1/contract/{contractId}/featurecollection</td>
-    <td>POST</td>
-    <td>
-    POST en komplett «feature collection» til en kontrakt. Behandling og validering tar noe tid, derfor er denne operasjonen aynkron.<br>
-    Responser: <br>
-    202 Accepted + payload med URI for polling av status.
-    </td>
-</tr>
-<tr>
-    <td>/api/v1/contract/{contractId}/featurecollection/{collectionId}</td>
-    <td>GET</td>
-    <td>Henter oppgitt feature collection
-    Responser: <br>
-    200 OK + payload med feature collection som geoJSON
-    </td>
-</tr>
-<tr>
-    <td>/api/v1/contract/{contractId}/featurecollection/{featurecollectionid}</td>
-    <td>PUT</td>
-    <td>Erstatt den oppgitte feature collection
-    Responser: <br>
-    202 Accepted + payload med URI for polling av status.</td>
-</tr>
-<tr>
-    <td>/api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/status</td>
-    <td>GET</td>
-    <td>Hent prosesseringsstatus for innsendt feature collection. Respons er json eller xml avhengig av klientens 
-    *Accept*-header.
-    Responser: <br>
-    200 OK + Payload</td>
-</tr>
-<tr>
-    <td>/api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/feature</td>
-    <td>POST</td>
-    <td>POST et enkelt vegobjekt som geoJSON-feature. <br>
-    Responser: <br>
-    200 OK + Payload med valideringsstatus for vegobjektet.
-    </td>
-</tr>
-<tr>
-    <td>/api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/feature/{featureId}</td>
-    <td>GET</td>
-    <td>Hent et enkelt vegobjekt. 
-    Responser: <br>
-    200 OK + Payload med vegobjekt som geoJSON feature</td>
-</tr>
-<tr>
-    <td>/api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/feature/{featureId}</td>
-    <td>PUT</td>
-    <td>Erstatt oppgitt vegobjekt
-    Responser: <br>
-    200 OK + Payload med valideringsstatus for vegobjektet.</td>
-</tr>
-<tr>
-    <td>/api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/feature/{featureId}</td>
-    <td>DELETE</td>
-    <td>Slett oppgitt vegobjekt
-    Responser: <br>
-    204 No content om sletting var vellykket</td>
-</tr>
-<tr>
-    <td>/api/v1/contract</td>
-    <td>GET</td>
-    <td>List opp alle kontrakter
-    Responser: <br>
-    200 OK + Payload med kontrakter med id og navn</td>
-</tr>
-<tr>
-    <td>/api/v1/contract/{contractId}</td>
-    <td>GET</td>
-    <td>Informasjon om kontrakten
-    Responser: <br>
-    200 OK + Payload med informasjon om kontrakten</td>
-</tr>
-<tr>
-    <td>/api/v1/contract/{contractId}/featurecollection</td>
-    <td>GET</td>
-    <td>FeatureCollections i kontrakt
-    Responser: <br>
-    200 OK + Payload med alle featurecollections i kontrakten</td>
-</tr>
+---
+
+## Contract
+
+### Hent kontrakter
+List opp alle kontrakter
+
+#### Mønster
+```
+GET /api/v1/contract
+```
+
+#### Forespørsel
+Eksempel
+```
+GET /api/v1/contract HTTP/1.1
+Host: datafangst.kantega.no
+Authorization: Basic *********
+```
+#### Respons
+````
+HTTP/1.1 200 OK
+````
+Payload med kontrakter med id og navn
+
+---
+
+### Hent kontrakt
+Informasjon om kontrakten
+
+#### Mønster
+```
+GET /api/v1/contract/{contractId}
+```
+
+#### Forespørsel
+Eksempel
+```
+GET /api/v1/contract/52fbcce9-ccb9-4f50-8bcd-0047f85038e8 HTTP/1.1
+Host: datafangst.kantega.no
+Authorization: Basic *********
+```
+#### Respons
+````
+HTTP/1.1 200 OK
+````
+Payload med informasjon om kontrakten
+
+---
+
+## Feature Collection
+
+### Hent feature collections for kontrakt
+FeatureCollections i kontrakt
+ 
+#### Mønster
+ ```
+ GET /api/v1/contract/{contractId}/featurecollection
+ ```
+ 
+#### Forespørsel
+Eksempel
+ ```
+ GET /api/v1/contract/52fbcce9-ccb9-4f50-8bcd-0047f85038e8/featurecollection HTTP/1.1
+ Host: datafangst.kantega.no
+ Authorization: Basic *********
+ ```
+#### Respons
+ ````
+ HTTP/1.1 200 OK
+ ````
+Payload med alle featurecollections i kontrakten
+ 
+---
+
+### Hent feature collection	
+Henter oppgitt feature collection
+ 
+#### Mønster
+ ```
+ GET /api/v1/contract/{contractId}/featurecollection/{collectionId}
+ ```
+ 
+#### Forespørsel
+Eksempel
+ ```
+GET /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/fc7b536b-eba2-47a3-82d4-4ae3a0f59883 HTTP/1.1
+Host: datafangst.kantega.no
+Authorization: Basic *********
+ ```
+#### Respons
+ ````
+ HTTP/1.1 200 OK
+ ````
+Payload med feature collection som  [geoJSON](#format)
+
+---
+
+### Post feature collection til kontrakt
+ POST en komplett «feature collection» til en kontrakt. 
+ Behandling og validering tar noe tid, derfor er denne operasjonen asynkron.
+  
+#### Mønster
+ 
+  ```
+  POST /api/v1/contract/{contractId}/featurecollection
+  ```
+ 
+  
+#### Forespørsel
+ Eksempel
+  ```
+ POST /api/v1/contract/52fbcce9-ccb9-4f50-8bcd-0047f85038e8/featurecollection HTTP/1.1
+ Host: datafangst.kantega.no
+ Content-Type: application/geo+json
+ Authorization: Basic *********
+  ```
+##### Body
+ Feature collection som [geoJSON](#format)
+ 
+#### Respons
+  ````
+  HTTP/1.1 202 Accepted
+  ````
+ Payload med URI for polling av status.
+  
+ 
+---
+### Erstatt feature collection	
+Erstatt den oppgitte feature collection
+ 
+#### Mønster
+ ```
+PUT /api/v1/contract/{contractId}/featurecollection/{collectionId}
+ ```
+ 
+#### Forespørsel
+Eksempel
+ ```
+PUT /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/fc7b536b-eba2-47a3-82d4-4ae3a0f59883 HTTP/1.1
+Host: datafangst.kantega.no
+Content-Type: application/geo+json
+Authorization: Basic *********
+```
+##### Body
+Feature collection som [geoJSON](#format)
+
+#### Respons
+ ````
+ HTTP/1.1 202 Accepted
+ ````
+Payload med URI for polling av status.
+ 
+---
+
+### Hent status for innsendt feature collection
+Hent prosesseringsstatus for innsendt feature collection. 
+ 
+#### Mønster
+ ```
+GET /api/v1/contract/{contractId}/featurecollection/{collectionId}/status
+ ```
+ 
+#### Forespørsel
+Eksempel
+ ```
+GET /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/fc7b536b-eba2-47a3-82d4-4ae3a0f59883/status HTTP/1.1
+Host: datafangst.kantega.no
+Authorization: Basic *********
+```
 
 
-</table>
-Alle operasjoner returnerer med 404 Not found dersom objektet med den oppgitte id ikke finnes. Om brukeren ikke er innlogget eller 
-ikke har tilgang til kontraktet returnerer henholdsvis 401 Unauthorized og 403 Forbidden. Dersom innsendt payload ikke er 
-velformet geoJSON vil 400 Bad request bli returnert.
+#### Respons
+ ````
+ HTTP/1.1 200 OK
+ ````
+Payload. Respons er json eller xml avhengig av klientens *Accept*-header. 
+ 
+---
 
-Alle POST og PUT må ha Content-Type application/geo+json
+## Feature
 
+### Hent feature
+Hent et enkelt vegobjekt.
+ 
+#### Mønster
+ ```
+GET /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/feature/{featureId}
+ ```
+ 
+#### Forespørsel
+Eksempel
+ ```
+GET /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/feature/52073785-7f8f-4746-9607-6e70e6d8651e HTTP/1.1
+Host: datafangst.kantega.no
+Authorization: Basic *********
+```
+
+#### Respons
+ ````
+ HTTP/1.1 200 OK
+ ````
+Payload med vegobjekt som geoJSON feature
+ 
+---
+
+### Post feature
+POST et enkelt vegobjekt som geoJSON-feature.
+ 
+#### Mønster
+ ```
+POST /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/feature/
+ ```
+ 
+#### Forespørsel
+Eksempel
+ ```
+POST /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/feature/ HTTP/1.1
+Host: datafangst.kantega.no
+Content-Type: application/geo+json
+Authorization: Basic *********
+```
+##### Body
+[geoJSON](#format) feature
+
+#### Respons
+ ````
+ HTTP/1.1 200 OK
+ ````
+Payload med vegobjekt som geoJSON feature
+ 
+---
+ 
+### Erstatt feature
+Erstatt oppgitt vegobjekt
+ 
+#### Mønster
+ ```
+PUT /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/feature/{featureId}
+ ```
+ 
+#### Forespørsel
+Eksempel
+ ```
+PUT /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/feature/52073785-7f8f-4746-9607-6e70e6d8651e HTTP/1.1
+Host: datafangst.kantega.no
+Content-Type: application/geo+json
+Authorization: Basic *********
+```
+##### Body
+[geoJSON](#format) feature
+
+#### Respons
+ ````
+ HTTP/1.1 200 OK
+ ````
+Payload med vegobjekt som geoJSON feature
+ 
+---
+
+### Slett feature
+Slett oppgitt vegobjekt
+ 
+#### Mønster
+ ```
+DELETE /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/feature/{featureId}
+ ```
+ 
+#### Forespørsel
+Eksempel
+ ```
+Delete /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/feature/52073785-7f8f-4746-9607-6e70e6d8651e HTTP/1.1
+Host: datafangst.kantega.no
+Authorization: Basic *********
+```
+
+#### Respons
+ ````
+ HTTP/1.1 204 No content
+ ````
+HTTP status 204 returneres om sletting var vellykket.
+ 
+---
+  
 ## Format
 Datafangst-APIet bruker [geoJSON](https://tools.ietf.org/html/rfc7946) som payload-format. 
 ```json
