@@ -1,7 +1,7 @@
 # Datafangst
 
 Datafangst er et web-basert system for innsending, kontroll, redigering, og på sikt direkte registrering i [NVDB](http://www.vegvesen.no/fag/Teknologi/Nasjonal+vegdatabank).
-Systemet skal ta i mot - GPS-stedfestede data - for alle vegobjekter konstruert ([eller endret](#endredeobjekter))
+Systemet skal ta i mot - GPS-stedfestede data - for alle vegobjekter konstruert eller endret
  under et vegbyggingsprosjekt.
 
 Entrepenører er pålagt å levere data fra vegprosjekter til Statens Vegvesen for registrering i NVDB. Data fra entrepenørene 
@@ -23,10 +23,6 @@ Før vi beskriver normal arbeidsflyt i Datafangst og APIet definerer vi noen ter
 * Vegobjekt-type (featuretype) - Alle vegobjekter tilhører en vegobjekt-type. Denne er definert i Datakatalogen, og definerer alle 
  attributter objektet har, påkrevd-nivå, og relasjoner til andre vegobjekt-typer. Et eksempel på en vegobjekt-type er «Fartsgrense».
 * Vegobjekt (feature) - en instans av en vegobjekt-type, for eksempel en enkelt fartsgrense.
-
-## Endring av eksisterende vegobjekter i Datafangst<a name="endredeobjekter"></a>
- Per oktober 2017 er det støtte for å legge til nye objekter og sletting av eksisterende objekter i NVDB. 
- Endringer på eksisterende NVDB objekter er planlagt støttet. 
 
 ## Roller og tilganger i Datafangst
 
