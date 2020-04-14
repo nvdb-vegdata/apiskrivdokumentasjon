@@ -389,7 +389,9 @@ HTTP status 204 returneres om sletting var vellykket.
 ---
   
 ## Format
-Datafangst-APIet bruker [geoJSON](https://tools.ietf.org/html/rfc7946) som payload-format. 
+Datafangst-APIet bruker en JSON-struktur som følger 
+[geoJSON](https://tools.ietf.org/html/rfc7946), med et sett med egenskaper under "properties" som er spesifikke 
+til Datafangst. Se under for et enkelt eksempel. 
 ```json
 {
 "type": "FeatureCollection",
@@ -419,17 +421,85 @@ Datafangst-APIet bruker [geoJSON](https://tools.ietf.org/html/rfc7946) som paylo
   ]
 }
 ```
-Geometriseksjonen i dette objektet er standard geoJSON. *properties* delen av objektet inneholder de attributtene som hører til
+Geometriseksjonen i dette objektet er standard geoJSON. *properties*-delen av objektet inneholder de attributtene som hører til
 vegobjektet.
+
+### Eksisterende objekter i NVDB
+Det er mulig å både laste opp nye vegobjekter, og å legge inn eksisterende vegobjekter i NVDB med endringer gjennom API.
+Det er den samme strukturen som brukes, men det er noe variasjon i hvilke properties som må eller kan oppgis.
+
+For eksisterende vegobjekter er det valgfritt å oppgi "geometry"-elementet. Hvis dette ikke oppgis brukes geometri fra NVDB, og hvis "geometry" er oppgitt vil den erstatte eksisterende geometri i NVDB når vegobjektet sendes inn til NVDB.
+
 ### Properties
-* tag (påkrevd)- Dette er et navn på vegobjektet som er ment brukt for å gjøre det lettere å referere til objekter, og lett identifisere 
-dem med et lettlest navn. 
-* dataCatalogVersion - Hvilken versjon av Datakatalogen som er brukt som grunnlag ved opprettelse av objektet. Siste versjonsnummer
- finner man på https://www.vegvesen.no/nvdb/api/v2/status.json. Datakatalogdefinisjoner er tilgjengelige på https://www.vegvesen.no/nvdb/api/v2/vegobjekttyper/{FeatureTypeId}.json og http://labs.vegdata.no/nvdb-datakatalog
-* typeId (påkrevd) - Id for vegobjekttypen dette vegobjektet er en instans av
-* comment - kommentar for vegobjektet
-* attributes (påkrevd) - NVDB-attributtene for vegobjektet på format "attributtid" : "verdi". Datakatalogversjonen definerer hva som er påkrevde 
-attributter, så dersom påkrevde attributter som mangler vil gi valideringsfeil ved Datakatalog-validering.
+
+Følgende egenskaper kan defineres under "properties" i et geoJson-objekt.
+
+#### tag (påkrevd)
+Dette er et navn på vegobjektet som er ment brukt for å gjøre det lettere å referere til objekter,
+og lett identifisere dem med et lettlest navn. Navnet vises for bruker i datafangst, og vil bli brukt 
+i feilmeldinger fra API.
+
+
+#### dataCatalogVersion
+Hvilken versjon av Datakatalogen som er brukt som grunnlag ved opprettelse av objektet. Siste versjonsnummer
+finner man på https://nvdbapiles-v3.atlas.vegvesen.no/status.json. 
+Datakatalog-definisjoner er tilgjengelige på https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/{typeId}.json 
+og http://labs.vegdata.no/nvdb-datakatalog.
+
+ 
+#### typeId (påkrevd)
+ID for vegobjekttypen dette vegobjektet er en instans av, f.eks. "96" for skiltplate.
+
+
+#### nvdbId (påkrevd for eksisterende vegobjekter)
+ID i NVDB for vegobjekt som skal importeres. Må være unik innenfor en kontrakt.
+
+
+#### nvdbVersion (påkrevd for eksisterende vegobjekter)
+Versjon av NVDB-objekt som skal importeres. Må være siste versjon, Datafangst har ingen mekanismer for å håndtere konflikt med nyere versjoner.
+
+
+#### operation (påkrevd for eksisterende vegobjekter)
+Operasjon i Datafangst for vegobjekt. For nye vegobjekter er denne implisitt "CREATE", og den trenger ikke å oppgis. 
+Mulige verdier er "CORRECT" (rette feil i en versjon), "UPDATE" (ny versjon i NVDB) og "CLOSE" (lukk i NVDB, tidligere omtalt som "slett"). I tillegg er "DELETE" et deprekert synonym for "CLOSE".
+
+
+#### comment
+Kommentar for vegobjektet.
+
+
+#### attributes (påkrevd for nye vegobjekter)
+NVDB-attributtene for vegobjektet på format "attributtid" : "verdi". Datakatalogversjonen definerer hva som er påkrevde 
+attributter, så dersom påkrevde attributter som mangler vil gi valideringsfeil ved Datakatalog-validering. 
+
+
+For eksisterende vegobjekter er dette elementet valgfritt. Hvis det ikke oppgis vil eksisterende attributter fra NVDB brukes.
+Hvis denne er oppgitt for et eksisterende vegobjekt vil objektet kun importeres med de attributter som er oppgitt, det gjøres ingen 
+merge med verdier i NVDB. Hvis det skal importeres et vegobjekt med en endret attributt, der to andre skal være uforandret, så må 
+altså alle tre oppgis med sine verdier.
+
+
+#### geometryAttributtes
+
+En egen struktur som beskriver kvalitet og andre egenskaper for geometri. Denne bør oppgis ved ny eller endret geometri.
+
+Alle feltene er definert i Datakatalogen med lovlige verdier, se lenker på hvert enkelt element under. Hvis ikke annet er 
+oppgitt er det den numeriske verdien som skal oppgis, men som en streng. Se eksempel 
+"[Nytt objekt med geometriegenskaper](#nytt-objekt-med-geometriegenskaper)".
+
+* captureDate - Dato for måling / "datafangstdato". Dato på ISO 8601-format, f.eks. "2020-03-04"
+* lenght - Lengde på geometri, vil bli beregnet ved innsending til NVDB hvis den ikke oppgis
+* measurementMethod - [Målemetode for geometri](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9543.json?pretty=true)
+* measurementMethodHeight - [Målemetode for høyde](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9544.json?pretty=true), hvis den er forskjellig fra grunnriss
+* accuracy - [Nøyaktighet](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9551.json?pretty=true) på måling, i cm
+* accuracyHeight - [Nøyaktighet for høyde](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9552.json?pretty=true) i cm, hvis den avviker fra nøyaktighet for grunnriss
+* visibility - [Synbarhet](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9545.json?pretty=true) / synlighet i terrenget
+* tolerance - [Maksimalt avvik](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9783.json?pretty=true)
+* themeCode - [Temakode](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9784.json?pretty=true)
+* medium - [Medium](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9792.json?pretty=true)
+* municipality - [Kommunenummer](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9789.json?pretty=true)
+* heightRef - [Referanse for høydemåling](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9546.json?pretty=true)
+* referenceGeometry - Angir om geometri er [referansegeometri](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9547.json?pretty=true) , med verdiene "true" eller "false" (default)
  
 ### Levering av featureCollection med FKB
 For å sende inn FKB-objekter må request-parameter `destination=FKB` legges til, og for hver feature droppes `dataCatalogVersion`
@@ -454,5 +524,74 @@ og `typeName` brukes for for hver feature i stedet for `typeId`.
   ]
 }
 ```
+### Eksempler
+
+#### Nytt objekt med geometriegenskaper
+```json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [ [10.39241731, 63.43053048],
+            [10.39495434, 63.43043698],
+            [10.39579151, 63.42898665],
+            [10.39272171, 63.42909269],
+            [10.39241731, 63.43053048] ]
+        ]
+      },
+      "properties": {
+        "tag": "Forsterkningslag#1",
+        "dataCatalogVersion": "2.06",
+        "typeId": 227,
+        "comment": "Usikker på måledatoen",
+        "attributes": {
+          "5543": "2016-08-02",
+          "1212": "3677"
+        },
+        "geometryAttributes": {
+          "captureDate": "2016-08-02",
+          "length": "12.3",
+          "measurementMethod": "96",
+          "measurementMethodHeight": "96",
+          "accuracy": "5",
+          "accuracyHeight": "6",
+          "visibility": "2",
+          "tolerance": "4",
+          "themeCode": "9999",
+          "medium": "3",
+          "municipality": "1601",
+          "heightRef": "0",
+          "referenceGeometry": "true"
+        }
+      }
+    }
+  ]
+}
+```
+
+#### Eksisterende vegobjekt uten endringer
+```json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "tag": "Skiltpunkt#1",
+        "dataCatalogVersion": "2.06",
+        "typeId": 95,
+        "nvdbId": 667990284,
+        "nvdbVersion": 1,
+        "operation": "UPDATE"
+      }
+    }
+  ]
+}
+``` 
+
  
 [Postman collection for API-operasjoner](https://www.getpostman.com/collections/ef3fc73342f94df0585d)
