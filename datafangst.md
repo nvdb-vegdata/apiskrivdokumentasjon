@@ -593,5 +593,7 @@ og `typeName` brukes for for hver feature i stedet for `typeId`.
 }
 ``` 
 
- 
-[Postman collection for API-operasjoner](https://www.getpostman.com/collections/ef3fc73342f94df0585d)
+#### Postman-collection
+
+Det finnes også en [Postman-collection](Datafangst_API.postman_collection.json) for alle operasjoner,
+med eksempler på data for hver operasjon.
