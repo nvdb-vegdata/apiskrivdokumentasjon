@@ -1,0 +1,1037 @@
+{
+	"info": {
+		"_postman_id": "de76fe8d-b9c7-4e03-a8ff-d2c590c0b7aa",
+		"name": "Datafangst API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "contract",
+			"item": [
+				{
+					"name": "Get all contracts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8e12e46-10b7-4b8d-ae11-419522b84d8e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/contract",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get contract with <id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3c99eb04-7437-45e5-b6e4-f127375fa3d3",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get submission status of contract <id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "891dc74e-729a-4f02-a632-214e70300cf5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/submission/status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"submission",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get objectlist of contract <id> (NVDB)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "929e0169-da0b-4c94-813b-f9127c90cc60",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/objectlist?destination=NVDB",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"objectlist"
+							],
+							"query": [
+								{
+									"key": "destination",
+									"value": "NVDB"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get objectlist of contract <id> (FKB)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "929e0169-da0b-4c94-813b-f9127c90cc60",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/objectlist?destination=FKB",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"objectlist"
+							],
+							"query": [
+								{
+									"key": "destination",
+									"value": "FKB"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "featurecollection - create new objects",
+			"item": [
+				{
+					"name": "Create a new featurecollection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d841bd5f-ad61-45f5-bdc0-dc8b83aa88d3",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"featureCollectionId\", jsonData.featureCollectionId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n          [ [10.39241731, 63.43053048],\n            [10.39495434, 63.43043698],\n            [10.39579151, 63.42898665],\n            [10.39272171, 63.42909269],\n            [10.39241731, 63.43053048] ]\n        ]\n      },\n      \"properties\": {\n        \"tag\": \"Forsterkningslag#1\",\n        \"dataCatalogVersion\": \"2.20\",\n        \"typeId\": 227,\n        \"comment\": \"Usikker på måledatoen\",\n        \"attributes\": {\n          \"5543\": \"20160802\"\n         }\n       }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new featurecollection with geometryattributes",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fe23029f-39c6-4ea5-88ff-5191697963f5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a35281cc-7186-4a46-8616-58000c130395",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"featureCollectionId\", jsonData.featureCollectionId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n          [ [10.39241731, 63.43053048],\n            [10.39495434, 63.43043698],\n            [10.39579151, 63.42898665],\n            [10.39272171, 63.42909269],\n            [10.39241731, 63.43053048] ]\n        ]\n      },\n      \"properties\": {\n        \"tag\": \"Forsterkningslag#1\",\n        \"dataCatalogVersion\": \"2.20\",\n        \"typeId\": 227,\n        \"comment\": \"Usikker på måledatoen\",\n        \"attributes\": {\n          \"5543\": \"20160802\",\n          \"1212\": \"3677\"\n        },\n        \"geometryAttributes\": {\n          \"captureDate\": \"20160802\",\n          \"length\": \"12.3\",\n          \"measurementMethod\": \"96\",\n          \"measurementMethodHeight\": \"96\",\n          \"accuracy\": \"5\",\n          \"accuracyHeight\": \"6\",\n          \"visibility\": \"2\",\n          \"tolerance\": \"4\",\n          \"themeCode\": \"9999\",\n          \"medium\": \"3\",\n          \"municipality\": \"5001\",\n          \"heightRef\": \"0\",\n          \"referenceGeometry\": \"true\"\n        }\n      }\n    }\n  ]\n}\n"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the status of featurecollection <id>",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get featurecollection <id>",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit featurecollection <id>",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n          [ [10.39241731, 63.43053048],\n            [10.39495434, 63.43043698],\n            [10.39579151, 63.42898665],\n            [10.39272171, 63.42909269],\n            [10.39241731, 63.43053048] ]\n        ]\n      },\n      \"properties\": {\n        \"tag\": \"Forsterkningslag#1\",\n        \"dataCatalogVersion\": \"2.20\",\n        \"typeId\": 227,\n        \"comment\": \"Usikker på måledatoen\",\n        \"attributes\": {\n          \"5543\": \"20160802\",\n          \"1212\": \"Knuste steinmaterialer\"\n         }\n       }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new feature in featurecollection <id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5e213ae6-c2c6-4b65-9601-135c501a87bd",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"featureId\", jsonData.featureIdMappings[0].featureId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"Feature\",\n    \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n            [ [10.39241731, 63.43053048],\n                [10.39495434, 63.43043698],\n                [10.39579151, 63.42898665],\n                [10.39272171, 63.42909269],\n                [10.39241731, 63.43053048] ]\n        ]\n    },\n    \"properties\": {\n        \"tag\": \"Forsterkningslag#2\",\n        \"dataCatalogVersion\": \"2.20\",\n        \"typeId\": 227,\n        \"attributes\": {\n            \"5543\": \"20160802\",\n            \"1212\": \"Knuste steinmaterialer\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get feature <id> in featurecollection <id>",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature/{{featureId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature",
+								"{{featureId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit feature <id> in featurecollection <id>",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"Feature\",\n    \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n            [ [10.39241731, 63.43053048],\n                [10.39495434, 63.43043698],\n                [10.39579151, 63.42898665],\n                [10.39272171, 63.42909269],\n                [10.39241731, 63.43053048] ]\n        ]\n    },\n    \"properties\": {\n        \"tag\": \"Forsterkningslag#2\",\n        \"dataCatalogVersion\": \"2.20\",\n        \"typeId\": 227,\n        \"attributes\": {\n            \"5543\": \"20160802\",\n            \"1212\": \"Gjenbruksbetong/-tegl\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature/{{featureId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature",
+								"{{featureId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete feature <id> in featurecollection <id>",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature/{{featureId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature",
+								"{{featureId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ad5c3083-8ce5-462e-ad97-4b6c701463cf",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1ec5e211-aad5-4ab1-aa4a-3a2cff2146a6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "featurecollection - import NVDB objects",
+			"item": [
+				{
+					"name": "Create a new featurecollection with imported NVDB object",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d62fbe56-7c3d-4c56-8828-075619142bf5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a35281cc-7186-4a46-8616-58000c130395",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"featureCollectionId\", jsonData.featureCollectionId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\": \"FeatureCollection\",\n\t\"features\": [{\n\t\t\"type\": \"Feature\",\n\t\t\"properties\": {\n\t\t\t\"comment\": \"FV6650 S1D10 m248-331\",\n\t\t\t\"dataCatalogVersion\": \"2.20\",\n\t\t\t\"nvdbVersion\": 1,\n\t\t\t\"typeId\": 5,\n\t\t\t\"tag\": \"671257974\",\n\t\t\t\"attributes\": {},\n\t\t\t\"operation\": \"CORRECT\",\n\t\t\t\"nvdbId\": 671257974\n\t\t}\n\t}]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import NVDB object in featurecollection <id> (without geometry)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5e213ae6-c2c6-4b65-9601-135c501a87bd",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"featureId\", jsonData.featureIdMappings[0].featureId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\": \"Feature\",\n\t\"properties\": {\n\t\t\"comment\": \"FV715 S1D1 m143-315\",\n\t\t\"dataCatalogVersion\": \"2.20\",\n\t\t\"nvdbVersion\": 2,\n\t\t\"typeId\": 5,\n\t\t\"tag\": \"671257833\",\n\t\t\"attributes\": {},\n\t\t\"operation\": \"CORRECT\",\n\t\t\"nvdbId\": 671257833\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import NVDB object in featurecollection <id> (with changed geometry)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c194e837-d9c6-4576-a276-a96ab0df52d2",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a35281cc-7186-4a46-8616-58000c130395",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"featureId\", jsonData.featureIdMappings[0].featureId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"LineString\",\n\t\t\"coordinates\": [\n\t\t\t[10.357997878718, 63.4310088512704, 9.71127],\n\t\t\t[10.357443907224699, 63.43105689746364, 10.3],\n\t\t\t[10.357400190806851, 63.431061005755886, 10.32552]\n\t\t]\n\t},\n\t\"properties\": {\n\t\t\"comment\": \"KV3190 S1D1 m4-34\",\n\t\t\"dataCatalogVersion\": \"2.20\",\n\t\t\"nvdbVersion\": 1,\n\t\t\"typeId\": 5,\n\t\t\"tag\": \"587807503\",\n\t\t\"attributes\": {},\n\t\t\"operation\": \"CORRECT\",\n\t\t\"nvdbId\": 587807503\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import NVDB object in featurecollection <id> (with property change)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "24726136-d759-4907-9827-325bc3862a03",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a35281cc-7186-4a46-8616-58000c130395",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"featureId\", jsonData.featureIdMappings[0].featureId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/geo+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\": \"Feature\",\n\t\"properties\": {\n\t\t\"comment\": \"FV715 S1D1 m168-246\",\n\t\t\"dataCatalogVersion\": \"2.20\",\n\t\t\"nvdbVersion\": 2,\n\t\t\"typeId\": 5,\n\t\t\"tag\": \"671257970\",\n\t\t\"attributes\": {\n\t\t\t\"1567\": \"3.0\"\n\t\t},\n\t\t\"operation\": \"UPDATE\",\n\t\t\"nvdbId\": 671257970\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove NVDB object from featurecollection <id>",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/feature/{{featureId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"feature",
+								"{{featureId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the status of featurecollection <id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dd7b2203-7dbc-4f93-8a07-b1963ea199f4",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/contract/{{contractId}}/featurecollection/{{featureCollectionId}}/status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contract",
+								"{{contractId}}",
+								"featurecollection",
+								"{{featureCollectionId}}",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3d543982-aae7-494a-9c60-0de9c891ab42",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1e2fe15-fe28-45ca-923f-5f5dc812c741",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f1f85234-3929-437c-a006-ff446f06a132",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0aff265b-0ccf-4d0c-82f3-bc144e44abbc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "d39bec90-01fd-46e3-b369-4a8366abcfba",
+			"key": "url",
+			"value": "https://datafangst-test.kantega.no",
+			"type": "string"
+		},
+		{
+			"id": "26271b8c-1fdc-4035-bb4d-dc95c4497721",
+			"key": "authorization",
+			"value": "Basic set-basic-auth",
+			"type": "string"
+		},
+		{
+			"id": "4cc0b68c-c6b2-4f33-96d1-6f4cfcef5c81",
+			"key": "contractId",
+			"value": "set-contract-id",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
