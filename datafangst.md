@@ -1,7 +1,7 @@
 # Datafangst
 
-Datafangst er et web-basert system for innsending, kontroll, redigering, og på sikt direkte registrering i [NVDB](http://www.vegvesen.no/fag/Teknologi/Nasjonal+vegdatabank).
-Systemet skal ta i mot - GPS-stedfestede data - for alle vegobjekter konstruert eller endret
+Datafangst er et web-basert system for innsending, kontroll, redigering, og registrering i [NVDB](http://www.vegvesen.no/fag/Teknologi/Nasjonal+vegdatabank).
+Systemet tar i mot GPS-stedfestede data for alle vegobjekter konstruert eller endret
  under et vegbyggingsprosjekt.
 
 Entrepenører er pålagt å levere data fra vegprosjekter til Statens Vegvesen for registrering i NVDB. Data fra entrepenørene 
@@ -10,11 +10,12 @@ Entrepenører er pålagt å levere data fra vegprosjekter til Statens Vegvesen f
 I Datafangst kan entrepenører laste opp SOSI-filer og få dem validert mot [Datakatalogen](http://www.vegvesen.no/fag/Teknologi/Nasjonal+vegdatabank/Datakatalogen), 
 men den endelige registreringen av dataene til NVDB må gjøres av dataforvaltere hos Statens Vegvesen.
 
-Release notes for datafangst oppdateres sporadisk [her](https://www.vegdata.no/category/nvdb-api/release-notes/).
+Release notes for Datafangst oppdateres [her](https://nvdb-vegdata.github.io/endringslogg/datafangst.html).
 
 Tradisjonelt har data blitt levert på [SOSI-format](http://www.kartverket.no/sosi/). 
 I tillegg til å støtte opplasting av SOSI-filer til NVDB og [FKB](http://www.kartverket.no/kart/kartdata/vektorkart/fkb/),
-har Datafangst også et API for å sende inn vegobjekter som  [geoJSON](http://geojson.org) - dette APIet vil bli beskrevet i dette dokumentet.
+har Datafangst også et API for å sende inn vegobjekter som  [geoJSON](http://geojson.org),
+se "[Datafangst API](#datafangst-api)" lengre ned.
 
 ## Definisjoner
 Før vi beskriver normal arbeidsflyt i Datafangst og APIet definerer vi noen termer som er brukt i NVDB-domenet. Engelsk oversettelse i parantes.
@@ -27,7 +28,7 @@ Før vi beskriver normal arbeidsflyt i Datafangst og APIet definerer vi noen ter
 ## Roller og tilganger i Datafangst
 
 ### Dataforvalter
-* Kun Vegvesenbrukere
+* Kun Statens Vegvesen, fylkeskommuner og kommuner 
 * Kan opprette og konfigurere kontrakter
 * Kan være kontraktseier
 * Kan legge til andre brukere på en kontrakt
@@ -41,10 +42,9 @@ Før vi beskriver normal arbeidsflyt i Datafangst og APIet definerer vi noen ter
 * Kan kommentere på innsendte data
 * Kan se oversiktsstatus for innsendte data
 
-Oppretting av datafangst bruker kan gjøres fritt, men for eksterne å bruke datafangst trenger en å være invitert på en kontrakt. Dersom
-det er ønskelig å teste ut datafangst uten registrering kan dette gjøres med docker. Repository for datafangst og skrive-API finnes på 
-https://hub.docker.com/u/nvdbapnevegdata/. Det er også mulig å få tildelt en test kontrakt, kontakt 
-[Terje Brasethvik](mailto:terje.brasethvik@vegvesen.no) for dette. 
+Oppretting av Datafangst-bruker kan gjøres fritt i Statens Vegvesen. Brukere i fylkeskommune og kommune som skal
+ha bruker må ta kontakt med sin IT-organisasjon. Brukere som kun skal laste opp data på en kontrakt inviteres
+med på den enkelte kontrakt av den ansvarlige for kontrakt. 
 
 
 ## Dataflyt i Datafangst
@@ -474,9 +474,9 @@ attributter, så dersom påkrevde attributter som mangler vil gi valideringsfeil
 
 
 For eksisterende vegobjekter er dette elementet valgfritt. Hvis det ikke oppgis vil eksisterende attributter fra NVDB brukes.
-Hvis denne er oppgitt for et eksisterende vegobjekt vil objektet kun importeres med de attributter som er oppgitt, det gjøres ingen 
-merge med verdier i NVDB. Hvis det skal importeres et vegobjekt med en endret attributt, der to andre skal være uforandret, så må 
-altså alle tre oppgis med sine verdier.
+Hvis denne er oppgitt for et eksisterende vegobjekt vil objektet importeres med de attributter som er oppgitt, 
+samt andre eksisterende attributter fra NVDB dersom objektet har andre attributter som ikke nevnes spesifikt i 
+innsendingen. Det er altså kun endringer som skal oppgis her.
 
 
 #### geometryAttributtes
