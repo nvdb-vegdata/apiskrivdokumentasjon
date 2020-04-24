@@ -12,35 +12,43 @@ men den endelige registreringen av dataene til NVDB må gjøres av dataforvalter
 
 Release notes for Datafangst oppdateres [her](https://nvdb-vegdata.github.io/endringslogg/datafangst.html).
 
-Tradisjonelt har data blitt levert på [SOSI-format](http://www.kartverket.no/sosi/). 
-I tillegg til å støtte opplasting av SOSI-filer til NVDB og [FKB](http://www.kartverket.no/kart/kartdata/vektorkart/fkb/),
-har Datafangst også et API for å sende inn vegobjekter som  [geoJSON](http://geojson.org),
+I tillegg til å støtte opplasting av SOSI-filer på [SOSI-format](http://www.kartverket.no/sosi/) til NVDB og [FKB](http://www.kartverket.no/kart/kartdata/vektorkart/fkb/), har Datafangst også et API for å sende inn vegobjekter som  [geoJSON](http://geojson.org),
 se "[Datafangst API](#datafangst-api)" lengre ned.
 
 ## Definisjoner
 Før vi beskriver normal arbeidsflyt i Datafangst og APIet definerer vi noen termer som er brukt i NVDB-domenet. Engelsk oversettelse i parantes.
-* Kontrakt (contract) - Alle data hører til en kontrakt som representerer den faktiske kontrakten de innsamlede data tilhører. En kontrakt har 
- et navn, en [objektliste](http://www.vegvesen.no/fag/Teknologi/Nasjonal+vegdatabank/Objektliste), og flere valgfri felter for å stedfeste og beskrive den.
+* Kontrakt (contract) - Alle data hører til en kontrakt som representerer den faktiske kontrakten de innsamlede data tilhører. En kontrakt har et navn, en [objektliste](http://www.vegvesen.no/fag/Teknologi/Nasjonal+vegdatabank/Objektliste), og flere valgfri felter for å stedfeste og beskrive den.
 * Vegobjekt-type (featuretype) - Alle vegobjekter tilhører en vegobjekt-type. Denne er definert i Datakatalogen, og definerer alle 
  attributter objektet har, påkrevd-nivå, og relasjoner til andre vegobjekt-typer. Et eksempel på en vegobjekt-type er «Fartsgrense».
 * Vegobjekt (feature) - en instans av en vegobjekt-type, for eksempel en enkelt fartsgrense.
+* Kontraktgruppe - Kontrakter er samlet i kontraktgrupper pr. vegeier pluss noen spesialgrupper.
+
 
 ## Roller og tilganger i Datafangst
 
 ### Dataforvalter
-* Kun Statens Vegvesen, fylkeskommuner og kommuner 
+* Kun Statens Vegvesen, fylkeskommuner og kommuner (vegeiere)
 * Kan opprette og konfigurere kontrakter
 * Kan være kontraktseier
 * Kan legge til andre brukere på en kontrakt
 * Kan godkjenne og underkjenne innsendte data
 
 ### Medlem på kontrakt
-* Både Vegvesenbrukere og eksterne brukere
+* Både vegeiere og eksterne brukere
 * Kan sende inn data på eksisterende kontrakt
 * Kan se innsendte data
 * Kan redigere innsendte data
 * Kan kommentere på innsendte data
 * Kan se oversiktsstatus for innsendte data
+
+### Gruppeadministrator
+* Kan se og endre alle kontrakter i sin gruppe
+* Kan opprette kontrakter i sin gruppe, og fjerne kontrakter fra gruppa
+* Kan legge til brukere i sin gruppe og endre rolle for brukere i gruppa
+* Kan arkivere og slette kontrakter i sin gruppe
+
+### Gruppedeltager
+* Kan se og redigere (men ikke stedfeste eller sammenkoble) alle kontrakter i sin gruppe
 
 Oppretting av Datafangst-bruker kan gjøres fritt i Statens Vegvesen. Brukere i fylkeskommune og kommune som skal
 ha bruker må ta kontakt med sin IT-organisasjon. Brukere som kun skal laste opp data på en kontrakt inviteres
@@ -50,25 +58,24 @@ med på den enkelte kontrakt av den ansvarlige for kontrakt.
 ## Dataflyt i Datafangst
 ![Dataflyt i Datafangst](bilder/workflow.png)
 
-Innsending av data og eventuell registrering av «Ferdigvegsdata» følger en definert arbeidsflyt som nå vil bli beskrevet.
+Innsending av data og eventuell registrering av «Ferdigvegsdata» følger en definert arbeidsflyt:
 
-1. Dataforvalter oppretter en kontrakt i webgrensesnittet.
+1. Dataforvalter oppretter en kontrakt i webgrensesnittet og kobler kontrakten til riktig kontraktsgruppe.
 2. Dataforvalter konfigurerer kontrakten ved å definere dens objektliste og hvilke brukere som skal ha tilgang til den.
 3. Data lastes opp til kontrakten via nettleser eller API.
-4. Innsendte data blir validert synkront. Webgrensesnittet poller etter endringer og viser en spinner, ved bruk at API 
+4. Innsendte data blir validert synkront. Webgrensesnittet poller etter endringer og viser en spinner. Ved bruk at API 
  må en selv håndtere polling.
  De valideringer som blir gjort er blant andre attributt- og geometrivalidering mot Datakatalogen. 
   Det blir også utført automatisk stedfesting på vegnettet, men denne informasjonen er bare tilgjengelig for dataforvaltere 
   i webgrensesnittet,
 5. Gjennomgang av innsendte data, dataforvalter går gjennom data i webgrensesnittet. Entrepenører er ikke påkrevd å levere alle
- attributter som er påkrevd for registrering i NVDB, disse attributtene må Dataforvalter legge til etter innsending. 
+ attributter som er påkrevd for registrering i NVDB. Dataforvalter må legge til de attributtene som mangler. 
  Dataforvalter og andre prosjektdeltakere har mulighet til å legge til kommentarer på alle vegobjekter og vegobjekttyper, 
  samt overordnede kommentarer for kontrakten. Dataforvalter har mulighet til å markere kommentarer som feil som innsender 
  må ordne og deretter sende inn de aktuelle vegobjektene på nytt.
 6. Om den automatiske stedfestingen av objekter ikke er konklusiv må dataforvalter utføre denne manuelt. Objekter som hører sammen 
-(f eks en skiltplate sitter alltid på et skiltpunkt) må kobles sammen av dataforvalter. 
+(f.eks. en skiltplate sitter alltid på et skiltpunkt) må kobles sammen av dataforvalter. 
 7. Registrering til NVDB. Når alle data er godkjent og eventuelle valideringsfeil er rettet kan de sendes til NVDB. 
- Denne opersjonen er ikke enda fullt støttet i Datafangst per oktober 2017, men den vil komme på neste release, som er godt på vei.
  
 # Datafangst API
 Datafangst har et API som støtter [geoJSON-formatet](#format).
