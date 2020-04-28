@@ -464,6 +464,10 @@ Operasjon i Datafangst for vegobjekt. For nye vegobjekter er denne implisitt "CR
 Mulige verdier er "CORRECT" (rette feil i en versjon), "UPDATE" (ny versjon i NVDB) og "CLOSE" (lukk i NVDB, tidligere omtalt som "slett"). I tillegg er "DELETE" et deprekert synonym for "CLOSE".
 
 
+#### verticalDatum 
+Benyttet høydesystem (vertikal datum) for vegobjektet. Gjeldende versjon av Datafangst støtter _NN54_ og _NN2000_ som verdier for høydesystem. Om høydesystem ikke angis, tolkes det som _NN2000_.
+
+
 #### comment
 Kommentar for vegobjektet.
 
