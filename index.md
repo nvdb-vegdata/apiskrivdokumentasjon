@@ -1,9 +1,9 @@
 ---
-title: Introduksjon
+title: Oversikt
 order: 1
 ---
 
-## Introduksjon
+## Oversikt
 
 NVDB API Skriv eksponerer et sett med REST-baserte endepunkter for registrering og vedlikehold av data i
 [Nasjonal vegdatabank](om_nvdb.md) (NVDB). Sammen med [NVDB API Les](https://api.vegdata.no) utgjør disse endepunktene en
