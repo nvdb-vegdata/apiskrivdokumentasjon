@@ -96,3 +96,4 @@ Miljø|URL
 STM|https://www.utv.vegvesen.no/ws/no/vegvesen/ikt/sikkerhet/aaa/autentiser
 ATM|https://www.test.vegvesen.no/ws/no/vegvesen/ikt/sikkerhet/aaa/autentiser
 PROD|https://www.vegvesen.no/ws/no/vegvesen/ikt/sikkerhet/aaa/autentiser
+Docker|http://localhost:8010/ws/no/vegvesen/ikt/sikkerhet/aaa/autentiser

@@ -56,7 +56,7 @@ Statens vegvesen sitt lokalnett.
 For utvikling og innledende testing anbefaler vi at klientutviklere integrerer seg mot en lokal Docker-container med NVDB API Skriv.
 [Docker-imaget](https://hub.docker.com/repository/docker/nvdbapnevegdata/nvdb-api-skriv), som fritt kan lastes ned fra Docker Hub,
 oppdateres fortløpende i tråd med videreutvikling av NVDB API Skriv. Imaget eksponerer i tillegg til NVDB API Skriv, simulerte endepunkter
-for autentisering og andre infrastrukturtjenester hos Statens vegvesen.
+for autentisering og andre infrastrukturtjenester hos Statens vegvesen. Basis-URL ved anrop til Docker-containeren er http://localhost:8010/nvdb/apiskriv/.
 
 ### Support
 
