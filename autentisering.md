@@ -89,7 +89,7 @@ $ curl https://www.vegvesen.no/ws/no/vegvesen/ikt/sikkerhet/aaa/logout \
 
 #### Påloggingsendepunkter
 
-Oversikt over endepunkter for autentisering i ulike SVV-miljøer:
+Oversikt over endepunkter for autentisering i ulike miljøer:
 
 Miljø|URL
 -|-|-
