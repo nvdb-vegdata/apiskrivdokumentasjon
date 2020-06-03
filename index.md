@@ -1,29 +1,67 @@
 ---
-order: 0
+title: Introduksjon
+order: 1
 ---
-# NVDB API Skriv
 
-NVDB API Skriv er et asynkront REST-API for registrering og oppdatering av data i NVDB.
+## Introduksjon
 
-Systemet mottar beskrivelser av vegobjekter (_endringssett_) for _registrering_, _oppdatering_ eller _sletting_ i NVDB. En rekke validerings- og kontrolltrinn gjennomføres før data er godkjent og  sendes til NVDB. Et endringssett under behandling omtales som en jobb. Flere av trinnene i en jobb krever oppslag i NVDB og vil derfor kunne ta en del tid, spesielt for klienter som registrerer mange vegobjekter samtidig. I tillegg vil selve skrivingen til NVDB også ta tid. Videre vil noen oppdateringer ikke kunne skje umiddelbart fordi data er låst av andre klienter (eller av en annen jobb i dette APIet). En konsekvens av dette er at jobber må eksekveres asynkront. Det vil si at klienten sender forespørsler for å definere og starte jobber, men siden svaret vil ta noe tid å utarbeide kan ikke et endelig svar leveres med en gang. Jobben blir i stedet behandlet i bakgrunnen, i en separat prosess som ikke blokkerer klienten.
+NVDB API Skriv eksponerer et sett med REST-baserte endepunkter for registrering og vedlikehold av data i
+[Nasjonal vegdatabank](om_nvdb.md) (NVDB). Sammen med [NVDB API Les](https://api.vegdata.no) utgjør disse endepunktene en
+komplett tjenesteportefølje for utviklere av fagsystemer som har behov for integrasjon med NVDB. APIene og NVDB eies og
+forvaltes av Statens vegvesen.
 
-## Forutsetninger
+Registrering og vedlikehold av NVDB-data beskrives i et _endringssett_ som behandles asynkront via endringssett-endepunktene.
+Et endringssett kan manipulere både vegobjekter og vegnett, men sistnevnte er forbeholdt spesifikke vegnettsklienter. I tillegg finnes
+støtte-endepunkter for:
+ 
+* Beregning av stedfesting for vegobjekter med geometri
+* Uthenting av låser, oppdrag og transaksjoner fra NVDB
+* Konvertering fra andre dataformater til endringssett
+* Innsyn i tildelte datarettigheter (autorisasjon)
 
-For å kunne skrive data til NVDB gjennom API Skriv, trenger du:
+### Prinsipper
 
-* En bruker i Statens Vegvesen med NVDB-roller i LDAP
-* Tildelte datarettigheter i API Skriv. Rettigheter tildeles pr kommune, vegkategori og objekttype.
+* Endepunktene som representerer ressurser/entiteter følger designprinsippene til [Representational State Transfer (REST)](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm).
+* APIet er HTTP-basert. For å hente informasjon om en ressurs benyttes en GET-request. For å registrere eller oppdatere informasjon
+om en ressurs benyttes POST. Sistnevnte brukes også mot rene kommando-endepunkter. Responser vil ha en
+[HTTP-statuskode](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) som indikerer requestens korrekthet når det gjelder
+verb, URL, payload-format, tilgangskontroll m.m.  
+* Alle endepunkter støtter payloads både i [JSON](https://www.json.org/json-en.html) og [XML](https://www.w3.org/XML/)-format.
+En respons får samme format som requesten, med mindre noe annet er angitt med en ```Accept```-header.
+* Alle URLer, URL-parametere og payloads, både i requester og responser, bruker norske domenebegreper.
 
-## Prinsipper
+### Forutsetninger
 
-NVDB API Skriv setter strenge krav til mottatte data:
+* Alle requester til NVDB API Skriv må inneholde et gyldig autentiseringstoken i form av en cookie. Tokenet produseres av
+en [tjeneste](autentisering.md) hos Statens vegvesen gitt et godkjent brukernavn og passord i etaten.
+* Brukeren må ha relevante NVDB-roller i Statens vegvesens LDAP-register.
+* Dersom brukeren skal registrere eller vedlikeholde data i NVDB, må hun være tildelt datarettigheter i NVDB API Skriv.
+Datarettigheter gir tilgang til spesifikke geografiske områder, vegtyper og vegobjekttyper.
 
-* Data valideres strengt ihht siste versjon av datakatalogen [https://datakatalogen.vegdata.no](Datakatalogen)
-* Kun data som er komplette og korrekte ihht definisjonene i datakatalogen vil bli lagret i NVDB
-* Data valideres også opp mot allerede lagrede data
-* Alle data som skrives vha API Skriv må være stedfestet med veglenkeposisjon. Klienter er selv ansvarlig for å sende inn korrekte veglenkeposisjoner for sine objekter.  
+### Miljøer
 
-## API V3
+NVDB API Skriv er tilgjengelig i tre ulike miljøer hos Statens vegvesen:
 
-NVDB API Skriv V3 ble utviklet som en del av regionsreformprosjektet og gikk i produksjon høsten 2019. Se [egen oversikt over endringer i V3](https://apiskriv.vegdata.no/apiskrivv3.html). 
+Miljø|Formål|Basis-URL
+-|-|-
+STM|Systemtesting|https://www.utv.vegvesen.no/nvdb/apiskriv/
+ATM|Akseptansetesting|https://www.test.vegvesen.no/nvdb/apiskriv/
+PROD|Produksjonsdrift|https://www.vegvesen.no/nvdb/apiskriv/
 
+De tre miljøene benytter hver sine instanser av NVDB. NVDB i STM og ATM blir jevnlig oppdatert med dump fra PROD.
+
+STM og ATM er normalt ikke eksponert gjennom brannmur mot internett, slik at klientanrop mot disse bare kan gjøres fra
+Statens vegvesen sitt lokalnett.
+
+For utvikling og innledende testing anbefaler vi at klientutviklere integrerer seg mot en lokal Docker-container med NVDB API Skriv.
+[Docker-imaget](https://hub.docker.com/repository/docker/nvdbapnevegdata/nvdb-api-skriv), som fritt kan lastes ned fra Docker Hub,
+oppdateres fortløpende i tråd med videreutvikling av NVDB API Skriv. Imaget eksponerer i tillegg til NVDB API Skriv, simulerte endepunkter
+for autentisering og andre infrastrukturtjenester hos Statens vegvesen.
+
+### Support
+
+Forbedringer og feilrettinger i NVDB API Skriv rulles ut kontinuerlig. Endringer som er relevante for klienter og klientutviklere er beskrevet i en [endringslogg](https://github.com/nvdb-vegdata/endringslogg/blob/master/APISKRIVV3.md).
+
+Tekniske spørsmål omkring bruk av endepunktene kan rettes til vårt rom på [Gitter](https://gitter.im/nvdb-vegdata/api-skriv-v3).
+
+Administrative henvendelser, f.eks. forespørsler omkring brukere, roller og datarettigheter, kan sendes til [nvdb@vegvesen.no](mailto:nvdb@vegvesen.no).

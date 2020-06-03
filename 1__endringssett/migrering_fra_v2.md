@@ -1,11 +1,16 @@
-# NVDB API Skriv versjon 3
+---
+title: Migrering fra V2
+order: 2
+---
 
-NVDB API Skriv versjon 3 er utviklet som en del av regionreformen under prosjektet *Nytt nasjonalt referansessystem*.
-Hovedmålet med versjon 3 er å kunne ta i mot endringer i vegnettet, men denne funksjonaliteten er forbeholdt klienter som redigerer vegnett.
-Versjon 3 representerer også en vesentlig oppgradering av behandlingsmotoren i APIet og inneholder en god del forbedringer både
-funksjonelt og under panseret. Endringssett kan fortsatt leveres i V2-format, men disse behandles av den samme forbedrede prosesseringspipeline som V3. 
+## Migrering fra v2/endringssett
 
-## Nytt i V3
+Versjon 3 av endringssettendepunktene ble utviklet som en del av regionreformen under prosjektet *Nytt nasjonalt referansessystem*.
+Hovedmålet med versjon 3 er å kunne ta i mot endringer i vegnettet, men denne funksjonaliteten er kun forbeholdt spesifikke vegnettsklienter.
+Den nye versjonen av NVDB API Skriv representerer også en vesentlig oppgradering av behandlingsmotoren for endringssett og inneholder mange forbedringer
+både i meldingstrukturen og i valideringslogikken. Endringssett kan fortsatt leveres i V2-format, men disse behandles av den samme forbedrede behandlingsmotoren som V3. 
+
+### Nytt i V3
 
 * Registrering og oppdatering av vegnett (forbeholdt vegnettsklienter).
 * Mulighet for korrigering av historiske versjoner av et objekt. Operasjonen `oppdater` (og `delvisOppdater`) med
@@ -22,26 +27,26 @@ valideringer. Oppdater med overskriv=JA trigger følgeoppdateringer som før.
 [Skjemaet for endringssett](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd) har en ny og utvidet struktur.
 Endringene omfatter både navngivning, struktur og nye elementer. 
 
-### Navneendringer
+#### Navneendringer
 
-* Endringssettets `effektDato` er nå borte og erstattet med  `gyldighetsperiode` og `lukkedato` som må angis for hvert enkelt objekt (se _Strukturendringer_)
+* Endringssettets `effektDato` er nå borte og erstattet med  `gyldighetsperiode` og `lukkedato` som må angis for hvert enkelt objekt (se [Strukturendringer](#strukturendringer))
 * `vegObjekt` skrives nå `vegobjekt`
 * `lokasjon`er omdøpt til `stedfesting`
 * Stedfesting: `lenkeId` er omdøpt til `veglenkesekvensNvdbId`
 * Stedfesting/Sving: `nodeId`er omdøpt til `nodeNvdbId`
-* Stedfesting/Felt: `felt`er omdøpt til `kjørefelt` (som nå kan ta imot en liste av felt, se _Strukturendringer_)
-* Operasjonen `slett` er nå omdøpt til `lukk` (se også _Strukturendringer_). Operasjonen har aldri slettet/fjernet vegobjekter fra NVDB,
+* Stedfesting/Felt: `felt`er omdøpt til `kjørefelt` (som nå kan ta imot en liste av felt, se [Strukturendringer](#strukturendringer))
+* Operasjonen `slett` er nå omdøpt til `lukk` (se også [Strukturendringer](#strukturendringer)). Operasjonen har aldri slettet/fjernet vegobjekter fra NVDB,
 den har kun satt sluttdato på vegobjektene. Lukk er dermed et mer korrekt navn på denne operasjonen. For å fysiske fjerne
-vegobjekter fra NVDB kan den nye operasjonen `fjern` benyttes (se _Nye elementer_).
+vegobjekter fra NVDB kan den nye operasjonen `fjern` benyttes (se [Nye elementer](#nye-elementer)).
 
-### Strukturendringer
+#### Strukturendringer
 
-#### Datakatalogversjon
+##### Datakatalogversjon
 `datakatalogversjon` er ikke lengre attributt til endringssett-elementet selv, men er nå et eget sub-element:
 * V2: `<endringssett ... datakatalogversjon="2.18">`
 * V3: `<endringssett><datakatalogversjon>2.18</datakatalogversjon>...</endringssett>`
   
-#### Effektdato
+##### Effektdato
 Effektdato representerer i V2 en felles effektdato for alle operasjoner og vegobjekter i endringssettet. I V3 kan man
 manipulere start- og sluttdatoene på vegobjektene individuelt. Effektdato er derfor fjernet som attributt til endringssettet
 selv, og må angis på hvert vegobjekt. For operasjonene `registrer`, `korriger`, `delvisKorriger`, `oppdater` og `delvisOppdater`
@@ -65,7 +70,7 @@ angis datoene under sub-elementet `gyldighetsperiode`, mens for operasjonen `luk
   </vegobjekt>
   ```
 
-#### Versjonskontroll ved korrigering
+##### Versjonskontroll ved korrigering
 For å kontrollere at andre klienters endringer på samme vegobjektversjon ikke skrives over ved korrigering (eller oppdatering med overskriv=JA),
 må man for slike vegobjekter oppgi tidspunktet når vegobjektversjonen ble lest fra NVDB. Dette tidspunktet må angis som "NVDB-tid", ikke klient-tid.
 Dette gjøres enklest ved å hente ut tidspunkt for siste indekserte transaksjon i NVDB via NVDB API Les sitt statusendepunkt,
@@ -97,7 +102,7 @@ etter uthenting av vegobjekter fra NVDB API Les og angis slik i endringssett:
 </endringssett>
 ```
 
-#### Oppdatering med overskriving
+##### Oppdatering med overskriving
 Operasjon `oppdater` med attributten `overskriv` erstatter dagens `korriger`, både helt og delvis:
 
 * V2: Korriger oppdaterer ikke versjon, men overskriver hele objektet:
@@ -143,7 +148,7 @@ Operasjon `oppdater` med attributten `overskriv` erstatter dagens `korriger`, b�
   </oppdater>
   ```
 
-#### Korrigering av historiske versjoner    
+##### Korrigering av historiske versjoner    
 Operasjon `korriger` tillater nå også korrigering av historiske vegobjektversjoner. Det vil ikke lenger bli gjort følgeoppdateringer
 for korreksjon, men alle korreksjoner blir validert mot eksisterende data i NVDB. Det er klientens ansvar å supplere endringssettet
 med nødvendige operasjoner for å opprettholde integriteten i NVDB. Eksempel:
@@ -194,7 +199,7 @@ med nødvendige operasjoner for å opprettholde integriteten i NVDB. Eksempel:
 </korriger>
 ```
 
-#### Strukturert geometribeskrivelse
+##### Strukturert geometribeskrivelse
 Angivelse av geometri med kvalitetsparametre og tilleggsegenskaper har fått ny struktur. I V2 ble alle tilleggsegenskaper til en geometri angitt som verdier i EWKT syntaks, i V3 må tilleggsegenskaper angis som egne subelementer:
 
 * Geometri med egenskaper i V2:
@@ -232,7 +237,7 @@ Angivelse av geometri med kvalitetsparametre og tilleggsegenskaper har fått ny 
    </egenskap>
    ```
 
-#### Lukking
+##### Lukking
 Operasjon `slett` heter nå `lukk` og har fått ny struktur. V2-attributten `kaskadeSletting` er nå et subelement: `kaskadelukking`. I tillegg må en eksplisitt `lukkedato` angis, også i et eget subelement. Begge deler må angis (påkrevd):
 
 * V2 - operasjon slett: 
@@ -255,7 +260,7 @@ Operasjon `slett` heter nå `lukk` og har fått ny struktur. V2-attributten `kas
   </lukk>
   ```
 
-#### Delvis endring av stedfestingsverdier
+##### Delvis endring av stedfestingsverdier
 Operasjon `delvisKorriger` og `delvisOppdater` tillater nå delvis manipulering av verdiene for `stedfesting`. I stedet for å angi komplett liste med stedfestingsverdier kan man oppgi bare
 nye eller fjernede verdier via attributten `operasjon` på `<punkt>` og `<linje>`. Dersom man angir `operasjon="ny"` legges verdien til de eksisterende stedfestingsverdiene i NVDB. Dersom man angir `operasjon="slett"`
 fjernes verdien fra den eksisterende stedfestingen i NVDB. Eksempel:
@@ -279,7 +284,7 @@ Attributten må angis på *alle* eller *ingen* verdier. Dersom attributten ikke 
 de angitte verdiene (slik det har vært fram til nå). Det er ikke tillatt å fjerne alle gjeldende verdier fra stedfestingen (uten å legge til minst én ny).
 Det er heller ikke tillatt å legge til en verdi som er identisk med eller overlapper en gjeldende verdi.
 
-#### Delvis endring av assosiasjoner
+##### Delvis endring av assosiasjoner
 Operasjon `delvisKorriger` og `delvisOppdater` tillater nå delvis manipulering av verdiene for `assosiasjon`. I stedet for å angi komplett liste med datterobjektreferanser kan man oppgi bare
 nye eller fjernede verdier via attributten `operasjon` på `<nvdbId>` og `<tempId>`. Dersom man angir `operasjon="ny"` legges verdien til de eksisterende datterobjektreferansene i NVDB. Dersom man angir `operasjon="slett"`
 fjernes verdien fra den eksisterende assosiasjonen i NVDB. Eksempel:
@@ -306,15 +311,15 @@ de angitte verdiene (slik det har vært fram til nå). Dersom alle gjeldende ver
 Det er ikke tillatt å legge til en verdi som er identisk med en gjeldende verdi.
     
     
-### Nye elementer
+#### Nye elementer
 
-#### Kontekstinformasjon
+##### Kontekstinformasjon
 Klienten kan angi egen, valgfri kontekstinformasjon som fritekst i endringssettet:
 ```xml
 <kontekst><![CDATA[Dette er min kontekstinformasjon]]></kontekst>
 ```
 
-#### Fjerning av vegobjektversjoner
+##### Fjerning av vegobjektversjoner
 Det er innført en ny hovedoperasjon for å kunne fysisk fjerne en vegobjektversjon. Merk at dette *ikke* er samme operasjon som `slett` i V2, som bare lukker vegobjektet.
 ```xml
 <fjern>
@@ -330,7 +335,7 @@ Når kaskadefjerning bestilles vil API Skriv sørge for at eventuelle datterobje
 vegobjektversjonen har datterobjekter som krever mor, vil endringssettet avvises med valideringsfeil.
 Dersom man utelater attributten `versjon` vil hele vegobjektet med all historikk fjernes.
 
-#### Endringssettstatus
+##### Endringssettstatus
 Status har fått nye elementer og utvidet innhold:
   * apiversjon - Angir hvilken versjon av NVDB API Skriv endringssettet ble sendt inn med
   * transaksjon - Identifiserer den resulterende transaksjonen i NVDB som endringssettet førte til

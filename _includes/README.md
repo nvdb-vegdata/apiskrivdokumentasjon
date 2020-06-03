@@ -241,7 +241,7 @@ for småkorrigeringer.
 
 Sekvensdiagrammer under angir hvordan en klient kommuniserer med APIet for å registrere, starte og innhente status for et endringssett:
 
-![Sekvensdiagram](bilder/Sekvenser.png)
+![Sekvensdiagram](../assets/Sekvenser.png)
 
 Når endringssettet er registrert (første anrop i diagrammet over), tildeles det en unik id (UUID) som inngår i URI'ene man benytter for videre samhandling om dette endringssettet.
 
@@ -254,7 +254,7 @@ Dersom endringssettet hadde valideringsfeil vil disse også beskrives her.
 
 Et endringssett under behandling vil ha ulike tilstander eller fremdriftsstatuser underveis. Det er denne fremdriftsstatusen man får som respons ved anrop til /nvdb/apiskriv/v2/{id}/fremdrift.
 
-![Tilstandsdiagram](bilder/Tilstander.png)
+![Tilstandsdiagram](../assets/Tilstander.png)
 
 | Tilstand                 | Trigger                                        | Beskrivelse                                          |
 |--------------------------|------------------------------------------------|------------------------------------------------------|

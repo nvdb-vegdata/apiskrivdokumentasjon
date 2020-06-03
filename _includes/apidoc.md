@@ -2,7 +2,29 @@ NVDBs API SKRIV lar deg oppdatere eksisterende, registrere nye eller slette vego
 
 ## Endringssett
 
-Endringer i NVDB gjennomføres ved hjelp av endringssett. Et endringssett er en liste med vegobjekter som skal registreres, oppdateres, korrigeres eller slettes i NVDB. Et endringssett har en id, effektdato, datakatalogversjon og ansvarlig, og består av registrer, oppdater, delvisOppdater, korriger, delvisKorriger, slett, status og etterbehandling. Registrer, oppdater, delvisOppdater, korriger, delvisKorriger, slett består igjen av vegobjekter.
+Systemet mottar beskrivelser av vegobjekter (_endringssett_) for _registrering_, _oppdatering_ eller _sletting_ i NVDB.
+En rekke validerings- og kontrolltrinn gjennomføres før data er godkjent og  sendes til NVDB. Et endringssett under 
+behandling omtales som en jobb. Flere av trinnene i en jobb krever oppslag i NVDB og vil derfor kunne ta en del tid, 
+spesielt for klienter som registrerer mange vegobjekter samtidig. I tillegg vil selve skrivingen til NVDB også ta tid. 
+Videre vil noen oppdateringer ikke kunne skje umiddelbart fordi data er låst av andre klienter (eller av en annen jobb 
+i dette APIet). En konsekvens av dette er at jobber må eksekveres asynkront. Det vil si at klienten sender forespørsler 
+for å definere og starte jobber, men siden svaret vil ta noe tid å utarbeide kan ikke et endelig svar leveres med en gang. 
+Jobben blir i stedet behandlet i bakgrunnen, i en separat prosess som ikke blokkerer klienten.
+
+
+NVDB API Skriv setter strenge krav til mottatte data:
+
+* Data valideres strengt ihht siste versjon av datakatalogen [https://datakatalogen.vegdata.no](Datakatalogen)
+* Kun data som er komplette og korrekte ihht definisjonene i datakatalogen vil bli lagret i NVDB
+* Data valideres også opp mot allerede lagrede data
+* Alle data som skrives vha API Skriv må være stedfestet med veglenkeposisjon. Klienter er selv ansvarlig for å sende inn korrekte veglenkeposisjoner for sine objekter.  
+
+
+
+Endringer i NVDB gjennomføres ved hjelp av endringssett. Et endringssett er en liste med vegobjekter som skal registreres,
+oppdateres, korrigeres eller slettes i NVDB. Et endringssett har en id, effektdato, datakatalogversjon og ansvarlig, og 
+består av registrer, oppdater, delvisOppdater, korriger, delvisKorriger, slett, status og etterbehandling. Registrer, 
+oppdater, delvisOppdater, korriger, delvisKorriger, slett består igjen av vegobjekter.
 
 
 ## Tilgjengelige ressurser

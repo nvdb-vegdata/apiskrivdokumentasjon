@@ -1,90 +1,24 @@
-# Datafangst
-
-Datafangst er et web-basert system for innsending, kontroll, redigering, og registrering i [NVDB](http://www.vegvesen.no/fag/Teknologi/Nasjonal+vegdatabank).
-Systemet tar i mot GPS-stedfestede data for alle vegobjekter konstruert eller endret
- under et vegbyggingsprosjekt.
-
-Entrepenører er pålagt å levere data fra vegprosjekter til Statens Vegvesen for registrering i NVDB. Data fra entrepenørene 
- må kvalitetssikret og etterbehandles før de kan skrives til NVDB.
-
-I Datafangst kan entrepenører laste opp SOSI-filer og få dem validert mot [Datakatalogen](http://www.vegvesen.no/fag/Teknologi/Nasjonal+vegdatabank/Datakatalogen), 
-men den endelige registreringen av dataene til NVDB må gjøres av dataforvaltere hos Statens Vegvesen.
-
-Release notes for Datafangst oppdateres [her](https://nvdb-vegdata.github.io/endringslogg/datafangst.html).
-
-Tradisjonelt har data blitt levert på [SOSI-format](http://www.kartverket.no/sosi/). 
-I tillegg til å støtte opplasting av SOSI-filer til NVDB og [FKB](http://www.kartverket.no/kart/kartdata/vektorkart/fkb/),
-har Datafangst også et API for å sende inn vegobjekter som  [geoJSON](http://geojson.org),
-se "[Datafangst API](#datafangst-api)" lengre ned.
-
-## Definisjoner
-Før vi beskriver normal arbeidsflyt i Datafangst og APIet definerer vi noen termer som er brukt i NVDB-domenet. Engelsk oversettelse i parantes.
-* Kontrakt (contract) - Alle data hører til en kontrakt som representerer den faktiske kontrakten de innsamlede data tilhører. En kontrakt har 
- et navn, en [objektliste](http://www.vegvesen.no/fag/Teknologi/Nasjonal+vegdatabank/Objektliste), og flere valgfri felter for å stedfeste og beskrive den.
-* Vegobjekt-type (featuretype) - Alle vegobjekter tilhører en vegobjekt-type. Denne er definert i Datakatalogen, og definerer alle 
- attributter objektet har, påkrevd-nivå, og relasjoner til andre vegobjekt-typer. Et eksempel på en vegobjekt-type er «Fartsgrense».
-* Vegobjekt (feature) - en instans av en vegobjekt-type, for eksempel en enkelt fartsgrense.
-
-## Roller og tilganger i Datafangst
-
-### Dataforvalter
-* Kun Statens Vegvesen, fylkeskommuner og kommuner 
-* Kan opprette og konfigurere kontrakter
-* Kan være kontraktseier
-* Kan legge til andre brukere på en kontrakt
-* Kan godkjenne og underkjenne innsendte data
-
-### Medlem på kontrakt
-* Både Vegvesenbrukere og eksterne brukere
-* Kan sende inn data på eksisterende kontrakt
-* Kan se innsendte data
-* Kan redigere innsendte data
-* Kan kommentere på innsendte data
-* Kan se oversiktsstatus for innsendte data
-
-Oppretting av Datafangst-bruker kan gjøres fritt i Statens Vegvesen. Brukere i fylkeskommune og kommune som skal
-ha bruker må ta kontakt med sin IT-organisasjon. Brukere som kun skal laste opp data på en kontrakt inviteres
-med på den enkelte kontrakt av den ansvarlige for kontrakt. 
-
-
-## Dataflyt i Datafangst
-![Dataflyt i Datafangst](bilder/workflow.png)
-
-Innsending av data og eventuell registrering av «Ferdigvegsdata» følger en definert arbeidsflyt som nå vil bli beskrevet.
-
-1. Dataforvalter oppretter en kontrakt i webgrensesnittet.
-2. Dataforvalter konfigurerer kontrakten ved å definere dens objektliste og hvilke brukere som skal ha tilgang til den.
-3. Data lastes opp til kontrakten via nettleser eller API.
-4. Innsendte data blir validert synkront. Webgrensesnittet poller etter endringer og viser en spinner, ved bruk at API 
- må en selv håndtere polling.
- De valideringer som blir gjort er blant andre attributt- og geometrivalidering mot Datakatalogen. 
-  Det blir også utført automatisk stedfesting på vegnettet, men denne informasjonen er bare tilgjengelig for dataforvaltere 
-  i webgrensesnittet,
-5. Gjennomgang av innsendte data, dataforvalter går gjennom data i webgrensesnittet. Entrepenører er ikke påkrevd å levere alle
- attributter som er påkrevd for registrering i NVDB, disse attributtene må Dataforvalter legge til etter innsending. 
- Dataforvalter og andre prosjektdeltakere har mulighet til å legge til kommentarer på alle vegobjekter og vegobjekttyper, 
- samt overordnede kommentarer for kontrakten. Dataforvalter har mulighet til å markere kommentarer som feil som innsender 
- må ordne og deretter sende inn de aktuelle vegobjektene på nytt.
-6. Om den automatiske stedfestingen av objekter ikke er konklusiv må dataforvalter utføre denne manuelt. Objekter som hører sammen 
-(f eks en skiltplate sitter alltid på et skiltpunkt) må kobles sammen av dataforvalter. 
-7. Registrering til NVDB. Når alle data er godkjent og eventuelle valideringsfeil er rettet kan de sendes til NVDB. 
- Denne opersjonen er ikke enda fullt støttet i Datafangst per oktober 2017, men den vil komme på neste release, som er godt på vei.
+---
+title: Datafangst-API
+category: Datafangst
+order: 2
+---
  
-# Datafangst API
+## Datafangst-API
 Datafangst har et API som støtter [geoJSON-formatet](#format).
 
-## Forutsetninger
-### KontraktID
+### Forutsetninger
+#### KontraktID
 Nåværende API-versjon støtter kun operasjoner på eksisterende kontrakter som er opprettet i webgrensesnittet.
 
-### Brukernavn og passord 
+#### Brukernavn og passord 
 Autentisering mot API skjer med brukernavn og passord. Brukeren må ha tilgang til operasjonen man ønsker å utføre på kontrakten. 
 Brukere kan opprettes fritt, men for å få tilgang til en gitt kontrakt må brukeren legges til i denne kontraktens brukere. Dette gjøres 
 i webgrensesnittet.
 
 ---
 
-## Generelt for alle operasjoner
+### Generelt for alle operasjoner
 **Responser:**
 
 Se beskrivelse per operasjon for hvilken status som angir vellykket innsending.
@@ -106,24 +40,24 @@ Content-Type: application/geo+json
  
 ---
 
-## Contract
+### Contract
 
-### Hent kontrakter
+#### Hent kontrakter
 List opp alle kontrakter
 
-#### Mønster
+##### Mønster
 ```
 GET /api/v1/contract
 ```
 
-#### Forespørsel
+##### Forespørsel
 Eksempel
 ```
 GET /api/v1/contract HTTP/1.1
 Host: datafangst.kantega.no
 Authorization: Basic *********
 ```
-#### Respons
+##### Respons
 ````
 HTTP/1.1 200 OK
 ````
@@ -131,22 +65,22 @@ Payload med kontrakter med id og navn
 
 ---
 
-### Hent kontrakt
+#### Hent kontrakt
 Informasjon om kontrakten
 
-#### Mønster
+##### Mønster
 ```
 GET /api/v1/contract/{contractId}
 ```
 
-#### Forespørsel
+##### Forespørsel
 Eksempel
 ```
 GET /api/v1/contract/52fbcce9-ccb9-4f50-8bcd-0047f85038e8 HTTP/1.1
 Host: datafangst.kantega.no
 Authorization: Basic *********
 ```
-#### Respons
+##### Respons
 ````
 HTTP/1.1 200 OK
 ````
@@ -154,24 +88,24 @@ Payload med informasjon om kontrakten
 
 ---
 
-## Feature Collection
+### Feature Collection
 
-### Hent feature collections for kontrakt
+#### Hent feature collections for kontrakt
 FeatureCollections i kontrakt
  
-#### Mønster
+##### Mønster
  ```
  GET /api/v1/contract/{contractId}/featurecollection
  ```
  
-#### Forespørsel
+##### Forespørsel
 Eksempel
  ```
  GET /api/v1/contract/52fbcce9-ccb9-4f50-8bcd-0047f85038e8/featurecollection HTTP/1.1
  Host: datafangst.kantega.no
  Authorization: Basic *********
  ```
-#### Respons
+##### Respons
  ````
  HTTP/1.1 200 OK
  ````
@@ -179,22 +113,22 @@ Payload med alle featurecollections i kontrakten
  
 ---
 
-### Hent feature collection	
+#### Hent feature collection	
 Henter oppgitt feature collection
  
-#### Mønster
+##### Mønster
  ```
  GET /api/v1/contract/{contractId}/featurecollection/{collectionId}
  ```
  
-#### Forespørsel
+##### Forespørsel
 Eksempel
  ```
 GET /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/fc7b536b-eba2-47a3-82d4-4ae3a0f59883 HTTP/1.1
 Host: datafangst.kantega.no
 Authorization: Basic *********
  ```
-#### Respons
+##### Respons
  ````
  HTTP/1.1 200 OK
  ````
@@ -202,18 +136,18 @@ Payload med feature collection som  [geoJSON](#format)
 
 ---
 
-### Post feature collection til kontrakt
+#### Post feature collection til kontrakt
  POST en komplett «feature collection» til en kontrakt. 
  Behandling og validering tar noe tid, derfor er denne operasjonen asynkron.
   
-#### Mønster
+##### Mønster
  
   ```
   POST /api/v1/contract/{contractId}/featurecollection
   ```
  
   
-#### Forespørsel
+##### Forespørsel
  Eksempel
   ```
  POST /api/v1/contract/52fbcce9-ccb9-4f50-8bcd-0047f85038e8/featurecollection HTTP/1.1
@@ -221,10 +155,10 @@ Payload med feature collection som  [geoJSON](#format)
  Content-Type: application/geo+json
  Authorization: Basic *********
   ```
-##### Body
+###### Body
  Feature collection som [geoJSON](#format)
  
-#### Respons
+##### Respons
   ````
   HTTP/1.1 202 Accepted
   ````
@@ -232,15 +166,15 @@ Payload med feature collection som  [geoJSON](#format)
   
  
 ---
-### Erstatt feature collection	
+#### Erstatt feature collection	
 Erstatt den oppgitte feature collection
  
-#### Mønster
+##### Mønster
  ```
 PUT /api/v1/contract/{contractId}/featurecollection/{collectionId}
  ```
  
-#### Forespørsel
+##### Forespørsel
 Eksempel
  ```
 PUT /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/fc7b536b-eba2-47a3-82d4-4ae3a0f59883 HTTP/1.1
@@ -248,10 +182,10 @@ Host: datafangst.kantega.no
 Content-Type: application/geo+json
 Authorization: Basic *********
 ```
-##### Body
+###### Body
 Feature collection som [geoJSON](#format)
 
-#### Respons
+##### Respons
  ````
  HTTP/1.1 202 Accepted
  ````
@@ -259,15 +193,15 @@ Payload med URI for polling av status.
  
 ---
 
-### Hent status for innsendt feature collection
+#### Hent status for innsendt feature collection
 Hent prosesseringsstatus for innsendt feature collection. 
  
-#### Mønster
+##### Mønster
  ```
 GET /api/v1/contract/{contractId}/featurecollection/{collectionId}/status
  ```
  
-#### Forespørsel
+##### Forespørsel
 Eksempel
  ```
 GET /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/fc7b536b-eba2-47a3-82d4-4ae3a0f59883/status HTTP/1.1
@@ -276,7 +210,7 @@ Authorization: Basic *********
 ```
 
 
-#### Respons
+##### Respons
  ````
  HTTP/1.1 200 OK
  ````
@@ -284,17 +218,17 @@ Payload. Respons er json eller xml avhengig av klientens *Accept*-header.
  
 ---
 
-## Feature
+### Feature
 
-### Hent feature
+#### Hent feature
 Hent et enkelt vegobjekt.
  
-#### Mønster
+##### Mønster
  ```
 GET /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/feature/{featureId}
  ```
  
-#### Forespørsel
+##### Forespørsel
 Eksempel
  ```
 GET /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/feature/52073785-7f8f-4746-9607-6e70e6d8651e HTTP/1.1
@@ -302,7 +236,7 @@ Host: datafangst.kantega.no
 Authorization: Basic *********
 ```
 
-#### Respons
+##### Respons
  ````
  HTTP/1.1 200 OK
  ````
@@ -310,15 +244,15 @@ Payload med vegobjekt som geoJSON feature
  
 ---
 
-### Post feature
+#### Post feature
 POST et enkelt vegobjekt som geoJSON-feature.
  
-#### Mønster
+##### Mønster
  ```
 POST /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/feature/
  ```
  
-#### Forespørsel
+##### Forespørsel
 Eksempel
  ```
 POST /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/feature/ HTTP/1.1
@@ -326,10 +260,10 @@ Host: datafangst.kantega.no
 Content-Type: application/geo+json
 Authorization: Basic *********
 ```
-##### Body
+###### Body
 [geoJSON](#format) feature
 
-#### Respons
+##### Respons
  ````
  HTTP/1.1 200 OK
  ````
@@ -337,15 +271,15 @@ Payload med vegobjekt som geoJSON feature
  
 ---
  
-### Erstatt feature
+#### Erstatt feature
 Erstatt oppgitt vegobjekt
  
-#### Mønster
+##### Mønster
  ```
 PUT /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/feature/{featureId}
  ```
  
-#### Forespørsel
+##### Forespørsel
 Eksempel
  ```
 PUT /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/feature/52073785-7f8f-4746-9607-6e70e6d8651e HTTP/1.1
@@ -353,10 +287,10 @@ Host: datafangst.kantega.no
 Content-Type: application/geo+json
 Authorization: Basic *********
 ```
-##### Body
+###### Body
 [geoJSON](#format) feature
 
-#### Respons
+##### Respons
  ````
  HTTP/1.1 200 OK
  ````
@@ -364,15 +298,15 @@ Payload med vegobjekt som geoJSON feature
  
 ---
 
-### Slett feature
+#### Slett feature
 Slett oppgitt vegobjekt
  
-#### Mønster
+##### Mønster
  ```
 DELETE /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/feature/{featureId}
  ```
  
-#### Forespørsel
+##### Forespørsel
 Eksempel
  ```
 Delete /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/feature/52073785-7f8f-4746-9607-6e70e6d8651e HTTP/1.1
@@ -380,7 +314,7 @@ Host: datafangst.kantega.no
 Authorization: Basic *********
 ```
 
-#### Respons
+##### Respons
  ````
  HTTP/1.1 204 No content
  ````
@@ -388,7 +322,7 @@ HTTP status 204 returneres om sletting var vellykket.
  
 ---
   
-## Format
+### Format
 Datafangst-APIet bruker en JSON-struktur som følger 
 [geoJSON](https://tools.ietf.org/html/rfc7946), med et sett med egenskaper under "properties" som er spesifikke 
 til Datafangst. Se under for et enkelt eksempel. 
@@ -424,55 +358,55 @@ til Datafangst. Se under for et enkelt eksempel.
 Geometriseksjonen i dette objektet er standard geoJSON. *properties*-delen av objektet inneholder de attributtene som hører til
 vegobjektet.
 
-### Eksisterende objekter i NVDB
+#### Eksisterende objekter i NVDB
 Det er mulig å både laste opp nye vegobjekter, og å legge inn eksisterende vegobjekter i NVDB med endringer gjennom API.
 Det er den samme strukturen som brukes, men det er noe variasjon i hvilke properties som må eller kan oppgis.
 
 For eksisterende vegobjekter er det valgfritt å oppgi "geometry"-elementet. Hvis dette ikke oppgis brukes geometri fra NVDB, og hvis "geometry" er oppgitt vil den erstatte eksisterende geometri i NVDB når vegobjektet sendes inn til NVDB.
 
-### Properties
+#### Properties
 
 Følgende egenskaper kan defineres under "properties" i et geoJson-objekt.
 
-#### tag (påkrevd)
+##### tag (påkrevd)
 Dette er et navn på vegobjektet som er ment brukt for å gjøre det lettere å referere til objekter,
 og lett identifisere dem med et lettlest navn. Navnet vises for bruker i datafangst, og vil bli brukt 
 i feilmeldinger fra API.
 
 
-#### dataCatalogVersion
+##### dataCatalogVersion
 Hvilken versjon av Datakatalogen som er brukt som grunnlag ved opprettelse av objektet. Siste versjonsnummer
 finner man på https://nvdbapiles-v3.atlas.vegvesen.no/status.json. 
 Datakatalog-definisjoner er tilgjengelige på https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/{typeId}.json 
 og http://labs.vegdata.no/nvdb-datakatalog.
 
  
-#### typeId (påkrevd)
+##### typeId (påkrevd)
 ID for vegobjekttypen dette vegobjektet er en instans av, f.eks. "96" for skiltplate.
 
 
-#### nvdbId (påkrevd for eksisterende vegobjekter)
+##### nvdbId (påkrevd for eksisterende vegobjekter)
 ID i NVDB for vegobjekt som skal importeres. Må være unik innenfor en kontrakt.
 
 
-#### nvdbVersion (påkrevd for eksisterende vegobjekter)
+##### nvdbVersion (påkrevd for eksisterende vegobjekter)
 Versjon av NVDB-objekt som skal importeres. Må være siste versjon, Datafangst har ingen mekanismer for å håndtere konflikt med nyere versjoner.
 
 
-#### operation (påkrevd for eksisterende vegobjekter)
+##### operation (påkrevd for eksisterende vegobjekter)
 Operasjon i Datafangst for vegobjekt. For nye vegobjekter er denne implisitt "CREATE", og den trenger ikke å oppgis. 
 Mulige verdier er "CORRECT" (rette feil i en versjon), "UPDATE" (ny versjon i NVDB) og "CLOSE" (lukk i NVDB, tidligere omtalt som "slett"). I tillegg er "DELETE" et deprekert synonym for "CLOSE".
 
 
-#### verticalDatum 
+##### verticalDatum 
 Benyttet høydesystem (vertikal datum) for vegobjektet. Gjeldende versjon av Datafangst støtter _NN54_ og _NN2000_ som verdier for høydesystem. Om høydesystem ikke angis, tolkes det som _NN2000_.
 
 
-#### comment
+##### comment
 Kommentar for vegobjektet.
 
 
-#### attributes (påkrevd for nye vegobjekter)
+##### attributes (påkrevd for nye vegobjekter)
 NVDB-attributtene for vegobjektet på format "attributtid" : "verdi". Datakatalogversjonen definerer hva som er påkrevde 
 attributter, så dersom påkrevde attributter som mangler vil gi valideringsfeil ved Datakatalog-validering. 
 
@@ -483,7 +417,7 @@ samt andre eksisterende attributter fra NVDB dersom objektet har andre attributt
 innsendingen. Det er altså kun endringer som skal oppgis her.
 
 
-#### geometryAttributtes
+##### geometryAttributtes
 
 En egen struktur som beskriver kvalitet og andre egenskaper for geometri. Denne bør oppgis ved ny eller endret geometri.
 
@@ -505,7 +439,7 @@ oppgitt er det den numeriske verdien som skal oppgis, men som en streng. Se ekse
 * heightRef - [Referanse for høydemåling](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9546.json?pretty=true)
 * referenceGeometry - Angir om geometri er [referansegeometri](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9547.json?pretty=true) , med verdiene "true" eller "false" (default)
  
-### Levering av featureCollection med FKB
+#### Levering av featureCollection med FKB
 For å sende inn FKB-objekter må request-parameter `destination=FKB` legges til, og for hver feature droppes `dataCatalogVersion`
 og `typeName` brukes for for hver feature i stedet for `typeId`.
 
@@ -528,9 +462,9 @@ og `typeName` brukes for for hver feature i stedet for `typeId`.
   ]
 }
 ```
-### Eksempler
+#### Eksempler
 
-#### Nytt objekt med geometriegenskaper
+##### Nytt objekt med geometriegenskaper
 ```json
 {
   "type": "FeatureCollection",
@@ -577,7 +511,7 @@ og `typeName` brukes for for hver feature i stedet for `typeId`.
 }
 ```
 
-#### Eksisterende vegobjekt uten endringer
+##### Eksisterende vegobjekt uten endringer
 ```json
 {
   "type": "FeatureCollection",
@@ -597,7 +531,7 @@ og `typeName` brukes for for hver feature i stedet for `typeId`.
 }
 ``` 
 
-#### Postman-collection
+##### Postman-collection
 
-Det finnes også en [Postman-collection](Datafangst_API.postman_collection.json) for alle operasjoner,
+Det finnes også en [Postman-collection](../assets/Datafangst_API.postman_collection.json) for alle operasjoner,
 med eksempler på data for hver operasjon.

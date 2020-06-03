@@ -17,9 +17,8 @@ body {
   background: #f7f7f7;
 }
 
-
 .container {
-  max-width: 65em; 
+  max-width: 65em;
   overflow: auto;
   margin: 5em auto;
   padding: 5em;
@@ -29,7 +28,7 @@ body {
 }
 
 nav {
-  width: 17em; 
+  width: 17em;
   margin: 0 3em 0 0;
   float: left;
 }
@@ -48,20 +47,18 @@ main {
     margin-top: 0;
     padding: 2em;
   }
-  
+
   nav {
     float: none;
     width: auto;
     margin-top: 0;
   }
-  
+
   main {
     float: none;
     width: auto;
     margin-top: 0;
   }
-
-
 }
 
 
@@ -76,38 +73,53 @@ a:hover {
 
 
 h1, h2, h3, h4 {
-  margin: 2em 0 0.5em 0;
+  margin: 1.5em 0 0.5em 0;
   font-weight: 400;
 }
+
 h1 {
-  font-size: 4rem;
-  font-weight: 300;
-}
-.content h1:first-of-type {
   margin-top: 0;
+  font-size: 3.6rem;
+  font-weight: 300;
 }
 
 .header h1 {
   margin: 20px 50px;
 }
 
-nav h1 {
-  font-size: 1.4rem;
-  font-weight: 600;
+nav h2 {
+  font-size: 2.0rem;
+  font-weight: 400;
 }
 
 h2 {
-  font-size: 3rem;
+  font-size: 2.5rem;
+}
+
+h2:first-of-type {
+  margin-top: 0;
 }
 
 h3 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 600;
 }
 
 h4 {
   font-size: 1.8rem;
   font-weight: 600;
+}
+
+h5 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 1.0em 0 0.5em 0;
+}
+
+h6 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0.8em 0 0.4em 0;
 }
 
 p {
@@ -130,6 +142,11 @@ nav ul {
 
 li {
   margin: 0 0 0.5em 0;
+}
+
+li.aktiv {
+  font-weight: 600;
+  color: #444;
 }
 
 ul a, ol a {
@@ -207,6 +224,7 @@ pre {
   background: #f7f7f7;
   font-size: 1.3rem;
 }
+
 pre {
   background-color: #303030;
   overflow-x: scroll;
@@ -223,20 +241,27 @@ dt code {
 table {
   width: 100%;
   margin: 0 0 1.1em 0;
+  border-style: solid;
+  border-color: #dddddd;
+  border-width: 1px;
   border-collapse: collapse;
   font-size: 1.3rem;
 }
 
 th, td {
-  padding: 0.7em 2em 0.7em 0;
+  padding: 0.6em 0.5em 0.6em 0.5em;
   vertical-align: top;
-  line-height: 1.5;
+  line-height: 1.1;
+  border-style: solid;
+  border-color: #dddddd;
+  border-width: 1px;
 }
 
 th {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 600;
   text-align: left;
+  background-color: #dddddd;
 }
 
 th:last-child, td:last-child {
@@ -256,6 +281,10 @@ th:last-child, td:last-child {
 
 abbr {
   border-bottom: 1px dotted #444;
+}
+
+img {
+  width: 100%
 }
 
 /* Codestyle from https://github.com/jwarby/jekyll-pygments-themes - monokai */
