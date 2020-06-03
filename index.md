@@ -24,7 +24,7 @@ støtte-endepunkter for:
 * Endepunktene som representerer ressurser/entiteter følger designprinsippene til [Representational State Transfer (REST)](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm).
 * APIet er HTTP-basert. For å hente informasjon om en ressurs benyttes en GET-request. For å registrere eller oppdatere informasjon
 om en ressurs benyttes POST. Sistnevnte brukes også mot rene kommando-endepunkter. Responser vil ha en
-[HTTP-statuskode](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) som indikerer requestens korrekthet når det gjelder
+[HTTP-statuskode](feilhaandtering.md) som indikerer requestens korrekthet når det gjelder
 verb, URL, payload-format, tilgangskontroll m.m.  
 * Alle endepunkter støtter payloads både i [JSON](https://www.json.org/json-en.html) og [XML](https://www.w3.org/XML/)-format.
 En respons får samme format som requesten, med mindre noe annet er angitt med en ```Accept```-header.

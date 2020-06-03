@@ -4,7 +4,7 @@
     {% unless cat.name contains '/assets/' %}
         {% assign name = cat.name | replace:'/',' ' | strip | split:"__" | last %}
         {% if name != '' %}
-            <h2>{{name | replace:'ae','æ' | replace:'_',' ' | capitalize }}</h2>
+            <h2>{{name | replace:'ae','æ' | replace:'aa','å' | replace:'_',' ' | capitalize }}</h2>
         {% endif %}
         <ul>
             {% assign items = cat.items | sort: 'order', 'last' %}

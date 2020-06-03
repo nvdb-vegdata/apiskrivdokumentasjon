@@ -142,7 +142,7 @@ Content-Type: application/xml; charset=UTF-8
     <noder/>
   </resultat>
   <eier>exttxa</eier>
-  <klient>Postman</klient>
+  <klient>MinKlientApplikasjon</klient>
   <apiversjon>3</apiversjon>
   <transaksjon/>
 </status>
