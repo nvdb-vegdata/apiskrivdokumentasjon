@@ -1,11 +1,11 @@
 ---
-title: Introduksjon
+title: Introduksjon til konvertering
 order: 1
 ---
 
-## Introduksjon
+## Introduksjon til konvertering
 
-NVDB API Skriv tilbyr konverteringsendepunkter som kan konvertere ulike filformater til endringssett:
+NVDB API Skriv tilbyr endepunkter som kan konvertere ulike filformater til endringssett:
 
 * **SOSI-[GeoJSON](https://en.wikipedia.org/wiki/GeoJSON)**  
   Dette er en spesialisering av GeoJSON-formatet der "properties"-objektet under "feature" inneholder vegobjektets
