@@ -36,7 +36,9 @@ De fleste responser med HTTP-statuskodene over, ledsages av en payload med en el
 ```
 
 Tekstene i ```<message>``` -elementene kan opptre både på engelsk og norsk, avhengig av om feil detekteres av underliggende rammeverk
-eller NVDB API Skriv sin egen forretningslogikk. De fleste feilmeldingene er tekniske av natur og egner seg ikke for presentasjon
-til sluttbruker. Det er heller ikke hensikten med slike ```<fault>``` - responser. De fleste av disse responsene indikerer
-at klientutvikleren har feilprogrammert eller ikke har tatt hensyn til faktorer som autentisering, autorisasjon o.l. Klienten bør logge slike
-responser og betrakte dem som programfeil fra sin side.
+eller NVDB API Skriv sin egen forretningslogikk.
+
+De fleste feilmeldingene er tekniske av natur og egner seg ikke for presentasjon
+til sluttbruker. Det er heller ikke hensikten med slike ```<fault>``` - responser. De fleste av dem er en indikasjon på
+at klientutvikleren har feilprogrammert eller ikke godt nok har tatt hensyn til faktorer som autentisering, autorisasjon o.l.
+Klienten bør logge slike responser og betrakte dem som potensielle programfeil på sin side.
