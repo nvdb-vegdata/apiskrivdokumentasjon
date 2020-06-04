@@ -77,6 +77,9 @@ $ curl https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett \
   -H "Cookie: iPlanetDirectoryProOAM= AQIC5wM2LY4SfcyhHz1Irgsf6pbxoeuY3k9XqvbRtB4-4No.*AAJTSQACMDIAAlNLABMzMDUyMTI1NzE2ODA4ODU0OTczAAJTMQACMDM.*"
 ```
 
+Dersom en request mot NVDB API Skriv mangler eller bruker et ugyldig/utløpt token vil skallsikringen internt hos Statens vegvesen
+hindre at den når fram til APIet. Klienten vil da motta en 302 FOUND-respons.
+
 #### Utlogging 
 
 Et token kan eksplisitt ugyldiggjøres ved å kalle /logout med tokenet som payload:
