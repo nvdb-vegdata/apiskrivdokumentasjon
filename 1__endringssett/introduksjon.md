@@ -97,6 +97,6 @@ IKKE_STARTET|Ingen polling.
 BEHANDLES|1 sekund.
 VENTER|1 sekund dersom endringssettet ikke har vært innom BEHANDLES, ellers 1 minutt.  
 AVVIST|Teminaltilstand, ingen polling.
-UTFØRT|1 minutt dersom klienten skal hentes ut data fra NVDB API Les, ellers ingen polling.  
+UTFØRT|1 minutt dersom klienten skal hente ut data fra NVDB API Les, ellers ingen polling.  
 UTFØRT_OG_ETTERBEHANDLET|Teminaltilstand, ingen polling.
 KANSELLERT|Teminaltilstand, ingen polling.
