@@ -38,11 +38,12 @@ Lukk|Setter sluttdato på et eksisterende vegobjekt|Når et vegobjekt er fjernet
 Korriger|Endrer egenskapene til en eksisterende vegobjektversjon|Når det er feilregistrerte egenskapsverdier
 Fjern|Fjerner et eksisterende vegobjekt eller en vegobjektversjon fra NVDB|Når et vegobjekt er feilregistrert
 
-Et endringssett med alle operasjoner vil se slik ut:
+Et endringssett med alle operasjoner vil kunne se slik ut:
 
 ```xml
 <endringssett>
   <datakatalogversjon>2.20</datakatalogversjon>
+  <ansvarlig>exttxa</ansvarlig>  
   <eksternRef>ABC123</eksternRef>
   <kontekst><![CDATA[<HEI></HEI>]]></kontekst>
   <registrer>
@@ -69,6 +70,10 @@ Elementet ```<datakatalogversjon>``` er obligatorisk og skal angi den datakatalo
 ble dannet. Dersom denne avviker fra den gjeldende versjonen i NVDB vil behandlingsresultatet inneholde en advarsel om dette. Hvis det
 inntreffer uventede valideringsfeil kan det skyldes at endringssettet ikke matcher siste datakatalog og første trinn i feilsøkingen
 bør derfor være å se etter den nevnte advarselen.
+
+Elementet ```<ansvarlig>``` må angis dersom endringssettet registreres av en tjenestebruker/systembruker. Dette er et vanlig scenario i
+headless serversystemer som registrerer og starter endringssett i nattlige batcher. For å knytte endringssettet til en reell eier/opphavsperson
+i slike tilfeller må ```<ansvarlig>``` -elementet inneholde brukernavnet til en personlig bruker i Statens vegvesen.
 
 Elementet ```<eksternRef>``` er valgfritt og kan brukes til å legge på en referanse til et objekt, prosjekt e.l. i klienten.
 
