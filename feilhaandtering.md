@@ -21,7 +21,7 @@ HTTP-status|Typiske årsaker
 404&nbsp;NOT&nbsp;FOUND|Ressursen som ble etterspurt i requesten ble ikke funnet
 405&nbsp;METHOD&nbsp;NOT&nbsp;ALLOWED|Requesten brukte ugyldig HTTP-verb på ressursen
 406&nbsp;NOT&nbsp;ACCEPTABLE|Ressursen kan ikke leveres i den [media-type](http://www.iana.org/assignments/media-types/media-types.xhtml) som requesten ber om i Accept-headeren
-415&nbsp;USUPPORTED&nbsp;MEDIA&nbsp;TYPE|Requestens payload har ikke gyldig format
+415&nbsp;UNSUPPORTED&nbsp;MEDIA&nbsp;TYPE|Requestens payload har ikke gyldig format
 422&nbsp;UNPROCESSABLE&nbsp;ENTITY|Requestens payload er velformet, men kan ikke behandles på grunn av semantiske feil
 500&nbsp;INTERNAL&nbsp;SERVER&nbsp;ERROR|Behandling av requesten ble avbrutt av en uventet hendelse, vanligvis en programfeil i NVDB API Skriv
 
