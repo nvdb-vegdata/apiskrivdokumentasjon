@@ -159,7 +159,7 @@ datatyper. Hvordan disse angis er beskrevet i en egen seksjon om [egenskapsverdi
 Assosiasjoner brukes til å koble sammen mor- og datterobjekter i hierarkier. I fragmentet over angis et datterobjekt
 (som også registreres i sammme endringssett) av type Tunnelløp. Attributten ```typeId``` hentes fra datakatalogen og angir 
 entydig hvilken morobjekttype (Tunnel) og datterobjekttype (Tunnelløp) som inngår i sammenkoblingen. Se flere detaljer i egen
-seksjon om [assosiasjoner](#om-assosiasjoner)
+seksjon om [assosiasjoner](#om-assosiasjoner).
 
 #### Stedfesting
 

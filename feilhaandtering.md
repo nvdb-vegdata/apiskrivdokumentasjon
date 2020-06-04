@@ -27,7 +27,7 @@ HTTP-status|Typiske årsaker
 
 ### Feilmeldinger
 
-De fleste responser med HTTP-statuskodene over, ledsages av en payload med en eller flere beskrivende feilmeldinger, f.eks.
+De fleste responser med HTTP-statuskodene over, ledsages av en payload med en eller flere beskrivende feilmeldinger, f.eks.:
 
 ```xml
 <fault xmlns="http://nvdb.vegvesen.no/apiskriv/fault/v1">
