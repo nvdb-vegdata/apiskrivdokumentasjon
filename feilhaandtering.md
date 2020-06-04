@@ -6,8 +6,8 @@ order: 4
 ## Feilhåndtering
 
 Alle endepunkter i NVDB API Skriv responderer umiddelbart med en standard [HTTP-statuskode](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
-dersom requesten og dens payload ikke er korrekt formatert, anropet er uautentisert eller uautorisert, det er brukt ugyldig HTTP-verb eller
-det avdekkes andre problemer.
+dersom requesten og dens payload ikke er korrekt formatert, anropet er uautentisert, brukeren mangler autorisasjon, det er brukt ugyldig [HTTP-verb](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods)
+eller det avdekkes andre problemer.
 
 ### HTTP-statuskoder
 
