@@ -1,5 +1,5 @@
 ---
-title: Introduksjon til konvertering
+title: Introduksjon
 order: 1
 ---
 

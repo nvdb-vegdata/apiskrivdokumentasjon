@@ -20,7 +20,7 @@ Release notes for Datafangst oppdateres [her](https://nvdb-vegdata.github.io/end
 Tradisjonelt har data blitt levert på [SOSI-format](http://www.kartverket.no/sosi/). 
 I tillegg til å støtte opplasting av SOSI-filer til NVDB og [FKB](http://www.kartverket.no/kart/kartdata/vektorkart/fkb/),
 har Datafangst også et API for å sende inn vegobjekter som  [geoJSON](http://geojson.org),
-se "[Datafangst API](#datafangst-api)" lengre ned.
+se [Datafangst-API](datafangst-api.md).
 
 ### Definisjoner
 Før vi beskriver normal arbeidsflyt i Datafangst og APIet definerer vi noen termer som er brukt i NVDB-domenet. Engelsk oversettelse i parantes.
