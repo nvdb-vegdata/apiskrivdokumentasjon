@@ -762,7 +762,7 @@ For datatype og verdiområde se [definisjon i datakatalogen](https://nvdbapiles-
 
 ##### medium
 
-Subelementet ```<medium>``` angir vegobjektets beliggenhet i forhold til jordoverflaten. Verdien er numerisk og hentes
+Subelementet ```<medium>``` angir vegobjektets beliggenhet i forhold til jordoverflaten. Verdien er en tallkode og hentes
 fra "kortnavn" i [verdidefinisjonene i datakatalogen](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9792.json?pretty=true).
 
 ##### kommune
@@ -772,12 +772,12 @@ fire siffere, det vil si eventuelt med ledende null.
 
 ##### høydereferanse
 
-Subelementet ```<høydereferanse>``` angir om koordinatregistering er utført på topp eller bunn av vegobjektet. Verdien er numerisk og hentes
+Subelementet ```<høydereferanse>``` angir om koordinatregistering er utført på topp eller bunn av vegobjektet. Verdien er en tallkode og hentes
 fra "kortnavn" i [verdidefinisjonene i datakatalogen](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9546.json?pretty=true).
 
 ##### sosinavn
 
-Subelementet ```<sosinavn>``` angir om navnet på geometriobjektet i SOSI-standarden.
+Subelementet ```<sosinavn>``` angir navnet på geometriobjektet i SOSI-standarden, typisk "PUNKT", "KURVE" eller "FLATE".
 
 ##### referansegeometri
 
@@ -786,35 +786,34 @@ Lovlige verdier er "true" og "false".
 
 ##### verifiseringsdato
 
-Subelementet ```<verifiseringsdato>``` angir dato når geometrien er fastslått å være i samsvar med virkeligheten. Datoen 
+Subelementet ```<verifiseringsdato>``` angir dato for når geometrien ble fastslått å være i samsvar med virkeligheten. Datoen 
 formateres i tråd med [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-standarden.
 
 ##### oppdateringsdato
 
-Subelementet ```<oppdateringsdato>``` angir dato for siste endring av geometri eller geometriattributter. Denne kan være forskjellig fra datafangsdato
-fordi data som er registrert kan mellomlagres en kortere eller lengre periode før disse legges inn i NVDB.
-
-Datoen formateres i tråd med [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-standarden.
+Subelementet ```<oppdateringsdato>``` angir dato for siste endring av geometri eller geometriattributter. Denne kan være forskjellig fra datafangstdato
+fordi data som er registrert kan mellomlagres en kortere eller lengre periode før disse legges inn i NVDB. Datoen formateres
+i tråd med [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-standarden.
 
 ##### prosesshistorikk
 
-Subelementet ```<prosesshistorikk>``` angit en beskrivelse i fritekst av de prosesser som dataene er gått gjennom som kan ha betydning
+Subelementet ```<prosesshistorikk>``` angir en beskrivelse i fritekst av de prosesser som koordinatene har gått gjennom som kan ha betydning
 for kvaliteten og bruken av dem. Prosesshistorikken vil blant annet kunne inneholde informasjon om transformasjoner. Hva
 slags informasjon som angis er ofte gitt i andre standarder, f.eks kvalitet og kvalitetsikring.
 
 ##### kvalitet
 
-Subelementet ```<kvalitet>``` beskriver ulike kvallitetsparametere for geometrien.
+Subelementet ```<kvalitet>``` beskriver ulike kvalitetsparametere for geometrien.
  
 ###### målemetode
 
-```<målemetode>``` angir om metode for måling i grunnriss (x, y) - og høyde (z) når metoden er den samme som ved måling i grunnriss.
-Verdien er numerisk og hentes fra "kortnavn" i [verdidefinisjonene i datakatalogen](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9543.json?pretty=true).
+```<målemetode>``` angir metode for måling i grunnriss (x, y) - og høyde (z) når metoden er den samme som ved måling i grunnriss.
+Verdien er en tallkode og hentes fra "kortnavn" i [verdidefinisjonene i datakatalogen](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9543.json?pretty=true).
 
 ###### målemetodeHøyde
 
-```<målemetodeHøyde>``` angir metode for å måle høyde. Målemetode for høyden angis hvis det er brukt annen målemetode enn for grunnriss.
-Verdien er numerisk og hentes fra "kortnavn" i [verdidefinisjonene i datakatalogen](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9544.json?pretty=true).
+```<målemetodeHøyde>``` angir metode for måling av høyde. Målemetode for høyden angis hvis det er brukt annen målemetode enn for grunnriss.
+Verdien er en tallkode og hentes fra "kortnavn" i [verdidefinisjonene i datakatalogen](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9544.json?pretty=true).
 
 ###### nøyaktighet
 
@@ -828,8 +827,8 @@ For verdiområde se [definisjon i datakatalogen](https://nvdbapiles-v3.atlas.veg
 
 ###### synbarhet
 
-```<synbarhet>``` angir en beskrivelse av hvor godt vegobjektet var synbart ved innmålingen. Hvis synbarheten var god/normal
-kan dette subelementet utelates. Verdien er numerisk og hentes fra "kortnavn" i [verdidefinisjonene i datakatalogen](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9545.json?pretty=true).
+```<synbarhet>``` angir hvor godt vegobjektet var synbart ved innmålingen. Hvis synbarheten var god/normal
+kan dette subelementet utelates. Verdien er en tallkode og hentes fra "kortnavn" i [verdidefinisjonene i datakatalogen](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/9545.json?pretty=true).
 
 ###### toleranse
 
