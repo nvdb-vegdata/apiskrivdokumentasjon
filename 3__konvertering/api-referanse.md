@@ -127,11 +127,23 @@ Content-Type: application/xml; charset=UTF-8
             <enum>2435</enum>
           </egenskap>
           <egenskap typeId="4794">
-            <verdi>srid=4326;datafangstdato=2013-11-26;målemetode=96;målemetodeHøyde=96;nøyaktighet=5;nøyaktighetHøyde=5;synbarhet=0;temakode=999;POINT(10.391780132804493 63.430602994329256)</verdi>
+            <geometri>
+              <srid>4326</srid>
+              <wkt>POINT(10.391780132804493 63.430602994329256)</wkt>
+              <datafangstdato>2013-11-26</datafangstdato>
+              <temakode>999</temakode>
+              <kvalitet>
+                <målemetode>96</målemetode>
+                <målemetodeHøyde>96</målemetodeHøyde>
+                <nøyaktighet>5</nøyaktighet>
+                <nøyaktighetHøyde>5</nøyaktighetHøyde>
+                <synbarhet>0</synbarhet>
+              </kvalitet>
+            </geometri>
           </egenskap>
         </egenskaper>
         <gyldighetsperiode>
-          <startdato>2020-05-29</startdato>
+          <startdato>2020-06-08</startdato>
         </gyldighetsperiode>
       </vegobjekt>
     </vegobjekter>
@@ -190,7 +202,7 @@ Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
 ...KOORDSYS 23
 ...ORIGO-NØ 7034310 569351
 ...ENHET 0.010
-...VERT-DATUM NN54
+...VERT-DATUM NN2000
 ..OMRÅDE
 ...MIN-NØ 7034310 569351
 ...MAX-NØ 7034406 569492
@@ -259,7 +271,19 @@ Content-Type: application/xml; charset=UTF-8
             <enum>11739</enum>
           </egenskap>
           <egenskap typeId="4795">
-            <verdi>datafangstdato=2013-11-27;målemetode=96;målemetodeHøyde=96;nøyaktighet=5;nøyaktighetHøyde=5;synbarhet=0;temakode=999;POINT( 7034339 569467 9  )</verdi>
+            <geometri>
+              <srid>5973</srid>
+              <wkt>POINT(7034339.8 569467.68 9.95)</wkt>
+              <datafangstdato>2013-11-27</datafangstdato>
+              <temakode>999</temakode>
+              <kvalitet>
+                <målemetode>96</målemetode>
+                <målemetodeHøyde>96</målemetodeHøyde>
+                <nøyaktighet>5</nøyaktighet>
+                <nøyaktighetHøyde>5</nøyaktighetHøyde>
+                <synbarhet>0</synbarhet>
+              </kvalitet>
+            </geometri>
           </egenskap>
         </egenskaper>
         <gyldighetsperiode>
