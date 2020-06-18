@@ -1,6 +1,6 @@
 ---
 title: API-referanse
-order: 4
+order: 5
 ---
 
 ## API-referanse
@@ -138,8 +138,6 @@ Content-Type: application/xml; charset=UTF-8
         <notabener/>
       </vegobjekt>
     </vegobjekter>
-    <veglenkesekvenser/>
-    <noder/>
   </resultat>
   <eier>exttxa</eier>
   <klient>MinKlientApplikasjon</klient>
@@ -580,8 +578,6 @@ Content-Type: application/xml; charset=UTF-8
         <notabener/>
       </vegobjekt>
     </vegobjekter>
-    <veglenkesekvenser/>
-    <noder/>
   </resultat>
   <eier>exttxa</eier>
   <klient>MinKlientApplikasjon</klient>
@@ -685,8 +681,6 @@ Content-Type: application/xml; charset=UTF-8
           <notabener/>
         </vegobjekt>
       </vegobjekter>
-      <veglenkesekvenser/>
-      <noder/>
     </resultat>
     <eier>exttxa</eier>
     <klient>MinKlientApplikasjon</klient>
