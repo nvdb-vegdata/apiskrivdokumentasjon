@@ -208,7 +208,7 @@ UGYLDIG_DATOFORMAT|Egenskapen har en dato- eller kortdatoverdi som ikke er korre
 UGYLDIG_GEOMETRIFORMAT|Egenskapen har en geometriverdi som ikke er korrekt formatert.
 UGYLDIG_GEOMETRI_SRID|Egenskapen har en geometriverdi som refererer til en SRID som ikke støttes av NVDB API Skriv.
 UGYLDIG_GEOMETRITRANSFORMASJON|Egenskapen har en geometriverdi som ikke kunne transformeres til NVDBs koordinatreferansesystem EUREF89/UTM33.
-GEOMETRI_UTENFOR_OMRISSET_AV_EUREF89_UTM33N|Egenskapen har en geometriverdi der ett eller flere punkter er utenfor gyldighetsområdet til sone 33 av UTM-båndet.
+GEOMETRI_UTENFOR_OMRISSET_AV<br/>_EUREF89_UTM33N|Egenskapen har en geometriverdi der ett eller flere punkter er utenfor gyldighetsområdet til sone 33 av UTM-båndet.
 UGYLDIG_HELTALLFORMAT|Egenskapen har en heltallsverdi som ikke er korrekt formatert.
 UGYLDIG_FLYTTALLFORMAT|Egenskapen har en desimaltallsverdi som ikke er korrekt formatert.
 UGYLDIG_KORTDATOFORMAT|Egenskapen har en kortdatoverdi som ikke er korrekt formatert.
@@ -218,4 +218,4 @@ UGYLDIG_BOOLSK_FORMAT|Egenskapen har en boolsk verdi som ikke er korrekt formate
 EGENSKAPSVERDI_FINNES_ALLEREDE|Egenskapen tillater multiple verdier, men har fått en ny verdi (via delvis oppdatering) som allerede finnes i NVDB.
 EGENSKAPSVERDI_FINNES_IKKE|Egenskapen tillater multiple verdier, men har fått slettet en verdi (via delvis oppdatering) som ikke finnes i NVDB.
 EGENSKAPSVERDI_OVERLAPPER|Stedfestingen har fått en ny verdi (via delvis oppdatering) som overlapper med et eksisterende stedfestingselement i NVDB. 
-EGENSKAPSTYPE_STØTTER_IKKE_MULTIPLE_VERDIER|Egenskapen tillater ikke multiple verdier, men har delvis oppdatering av verdier.
+EGENSKAPSTYPE_STØTTER_IKKE<br/>_MULTIPLE_VERDIER|Egenskapen tillater ikke multiple verdier, men har delvis oppdatering av verdier.
