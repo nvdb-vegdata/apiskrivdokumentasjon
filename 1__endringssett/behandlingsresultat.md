@@ -52,7 +52,7 @@ De fleste varslene er knyttet til spesifikke vegobjekter i endringssettet. Advar
 på dette. Noen ganger genereres imidlertid varsler som ikke er relatert til vegobjekter i endringssettet. Dette kalles _globale varsler_ og kan være
 varsler knyttet til vegobjekter i NVDB eller er helt uavhengig av vegobjekter. Advarselen med kode ```IKKE_GJELDENDE_DATAKATALOGVERSJON``` over er et eksempel på det siste.
 
-Et endringssett får fremdriftskoden AVVIST dersom det ble generert minst ett feil-varsel, enten som globalt varsel eller varsel tilknyttet et vegobjekt i endringssettet.
+Et endringssett får fremdriftskoden AVVIST dersom det ble generert minst ett feilvarsel, enten som globalt varsel eller varsel tilknyttet et vegobjekt i endringssettet.
 
 Hvert varsel beskrives minimum med en kode og en melding og, i de fleste tilfeller, en referanse eller URL for nærmere dokumentasjon.
 I varsler som kan knyttes til underordnede komponenter av et vegobjekt angis dette med egne subelementer i varselet, for eksempel:
