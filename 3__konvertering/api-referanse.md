@@ -37,6 +37,7 @@ Navn|Type|Beskrivelse
 Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for responsen: application/json eller application/xml. Content-Type benyttes hvis ikke annet er oppgitt.
 Content-Type|MediaType|Må være application/json
 Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+X-Client|Tekst|Angir navnet på klientapplikasjonen.
 
 ##### Payload
 
@@ -49,6 +50,7 @@ POST /nvdb/apiskriv/rest/v3/konverter/sosiGeoJson HTTP/1.1
 Accept: application/xml
 Content-Type: application/json
 Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+X-Client: MinKlientApplikasjon
 
 {
   "type": "FeatureCollection",
@@ -180,6 +182,7 @@ Navn|Type|Beskrivelse
 Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for responsen: application/json eller application/xml. application/xml benyttes hvis ikke annet er oppgitt.
 Content-Type|MediaType|Må være text/plain
 Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+X-Client|Tekst|Angir navnet på klientapplikasjonen.
 
 ##### Payload
 
@@ -192,6 +195,7 @@ POST /nvdb/apiskriv/rest/v3/konverter/sosi HTTP/1.1
 Accept: application/xml
 Content-Type: text/plain
 Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+X-Client: MinKlientApplikasjon
 
 .HODE
 ..TEGNSETT UTF-8

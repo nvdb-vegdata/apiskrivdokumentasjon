@@ -98,6 +98,12 @@ X-Client: MinKlientApplikasjon
 
 #### Respons
 
+##### Hode
+
+Navn|Type|Beskrivelse
+-|-|-
+Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml
+
 ##### Payload
 
 Entitet av type [Status](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/status.xsd).
@@ -214,6 +220,7 @@ X-Client: MinKlientApplikasjon
 
 Navn|Type|Beskrivelse
 -|-|-
+Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml
 Location|URI|Angir hvor endringssettet kan hentes.
 
 ##### Payload
@@ -275,6 +282,12 @@ X-Client: MinKlientApplikasjon
 
 #### Respons
 
+##### Hode
+
+Navn|Type|Beskrivelse
+-|-|-
+Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml
+
 ##### Payload
 
 Entitet av type [Ressurser](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/ressurser.xsd).
@@ -331,6 +344,12 @@ X-Client: MinKlientApplikasjon
 ```
 
 #### Respons
+
+##### Hode
+
+Navn|Type|Beskrivelse
+-|-|-
+Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml
 
 ##### Payload
 
@@ -390,6 +409,12 @@ X-Client: MinKlientApplikasjon
 
 #### Respons
 
+##### Hode
+
+Navn|Type|Beskrivelse
+-|-|-
+Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml
+
 ##### Payload
 
 Entitet av type [Ressurser](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/ressurser.xsd).
@@ -445,6 +470,12 @@ X-Client: MinKlientApplikasjon
 
 #### Respons
 
+##### Hode
+
+Navn|Type|Beskrivelse
+-|-|-
+Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml
+
 ##### Payload
 
 Entitet av type [Fremdrift](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/fremdrift.xsd).
@@ -490,6 +521,12 @@ X-Client: MinKlientApplikasjon
 ```
 
 #### Respons
+
+##### Hode
+
+Navn|Type|Beskrivelse
+-|-|-
+Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: alltid text/plain
 
 ##### Payload
 
@@ -548,6 +585,12 @@ X-Client: MinKlientApplikasjon
 ```
 
 #### Respons
+
+##### Hode
+
+Navn|Type|Beskrivelse
+-|-|-
+Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml
 
 ##### Payload
 
@@ -635,6 +678,12 @@ X-Client: MinKlientApplikasjon
 ```
 
 #### Respons
+
+##### Hode
+
+Navn|Type|Beskrivelse
+-|-|-
+Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml
 
 ##### Payload
 
@@ -756,6 +805,12 @@ X-Client: MinKlientApplikasjon
 ```
 
 #### Respons
+
+##### Hode
+
+Navn|Type|Beskrivelse
+-|-|-
+Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml
 
 ##### Payload
 

@@ -34,7 +34,7 @@ Requester mot endepunkter som brukeren ikke har tilgang til får respons med [HT
 #### Datarettigheter
 
 Under behandling vil et endringssett bli kontrollert mot de finkornede datarettighetene som er tildelt brukeren. Slike datarettigheter
-definerer hvilke vegobjekttyper (HVA) bruker har rett til å manipulere og på hvilken del av vegnettet (HVOR) disse vegobjektene må være
+definerer hvilke vegobjekttyper (HVA) brukeren har rett til å manipulere og på hvilken del av vegnettet (HVOR) disse vegobjektene må være
 stedfestet for å kunne manipulere dem. Sistnevnte defineres ved hjelp av følgende områdebegreper:
 
 * Kommuner
@@ -48,6 +48,8 @@ API-administratoren selv har automatisk alle datarettigheter.
 Dersom et endringssett manipulerer vegobjekter av en type eller i et område brukeren ikke har datarettigheter til blir det avvist under
 behandling med avvistårsak ```IKKE_AUTORISERT```. Endringssettets status vil inneholde et feilvarsel med varselkode ```MANGLER_TILGANG```
 som beskriver hvilke rettigheter som mangler.
+
+En klient kan om ønskelig hente datarettighetene tildelt en bruker via et eget [endepunkt](./4__datarettigheter/api-referanse.md).
 
 #### Sensitive egenskapstyper
 
