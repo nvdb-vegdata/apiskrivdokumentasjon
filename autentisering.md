@@ -41,11 +41,9 @@ Responsen fra /autentiser inneholder tre felt:
 }
 ```
 
-Felt|Beskrivelse
--|-|-
-status|Indikerer om autentisering var vellykket eller ikke
-token|Selve autentiseringstokenet, eller tom dersom autentisering feiler
-tokenname|Navn på token til bruk i en cookie
+* ```status``` indikerer om autentisering var vellykket eller ikke
+* ```token``` inneholder det nye autentiseringstokenet, eller er tom dersom autentiseringen var mislykket
+* ```tokenname``` angir navnet på cookien som tokenet skal leveres i
 
 #### Validering av token
 

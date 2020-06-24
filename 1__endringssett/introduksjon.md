@@ -94,9 +94,9 @@ Når og hvor ofte klienten skal polle på endringssettets fremdrift er avhengig 
 Fremdriftskode|Ventetid før neste polling
 -|-
 IKKE_STARTET|Ingen polling.
-BEHANDLES|1 sekund.
-VENTER|1 sekund dersom endringssettet ikke har vært innom BEHANDLES, ellers 1 minutt.  
+BEHANDLES|&ge; 1 sekund. Økes gradvis ved langvarig behandling.
+VENTER|&ge; 1 sekund dersom endringssettet ikke har vært innom BEHANDLES, ellers &ge; 1 minutt.
 AVVIST|Teminaltilstand, ingen polling.
-UTFØRT|1 minutt dersom klienten skal hente ut data fra NVDB API Les, ellers ingen polling.  
+UTFØRT|&ge; 1 minutt dersom klienten skal hente ut oppdaterte data fra NVDB API Les, ellers ingen polling.  
 UTFØRT_OG_ETTERBEHANDLET|Teminaltilstand, ingen polling.
 KANSELLERT|Teminaltilstand, ingen polling.

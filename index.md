@@ -34,8 +34,8 @@ En respons får samme format som requesten, med mindre noe annet er angitt med e
 
 * Alle requester til NVDB API Skriv må inneholde et gyldig autentiseringstoken i form av en cookie. Tokenet produseres av
 en [tjeneste](autentisering.md) hos Statens vegvesen gitt et godkjent brukernavn og passord i etaten.
-* Brukeren må ha relevante NVDB-roller i Statens vegvesens LDAP-register.
-* Dersom brukeren skal registrere eller vedlikeholde data i NVDB, må hun være tildelt datarettigheter i NVDB API Skriv.
+* Brukeren må ha [relevante roller](tilgangskontroll.md#tilgang-til-endepunkter-og-ressurser) i Statens vegvesens LDAP-register.
+* Dersom brukeren skal registrere eller vedlikeholde data i NVDB, må hun være tildelt [datarettigheter](tilgangskontroll.md#datarettigheter) i NVDB API Skriv.
 Datarettigheter gir tilgang til spesifikke geografiske områder, vegtyper og vegobjekttyper.
 
 ### Miljøer
