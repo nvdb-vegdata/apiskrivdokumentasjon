@@ -7,7 +7,7 @@ order: 2
 
 ### Innhold
 
-[Hente datarettigheter for en bruker](#hente-datarettigheter-for-en-bruker)
+[Hente datarettigheter for en bruker](#hente-datarettigheter-for-en-bruker)  
 <br/>
 
 
