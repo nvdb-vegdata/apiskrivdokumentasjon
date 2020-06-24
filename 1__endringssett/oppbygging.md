@@ -283,7 +283,7 @@ minst én endring, under ```<egenskaper>```, ```<assosiasjoner>``` eller ```<ste
 ```
 
 For angi at en bestemt egenskap skal legges til vegobjektet eller, når den allerede finnes, skal få ny verdi angis dette
-med attributten ```operasjon="OPPDATER"```.
+med attributten ```operasjon="oppdater"```.
 
 Dersom man ønsker å fjerne en egenskap fra vegobjektet angis det med ```operasjon="slett"```.
 
