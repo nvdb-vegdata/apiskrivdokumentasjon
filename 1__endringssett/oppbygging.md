@@ -413,7 +413,7 @@ datterobjekter må ha morobjekt.
 </korriger>
 ```
 
-```<oppdater>``` -elementet definerer én eller flere vegobjekter for korrigering i NVDB. Korrigering innebærer at man endrer
+```<korriger>``` -elementet definerer én eller flere vegobjekter for korrigering i NVDB. Korrigering innebærer at man endrer
 en eksisterende vegobjektversjon (uten å lage en ny versjon). Alle versjoner av et vegobjekt kan korrigeres, også
 historiske versjoner. Hensikten med operasjonen er å muliggjøre oppretting av feilregistrerte data i NVDB. Andre typer
 endringer skal utføres med [oppdatering](#oppdatering).
