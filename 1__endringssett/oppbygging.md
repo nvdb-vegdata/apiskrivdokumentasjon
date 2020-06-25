@@ -359,7 +359,7 @@ Dersom man ønsker å fjerne et enkelt stedfestingselement fra listen brukes att
 <lukk>
   <vegobjekter>
     <vegobjekt typeId="234" nvdbId="91610862" versjon="1">
-      <lukkadato>2020-12-31</lukkadato>
+      <lukkedato>2020-12-31</lukkedato>
       <kaskadelukking>JA</kaskadelukking>
     </vegobjekt>
     ...
