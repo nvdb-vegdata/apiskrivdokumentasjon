@@ -62,8 +62,8 @@ I varsler som kan knyttes til underordnede komponenter av et vegobjekt angis det
   <vegobjekter>
     <vegobjekt nvdbId="45874667" versjon="1">
       <feil>
-        <feil kode="">
-          <melding></melding>
+        <feil kode="UGYLDIG_FLERVERDI">
+          <melding>Verdien for egenskapstype Tunnelklasse, prosjektert (9134) må være en av følgende verdier: [A (12172), B (12173), C (12174), D (12175), E (12176), F (12177)]</melding>
           <referanse>https://datakatalogen.vegdata.no/581</referanse>
           <egenskapTypeId>9134</egenskapTypeId>
         </feil>
