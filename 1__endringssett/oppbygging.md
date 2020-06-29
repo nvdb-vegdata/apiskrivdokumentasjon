@@ -19,6 +19,7 @@ order: 3
 [Om egenskapsverdier](#om-egenskapsverdier)  
 [Om assosiasjoner](#om-assosiasjoner)  
 [Om stedfesting](#om-stedfesting)  
+[Om valideringsdirektiver](#om-valideringsdirektiver)  
 <br/>
 
 
@@ -43,7 +44,7 @@ Et endringssett med alle operasjoner vil kunne se slik ut:
 ```xml
 <endringssett>
   <datakatalogversjon>2.20</datakatalogversjon>
-  <ansvarlig>exttxa</ansvarlig>  
+  <ansvarlig>olanor</ansvarlig>  
   <eksternRef>ABC123</eksternRef>
   <kontekst><![CDATA[<HEI></HEI>]]></kontekst>
   <registrer>
@@ -86,6 +87,9 @@ Verdien rammes inn av en CDATA-klausul slik at alle typer dataformater kan bruke
 <registrer>
    <vegobjekter>
       <vegobjekt typeId="581" tempId="tunnel#1">
+         <validering>
+           ...
+         </validering>
          <gyldighetsperiode>
            ...
          </gyldighetsperiode>
@@ -114,12 +118,27 @@ i [endringssett.xsd](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/
 * ```tempId``` angir en unik, temporær id eller markør for vegobjektet som brukes når det er behov for å referere til det
   f.eks. andre steder i endringssettet (assosiasjoner) og valideringsvarsler.  
 
-```<vegobjekt>``` -elementet har fire subelementer:
+```<vegobjekt>``` -elementet har fem subelementer:
 
+* ```<validering>``` angir validerings- og behandlingsdirektiver for vegobjektet
 * ```<gyldighetsperiode>``` angir start- og eventuelt sluttdato for vegobjektets levetid
 * ```<egenskaper>``` angir én eller flere egenskaper med verdi/verdier
 * ```<assosiasjoner>``` angir tilkoblede datterobjekter, dersom det er relevant for vegobjekttypen
 * ```<stedfesting>``` angir vegobjektets vegnettstilknytning
+
+#### Validering
+
+```xml
+<validering>
+  <overlappsautomatikk>JA</overlappsautomatikk>
+  <reduserPunkttetthet>JA</reduserPunkttetthet>
+</validering>
+```
+
+Dette elementet angir direktiver for håndtering av enkelte aspekter ved vegobjektet som kan medføre avvisning, men som ofte
+er vanskelig å forutse for klienten.
+
+For detaljer se egen seksjon [om valideringsdirektiver](#om-valideringsdirektiver).
 
 #### Gyldighetsperiode
 
@@ -147,7 +166,7 @@ om dette er planlagt på forhånd.
 
 Egenskaper brukes til å angi detaljerte metadata eller opplysninger om vegobjektet. For hver egenskap må den korresponderende
 egenskapstypen sin id i datakatalogen angis med ```typeId``` -attributten. Ulike egenskapstyper forventer verdier av forskjellige
-datatyper. Hvordan disse angis er beskrevet i en egen seksjon om [egenskapsverdier](#om-egenskapsverdier) under.
+datatyper. Hvordan disse angis er beskrevet i en egen seksjon [om egenskapsverdier](#om-egenskapsverdier) under.
 
 #### Assosiasjoner
 
@@ -164,7 +183,7 @@ datatyper. Hvordan disse angis er beskrevet i en egen seksjon om [egenskapsverdi
 Assosiasjoner brukes til å koble sammen mor- og datterobjekter i hierarkier. I fragmentet over angis et datterobjekt
 (som også registreres i sammme endringssett) av type Tunnelløp. Attributten ```typeId``` hentes fra datakatalogen og angir 
 entydig hvilken morobjekttype (Tunnel) og datterobjekttype (Tunnelløp) som inngår i sammenkoblingen. Se flere detaljer i egen
-seksjon om [assosiasjoner](#om-assosiasjoner).
+seksjon [om assosiasjoner](#om-assosiasjoner).
 
 #### Stedfesting
 
@@ -176,7 +195,7 @@ seksjon om [assosiasjoner](#om-assosiasjoner).
 
 Stedfestingen angir hvor vegobjektet er tilknyttet vegnettets lenke-/nodestruktur. I fragmentet over angis at tunnelen er
 tilknyttet et punkt, altså en enkelt posisjon, på en bestemt veglenkesekvens. Ulike vegobjekttyper krever ulike former for
-stedfesting. For flere detaljer se egen seksjon om [stedfesting](#om-stedfesting).
+stedfesting. For flere detaljer se egen seksjon [om stedfesting](#om-stedfesting).
 
 ### Oppdatering
 
@@ -184,6 +203,9 @@ stedfesting. For flere detaljer se egen seksjon om [stedfesting](#om-stedfesting
 <oppdater>
   <vegobjekter>
     <vegobjekt typeId="581" nvdbId="551800127" versjon="1">
+      <validering>
+        ...
+      </validering>
       <gyldighetsperiode>
         ...
       </gyldighetsperiode>
@@ -220,14 +242,15 @@ se complexType ```OppdatertVegobjekt``` i [endringssett.xsd](https://www.vegvese
 endringssettet dersom feil "sisteversjon" er angitt. Den nye versjonen som etableres får versjonsnummer tilsvarende verdien til 
 denne attributten + 1.
 
-```<vegobjekt>``` -elementet har fire subelementer:
+```<vegobjekt>``` -elementet har fem subelementer:
 
-* ```<gyldighetsperiode>``` angir start- og eventuelt sluttdato for den nye vegobjektversjonen.
+* ```<validering>``` angir validerings- og behandlingsdirektiver for vegobjektet
+* ```<gyldighetsperiode>``` angir start- og eventuelt sluttdato for den nye vegobjektversjonen
 * ```<egenskaper>``` angir én eller flere egenskaper med verdi/verdier
 * ```<assosiasjoner>``` angir tilkoblede datterobjekter, dersom det er relevant for vegobjekttypen
 * ```<stedfesting>``` angir vegobjektets vegnettstilknytning
 
-Innholdet i disse elementene er tilsvarende som for [Registrering](#registrering).
+Innholdet i disse elementene er tilsvarende som for [registrering](#registrering).
 
 Under behandling sørger NVDB API Skriv for å lukke siste versjon ved å sette sluttdato til samme dato som
 startdatoen for den nye versjonen.
@@ -239,12 +262,18 @@ man oppdatere med overskriving, ved å legge til attributten ```overskriv=JA``` 
 at de angitte egenskapene, assosiasjonene og stedfestingen erstatter tilsvarende elementer på siste versjon av vegobjektet.
 Det lages altså ikke en ny versjon. Når overskrivingsvarianten skal brukes må avtales med relevante fagmiljø hos Statens vegvesen.
 
+Ved overskriving må ```<lestFraNvdb>``` angis under ```<validering>```. Se egen seksjon [om valideringsdirektiver](#om-valideringsdirektiver)
+for detaljer.
+
 ### Delvis oppdatering
 
 ```xml
 <delvisOppdater>
   <vegobjekter>
     <vegobjekt typeId="581" nvdbId="551800127" versjon="1">
+      <validering>
+        ...
+      </validering>
       <gyldighetsperiode>
         ...
       </gyldighetsperiode>
@@ -268,7 +297,8 @@ elementene som faktisk endres. Dette gjelder enten endringen er i en egenskap, e
 
 For komplett XML-skjema se complexType ```DelvisOppdatertVegobjekt``` i [endringssett.xsd](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
 
-```<vegobjekt>``` har de samme fire subelementene som full oppdatering, men kun ```<gyldighetsperiode>``` er obligatorisk. I tillegg må det angis
+```<vegobjekt>``` har de samme fem subelementene som full oppdatering, men kun ```<gyldighetsperiode>``` er obligatorisk
+(ved overskriving er ```<validering>``` med subelement ```<lestFraNvdb>``` også obligatorisk). I tillegg må det angis
 minst én endring, under ```<egenskaper>```, ```<assosiasjoner>``` eller ```<stedfesting>```.
 
 #### Delvise egenskaper
@@ -367,7 +397,7 @@ Dersom man ønsker å fjerne et enkelt stedfestingselement fra listen brukes att
 </lukk>
 ```
 
-Lukking innebærer at gjeldende (siste) versjon av et vegobjekt settes historisk, det vil si at sluttdato settes. Dette markerer
+Lukking innebærer at gjeldende (siste) versjon av et vegobjekt settes historisk, det vil si at det får angitt en sluttdato. Dette markerer
 typisk at vegobjektet ble demontert eller fjernet fra vegen.
 
 For komplett XML-skjema se complexType ```LukketVegobjekt``` i [endringssett.xsd](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
@@ -431,13 +461,13 @@ se complexType ```KorrigertVegobjekt``` i [endringssett.xsd](https://www.vegvese
 
 ```<vegobjekt>``` -elementet har fem subelementer:
 
-* ```<validering>``` angir valideringsparametere for korrigeringen.
-* ```<gyldighetsperiode>``` angir korrigert start- og sluttdato for vegobjektversjonen.
+* ```<validering>``` angir validerings- og behandlingsdirektiver for vegobjektet
+* ```<gyldighetsperiode>``` angir korrigert start- og sluttdato for vegobjektversjonen
 * ```<egenskaper>``` angir én eller flere egenskaper med verdi/verdier
 * ```<assosiasjoner>``` angir tilkoblede datterobjekter, dersom det er relevant for vegobjekttypen
 * ```<stedfesting>``` angir vegobjektets vegnettstilknytning
 
-Innholdet i de fire siste elementene er tilsvarende som for [Oppdatering](#oppdatering).
+Innholdet i de fire siste elementene er tilsvarende som for [oppdatering](#oppdatering).
 
 Ved behandling av korrigeringer vil ikke NVDB API Skriv utføre følgeoppdateringer, slik som for oppdatering og andre operasjoner. Dette fordi
 korrigering av historiske vegobjekter kan trigge svært komplekse følgeoppdateringer spredt over en lang tidsperiode. I noen tilfeller
@@ -448,14 +478,16 @@ med nødvendige operasjoner for å opprettholde integriteten i NVDB.
 
 #### Validering
 
-I ```<validering>``` -elementet må klienten angi tidspunktet for når vegobjektversjon opprinnelig ble innlest fra NVDB API Les.
-Under behandling av korrigeringer vil NVDB API Skriv kontrollere at det ikke er andre som har korrigerte (eller overskrevet)
-vegobjektversjonen etter dette tidspunktet. I så fall avvises endringssettet med valideringsfeil. Klienten må da utføre en
-ny innlesing fra NVDB API Les, påføre sine endringer og sende inn et nytt endringssett.
+```xml
+<validering>
+  <lestFraNvdb>2020-05-30T15:34:22</lestFraNvdb>
+</validering>
+```
 
-Innlesingstidspunktet må angis som "NVDB-tid", ikke klient-tid. Dette gjøres enklest ved å hente ut tidspunkt for
-siste indekserte transaksjon i NVDB via NVDB API Les sitt statusendepunkt, [https://www.vegvesen.no/nvdb/api/v3/status](https://www.vegvesen.no/nvdb/api/v3/status).
-Tidspunktet må etableres umiddelbart etter uthenting av vegobjekter fra NVDB API Les.  
+Dette elementet angir direktiver for håndtering av enkelte aspekter ved vegobjektet som kan medføre avvisning, men som ofte
+er vanskelig å forutse for klienten. Klienten må her angi tidspunktet for når vegobjektversjon opprinnelig ble innlest fra NVDB API Les.
+
+For detaljer se egen seksjon [om valideringsdirektiver](#om-valideringsdirektiver).
 
 ### Delvis korrigering
 
@@ -910,7 +942,7 @@ Punkttilknytning angis slik:
 </stedfesting>
 ```
 
-I ```<punkt>``` -elementet angis id til veglenkesekvensen vegobjektet skal knyttes til med ```veglenkesekvensNvdbId``` -attributten. I tilegg 
+I ```<punkt>``` -elementet angis id til veglenkesekvensen vegobjektet skal knyttes til med ```veglenkesekvensNvdbId``` -attributten. I tillegg 
 angis den relative posisjonen for tilknytningen inne på veglenkesekvensen med attributten ```posisjon```. Posisjon har verdi mellom 0.0, som indikerer starten 
 på veglenkesekvensen og 1.0, som er slutten på veglenkesekvensen.
  
@@ -924,7 +956,7 @@ Strekningstilknytning angis slik:
 </stedfesting>
 ```
 
-I ```<linje>``` -elementet angis id til veglenkesekvensen vegobjektet skal knyttes til med ```veglenkesekvensNvdbId``` -attributten. I tilegg 
+I ```<linje>``` -elementet angis id til veglenkesekvensen vegobjektet skal knyttes til med ```veglenkesekvensNvdbId``` -attributten. I tillegg 
 angis den relative start- og sluttposisjonen for tilknytningen inne på veglenkesekvensen med attributtene ```fra``` og ```til```. Start- og sluttposisjonene
 har verdi mellom 0.0, som indikerer starten på veglenkesekvensen, og 1.0, som er slutten på veglenkesekvensen.
 
@@ -973,3 +1005,49 @@ krever eller tillater det:
 * ```<retning>``` angir om vegobjektet er orientert i en bestemt retning og må i så fall oppgis relativt til veglenkesekvensretningen. Lovlige verdier er ```MED``` og ```MOT```.
 * ```<sideposisjon>``` angir plassering av vegobjektet på tvers av vegen. Lovlige verdier er definert av typen ```RelativRetning``` i [XML-skjemaet](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
 * ```<kjørefelt>``` angir hvilke kjørefelt vegobjektet er plassert i. Se [datakatalogen](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/11431.json?pretty=true) for lovlige feltkoder.
+
+### Om valideringsdirektiver
+
+```xml
+<validering>
+  <lestFraNvdb>2020-05-30T15:34:22</lestFraNvdb>
+  <overlappsautomatikk>JA</overlappsautomatikk>
+  <reduserPunkttetthet>JA</reduserPunkttetthet>
+</validering>
+```
+
+Dette elementet angir direktiver for håndtering av enkelte aspekter ved vegobjekter som kan medføre avvisning, men som ofte
+er vanskelig å forutse for klienten. Hvilke direktiver som kan brukes er avhengig av hvilken operasjon som utføres på vegobjektet.
+
+#### Tidspunkt for innhenting av vegobjektversjon
+
+Subelementet ```<lestFraNvdb>``` brukes ved korrigering og oppdatering med overskriving og er obligatorisk for slike operasjoner.
+Elementet skal angi siste tidspunkt vegobjektversjonen i klienten var i synk med originalen i NVDB. Normalt vil dette bety
+tidspunktet vegobjektversjonen ble hentet fra NVDB. Innlesingstidspunktet må angis som "NVDB-tid", ikke klient-tid. Umiddelbart
+etter lesing av vegobjektet fra NVDB API Les må derfor klienten innhente
+tidspunktet for siste indekserte transaksjon for vegobjektet via endepunktet [https://www.vegvesen.no/nvdb/api/v3/status](https://www.vegvesen.no/nvdb/api/v3/status).
+
+Klienter som gjør korrigeringer/overskrivinger på en vegobjektversjon i flere runder
+(uten å lese det på nytt fra NVDB API Les) kan bruke tidspunktet angitt under ```<transaksjon>``` i [status-responsen](api-referanse.md#hente-status-for-et-endringssett)
+for siste godkjente og utførte endringssett der vegobjektet ble korrigert/overskrevet. 
+
+Tidspunktet angitt i dette direktivet brukes for å unngå [race condition](https://en.wikipedia.org/wiki/Race_condition#Software).
+Under behandling av endringssettet kontrolleres det at andre klienter eller prosesser ikke har modifisert vegobjektversjonen etter
+det angitte tidspunktet. Uten denne kontrollen ville disse modifikasjonene blitt overskrevet av det nye endringssettet. Dersom modifisering
+har skjedd avvises endringssettet med varselkode ```VEGOBJEKTVERSJON_OVERSKREVET_AV_ANDRE``` og klienten må da utføre ny innlesing av
+vegobjektversjonen, påføre sine egne endringer og sende inn et nytt endringssett.
+ 
+#### Overlappsautomatikk
+
+Subelementet ```<overlappsautomatikk>``` brukes ved registrering eller oppdatering. Det kan angis for vegobjekttyper
+som ikke tillater at to vegobjekter av denne typen i NVDB har overlappende stedfesting. Dersom dette direktivet settes til
+```JA``` vil eventuelle andre vegobjekter av samme type i NVDB automatisk få sin stedfesting redusert for å unngå overlapp
+med det nye/endrede vegobjektet. Direktivet er valgfritt og standardinnstilling er ```NEI```. 
+
+#### Reduksjon av punkttetthet
+
+Subelementet ```<reduserPunkttetthet>``` brukes ved registrering, korrigering eller oppdatering. NVDB API Skriv vil normalt
+avvise for tette punkter i geometriegenskaper. Ved å angi ```JA``` for dette direktivet vil punkter som er for tette opp til
+nabopunkter bli fjernet automatisk. Hvor tette to nabopunkter tillates å være reguleres av valideringsinnstillinger i 
+NVDB API Skriv sitt Kontrollpanel. Dersom punktreduksjon utføres varsles dette med notabene i endringssettets [behandlingsresultat](behandlingsresultat.md).
+Direktivet er valgfritt og standardinnstilling er ```NEI```.
