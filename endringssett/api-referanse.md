@@ -1,6 +1,8 @@
 ---
+category: 1#Endringssett
 title: API-referanse
 order: 5
+permalink: /endringssett/api-referanse
 ---
 
 ## API-referanse

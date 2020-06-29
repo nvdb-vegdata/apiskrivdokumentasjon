@@ -1,6 +1,8 @@
 ---
+category: 3#Konvertering
 title: Introduksjon
 order: 1
+permalink: /konvertering/introduksjon
 ---
 
 ## Introduksjon til konvertering

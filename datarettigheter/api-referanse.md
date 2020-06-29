@@ -1,6 +1,8 @@
 ---
+category: 4#Datarettigheter
 title: API-referanse
 order: 2
+permalink: /datarettigheter/api-referanse
 ---
 
 ## API-referanse

@@ -1,6 +1,7 @@
 ---
 title: Om NVDB
 order: 6
+permalink: /om-nvdb
 ---
 
 ## Om NVDB

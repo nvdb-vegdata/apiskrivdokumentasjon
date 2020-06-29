@@ -1,6 +1,8 @@
 ---
+category: 2#Binære objekter
 title: API-referanse
 order: 2
+permalink: /binære-objekter/api-referanse
 ---
 
 ## API-referanse

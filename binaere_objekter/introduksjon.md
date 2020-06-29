@@ -1,6 +1,8 @@
 ---
+category: 2#Binære objekter
 title: Introduksjon
 order: 1
+permalink: /binære-objekter/introduksjon
 ---
 
 ## Introduksjon til binære objekter

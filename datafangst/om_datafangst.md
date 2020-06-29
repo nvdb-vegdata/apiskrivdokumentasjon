@@ -1,6 +1,8 @@
 ---
+category: 9#Datafangst
 title: Om Datafangst
 order: 1
+permalink: /datafangst/om-datafangst
 ---
 
 ## Om Datafangst

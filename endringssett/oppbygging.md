@@ -1,9 +1,11 @@
 ---
+category: 1#Endringssett
 title: Oppbygging
 order: 3
+permalink: /endringssett/oppbygging
 ---
 
-## Oppbygging av endringssett
+## Endringssettets oppbygging
 
 ### Innhold
 
@@ -723,7 +725,7 @@ Attributten ```ressursId``` skal angi unik id for et binært objekt som er laste
 
 Attributten ```format``` skal angi [media-type](http://www.iana.org/assignments/media-types/media-types.xhtml) for binærobjektet.
 
-Opplasting av binære objekter er beskrevet i [egen seksjon](../2__binaere_objekter/introduksjon.md).
+Opplasting av binære objekter er beskrevet i [egen seksjon](../binaere_objekter/introduksjon.md).
 
 #### Geometri
 

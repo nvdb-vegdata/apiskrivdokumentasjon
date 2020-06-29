@@ -1,6 +1,8 @@
 ---
+category: 1#Endringssett
 title: Introduksjon
 order: 1
+permalink: /endringssett/introduksjon
 ---
 
 ## Introduksjon til endringssett

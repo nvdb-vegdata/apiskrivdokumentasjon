@@ -1,6 +1,7 @@
 ---
 title: Evolusjonsstrategi
 order: 2
+permalink: /evolusjonsstrategi
 ---
 
 ## Evolusjonsstrategi

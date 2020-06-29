@@ -1,6 +1,8 @@
 ---
+category: 4#Datarettigheter
 title: Introduksjon
 order: 1
+permalink: /datarettigheter/introduksjon
 ---
 
 ## Introduksjon til datarettigheter

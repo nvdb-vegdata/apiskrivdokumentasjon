@@ -1,6 +1,7 @@
 ---
 title: Autentisering
 order: 3
+permalink: /autentisering
 ---
 
 ## Autentisering

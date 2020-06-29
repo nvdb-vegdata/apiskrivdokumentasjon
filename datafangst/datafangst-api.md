@@ -1,7 +1,8 @@
 ---
+category: 9#Datafangst
 title: Datafangst-API
-category: Datafangst
 order: 2
+permalink: /datafangst/datafangst-api
 ---
  
 ## Datafangst-API

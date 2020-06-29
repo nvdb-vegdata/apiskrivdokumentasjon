@@ -1,6 +1,7 @@
 ---
 title: Feilhåndtering
 order: 5
+permalink: /feilhåndtering
 ---
 
 ## Feilhåndtering

@@ -1,6 +1,7 @@
 ---
 title: Tilgangskontroll
 order: 4
+permalink: /tilgangskontroll
 ---
 
 ## Tilgangskontroll
@@ -49,7 +50,7 @@ Dersom et endringssett manipulerer vegobjekter av en type eller i et område bru
 behandling med avvistårsak ```IKKE_AUTORISERT```. Endringssettets status vil inneholde et feilvarsel med varselkode ```MANGLER_TILGANG```
 som beskriver hvilke rettigheter som mangler.
 
-En klient kan om ønskelig hente datarettighetene tildelt en bruker via et eget [endepunkt](./4__datarettigheter/api-referanse.md).
+En klient kan om ønskelig hente datarettighetene tildelt en bruker via et eget [endepunkt](./datarettigheter/api-referanse.md).
 
 #### Sensitive egenskapstyper
 

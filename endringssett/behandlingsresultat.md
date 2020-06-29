@@ -1,6 +1,8 @@
 ---
+category: 1#Endringssett
 title: Behandlingsresultat
 order: 4
+permalink: /endringssett/behandlingsresultat
 ---
 
 ## Behandlingsresultat

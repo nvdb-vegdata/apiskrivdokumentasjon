@@ -1,6 +1,8 @@
 ---
+category: 1#Endringssett
 title: Migrering fra V2
 order: 2
+permalink: /endringssett/migrering-fra-v2
 ---
 
 ## Migrering fra v2/endringssett

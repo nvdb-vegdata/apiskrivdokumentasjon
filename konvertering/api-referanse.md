@@ -1,6 +1,8 @@
 ---
+category: 3#Konvertering
 title: API-referanse
 order: 2
+permalink: /konvertering/api-referanse
 ---
 
 ## API-referanse
