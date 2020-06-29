@@ -17,6 +17,13 @@ mot kravene i datakatalogen. I tillegg kontrolleres at innholdet i endringssette
 data i NVDB. Endringssett som bryter noen av disse reglene blir avvist og klienten kan i slike tilfeller hente ut detaljerte
 beskrivelser av valideringsfeil for å presentere til brukeren i en eller annen form.
 
+### Størrelse
+
+Det er for tiden ingen begrensning på antall vegobjekter i et endringssett. Store endringssett gir imidlertid lengre behandlingstid og
+større risiko for låsekonflikter. For best mulig generell ytelse for alle klienter anbefales derfor ikke endringssett med mer enn 1000 vegobjekter.
+Klienter må selv dele opp sine "jobber" i hensiktsmessige deler. Partisjonering i tid (f.eks. et endringssett per måned) og/eller områder
+(f.eks. et endringssett per kommune) kan være en strategi.
+ 
 ### Asynkron behandling
 
 Flere av behandlingstrinnene krever oppslag i eksisterende data i NVDB og vil derfor kunne ta noe tid, spesielt for
