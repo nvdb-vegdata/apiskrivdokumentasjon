@@ -73,6 +73,7 @@ Tokenets navn og verdi settes som en cookie på alle kall mot NVDB API Skriv. En
 
 ```bash
 $ curl https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett \
+  -H "X-Client: curl" \
   -H "Cookie: iPlanetDirectoryProOAM= AQIC5wM2LY4SfcyhHz1Irgsf6pbxoeuY3k9XqvbRtB4-4No.*AAJTSQACMDIAAlNLABMzMDUyMTI1NzE2ODA4ODU0OTczAAJTMQACMDM.*"
 ```
 
