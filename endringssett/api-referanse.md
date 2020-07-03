@@ -787,7 +787,7 @@ fraEpochMs|Heltall|Angir første mottakstidspunkt for ønskede endringssett i fo
 tilEpochMs|Heltall|Angir siste mottakstidspunkt for ønskede endringssett i form av antall millisekunder siden 1. januar 1970.
 status|Tekst|Angir fremdriftskoden til ønskede endringssett. Gyldige verdier defineres av typen [Fremdrift](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/fremdrift.xsd).
 årsak|Tekst|Angir venteårsak eller avvistårsak til ønskede endringssett. Gyldige verdier defineres av typen [VenteÅrsak](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/venteÅrsak.xsd) og [AvvistÅrsak](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/avvistÅrsak.xsd)
-brukernavnEllerKlient|Tekst|Angir navn på eier eller registrerende klient til ønskede endringssett.  
+brukernavnEllerKlient|Tekst|Angir brukernavn for eier eller ansvarlig, eller registrerende klient til ønskede endringssett.  
 
 ##### Hode
 
