@@ -766,7 +766,7 @@ GET /nvdb/apiskriv/rest/v3/endringssett
     &start={tall}
     &sorterPå={feltnavn}
     &sorterStigende={JA/NEI}
-    &fraEpochMs=(tall}
+    &fraEpochMs={tall}
     &tilEpochMs={tall}
     &status={kode}
     &årsak={kode}

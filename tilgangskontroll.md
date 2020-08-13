@@ -12,19 +12,20 @@ finkornede datarettigheter tildelt via Kontrollpanelet til NVDB API Skriv.
 
 ### Tilgang til endepunkter og ressurser
 
-For å kunne anrope et bestemt endepunkt må brukeren ha en rolle som gir denne tilgangsrettigheten. Det er tre
+For å kunne anrope et bestemt endepunkt må brukeren ha en rolle som gir denne tilgangsrettigheten. Det er fire
 tilgangsnivåer for endepunkter og ressurser, avhengig av tildelt rolle:
 
 Rolle|Brukertype|Tilgangsrettigheter
 -|-|-
 nva/0_bruker_fagdata|Personlig bruker|Registrere nye endringssett<br/>Gjøre operasjoner på egne endringssett<br/>Hente egne endringssett<br/>Hente status og fremdriftskode på egne endringssett<br/>Hente statistikk for egne endringssett<br/>Hente egne datarettigheter<br/>Hente alle låser<br/>Hente alle oppdrag og transaksjoner
 TjeNVDBAPIskriv/user|Tjenestebruker|Alle over<br/>Hente status og fremdriftskode for andres endringssett<br/>Hente statistikk for andres endringssett<br/>Hente andres datarettigheter
+nva/5_fagdata_admin|Fagdataadministrator|Alle over<br/>Hente andres endringssett<br/>Gjøre operasjoner på andres endringssett
 nva/9_system_admin|API-administrator|Alle rettigheter
 
 En tjenestebruker benyttes typisk av serverbaserte fagsystemer som utfører batchvise registreringer av endringssett uten
 involvering av en fysisk bruker.
 
-En bruker har normalt bare én av disse rollene. Enkelte brukere har imidlertid både nva/0_bruker_fagdata og nva/9_system_admin,
+En bruker har normalt bare én av disse rollene. Enkelte brukere kan imidlertid ha nva/0_bruker_fagdata i tillegg til en høyere rolle,
 og får da tilgangsrettigheter tilsvarende rollen med videste fullmakter.
 
 Requester mot endepunkter som brukeren ikke har tilgang til får respons med [HTTP-statuskode](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
