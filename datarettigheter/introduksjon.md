@@ -1,5 +1,5 @@
 ---
-category: 4#Datarettigheter
+category: 5#Datarettigheter
 title: Introduksjon
 order: 1
 permalink: /datarettigheter/introduksjon
