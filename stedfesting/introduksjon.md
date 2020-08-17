@@ -8,15 +8,15 @@ permalink: /stedfesting/introduksjon
 ## Introduksjon til stedfesting [BETA]
 
 NVDB API Skriv tilbyr et endepunkt for å generere gyldig punkt- eller strekningsstedfesting for vegobjekter.
-Stedfestingen beregnes ved å "projisere" vegobjektets geometri ned på nærmeste relevante vegnett. Forutsetningen er
+Stedfestingen (vegnettstilknytningen) beregnes ved å "projisere" vegobjektets geometri ned på nærmeste relevante vegnett. Forutsetningen er
 derfor at vegobjektene har minst én geometriegenskap. Stedfestingsendepunktet tar høyde for faktorer som:
  
-* Vegobjektets levetid - som begrenser gyldig vegnett for stedfesting
+* Vegobjektets levetid (begrenser gyldig vegnett for stedfesting)
 * Hvorvidt vegobjekttypen tillates stedfestet på konnekteringsveglenker
 * Minimumslengde for strekningsstedfesting
 
 Beregnet strekningsstedfesting kan bestå av flere stedfestingselementer (flere veglenkesekvenser). I så fall beskriver den
-en navigerbar, sammenhengende rute langs en og samme veg. En veg i dette tilfelle er kombinasjonen av vegkategori,
+en navigerbar, sammenhengende rute langs en og samme veg. En veg i dette tilfellet er kombinasjonen av vegkategori,
 vegfase og vegnummer.
 
 Responsen fra endepunktet, dersom en stedfesting lot seg beregne, er garantert å være gyldig for det aktuelle vegobjektet
@@ -26,7 +26,7 @@ Mottatt stedfesting bør derfor brukes i et endringssett innen rimelig tid.
 ### Validering
 
 Vegobjekter som sendes til stedfestingsendepunktet gjennomgår en liten valideringssekvens for å sikre at det er levert nok
-og korrekt informasjon til at stedfesting kan gjennomføres. Valideringen inneholder de samme grunnleggende kontrollene
+og korrekt informasjon til at stedfesting kan gjennomføres. Valideringen inneholder noen av de samme grunnleggende kontrollene
 som utføres for vegobjekter i endringssett.
 
 Valideringen kontrollerer bl.a. at:
@@ -38,7 +38,15 @@ Valideringen kontrollerer bl.a. at:
 * Vegobjektet har angitt minst én geometriegenskap
 * Geometriegenskaper har gyldig verdi
   
-Dersom det avdekkes én eller flere uregelmessigheter vil responsen inneholde beskrivelse av disse.
+Dersom det avdekkes én eller flere uregelmessigheter vil responsen inneholde beskrivelse av disse. I tillegg til
+varselkodene som er [felles med endringssett](../endringssett/behandlingsresultat.md), kan følgende koder forekomme: 
+
+Varselkode|Forklaring
+-|-
+MANGLER_GEOMETRI|Vegobjektet har ingen gyldige geometriegenskaper.
+MOROBJEKT_MANGLER_STEDFESTING|Kan ikke stedfeste datterobjektet når stedfesting av morobjektet mislyktes.
+STEDFESTING_MISLYKTES|Gyldig vegnettstilknytning for vegobjektet ble ikke funnet med de angitte parametere.
+UGYLDIG_VEGOBJEKTTYPE|Vegobjektet krever ikke punkt- eller strekningsstedfesting.
 
 ### Geometriegenskaper
 
@@ -70,5 +78,5 @@ for et morobjekt som allerede er registrert i NVDB.
  
 ### BETA
 
-Stedfestingspunktet er tilgjengelig i alle miljøer hos Statens vegvesen, men er fortsatt under utvikling og testing. Det kan
+Stedfestingsendepunktet er tilgjengelig i alle miljøer hos Statens vegvesen, men er fortsatt under utvikling og testing. Det kan
 forekomme endringer i både request-parametere og payloads, uten at endepunktet versjoneres.

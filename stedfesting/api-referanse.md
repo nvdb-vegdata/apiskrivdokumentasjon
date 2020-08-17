@@ -18,10 +18,10 @@ permalink: /stedfesting/api-referanse
 Dette kommando-endepunktet beregner gyldig stedfesting for vegobjekter med geometriegenskap(er). Responsen kan brukes
 direkte på de samme vegobjektene i et endringssett.
 
-Dette endepunktet gir synkron respons og medfører ingen endringer i NVDB.
-
 Dersom requesten ikke angir ønsket veg (vegkategori, vegfase og vegnummer) for stedfestingen, beregnes stedfestingen til nærmeste
 vegnett med vegkategori E, R, F eller K.
+
+Dette endepunktet gir synkron respons. Responstiden er korrellert med antall vegobjekter i payloaden.
 
 #### Mønster
 
@@ -40,11 +40,11 @@ POST /nvdb/apiskriv/rest/v3/stedfest
 
 Navn|Type|Beskrivelse
 -|-|-
-maksimumAvstandTilVeg|Heltall|Angir hvor langt (meter) utenfor vegobjektgeometrien det skal søkes etter relevant vegnett (obligatorisk)
+maksimumAvstandTilVeg|Heltall|Angir hvor mange meter utenfor vegobjektgeometrien det skal søkes etter relevant vegnett (obligatorisk)
 vegkategori|Vegkategori|Angir hvilken vegkategori relevant vegnett kan ha (obligatorisk når fase er angitt). For lovlige verdier se [Vegkategori](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/vegkategori.xsd)
 fase|Vegfase|Angir hvilken vegfase relevant vegnett kan ha (obligatorisk når vegnummer er angitt). For lovlige verdier se [Vegfase](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/vegfase.xsd)
 vegnummer|Heltall|Angir hvilket vegnummer relevant vegnett kan ha
-typeVeg|TypeVeg-liste|Angir hvilke (kommaseparert) typeVeg-verdier relevant vegnett kan ha. For lovlige verdier se [TypeVeg](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/typeveg.xsd)
+typeVeg|TypeVeg-liste|Angir hvilke typeVeg-verdier (kommaseparert) relevant vegnett kan ha. For lovlige verdier se [TypeVeg](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/typeveg.xsd)
         
 ##### Hode
 
@@ -95,12 +95,17 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 Entitet av type [StedfestingResultat](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/stedfest-resultat.xsd).
 
+Beregnet stedfesting for hvert vegobjekt ledsages av et ```<oversikt>``` -element med beskrivelse av veg og målt
+lengde (meter) for stedfestingen. Hvert stedfestingselement vil i tillegg ha et ```<geometri>``` -subelement med geometrien
+til vegnettet det er stedfestet på. Dette kan eventuelt brukes i klienter til å markere stedfestingen på digitale
+kart.
+
 Dersom vegobjektene ikke ble godkjent av valideringen vil eventuelle feil beskrives i responsen på samme måte som i 
-behandlingsresultatet for endringssett.
+[behandlingsresultatet](../endringssett/behandlingsresultat.md) for endringssett.
 
 Uavhengig av om vegobjektene lot seg stedfeste eller ikke, vil HTTP-statuskode alltid være 200 OK.
  
-##### Eksempel
+##### Eksempel - Vellykket stedfesting
 
 ```xml
 HTTP/1.1 200 OK
@@ -128,6 +133,23 @@ Content-Type: application/xml; charset=UTF-8
     </vegobjekt>
 </stedfestingResultat>
 ```
-<br/>
 
+##### Eksempel - Valideringsfeil
 
+```xml
+HTTP/1.1 200 OK
+Content-Type: application/xml; charset=UTF-8
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<stedfestingResultat xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
+    <vegobjekt tempId="skiltpunkt#1">
+        <feil>
+            <feil kode="UGYLDIG_EGENSKAPSTYPE">
+                <melding>Egenskapstypen Geometri, punkt (4795) er ikke del av vegobjekttypen Skiltpunkt (95)</melding>
+                <referanse>https://datakatalogen.vegdata.no/95</referanse>
+                <egenskapTypeId>4795</egenskapTypeId>
+            </feil>
+        </feil>
+    </vegobjekt>
+</stedfestingResultat>
+```
