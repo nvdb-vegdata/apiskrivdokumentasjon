@@ -39,7 +39,7 @@ Valideringen kontrollerer bl.a. at:
 * Geometriegenskaper har gyldig verdi
   
 Dersom det avdekkes én eller flere uregelmessigheter vil responsen inneholde beskrivelse av disse. I tillegg til
-varselkodene som er [felles med endringssett](../endringssett/behandlingsresultat.md), kan følgende koder forekomme: 
+varselkodene som er [felles med endringssett](../endringssett/behandlingsresultat.md#varselkoder), kan følgende koder forekomme: 
 
 Varselkode|Forklaring
 -|-
