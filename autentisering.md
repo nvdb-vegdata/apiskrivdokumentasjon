@@ -26,7 +26,7 @@ Autentiseringstokenet etableres med et anrop til Statens vegvesen sin [AAA-tjene
 For å logge inn må man ha en Vegvesen-bruker i det aktuelle miljøet (STM, ATM eller PROD). Et autentiseringstoken for PROD etableres ved
 å sende inn brukernavn og passord slik:
 ```bash
-$ curl https://www.vegvesen.no/ws/no/vegvesen/ikt/sikkerhet/aaa/autentiser \
+$ curl https://aaa-api.atlas.vegvesen.no/autentiser \
   -d "{'username': 'olanor', 'password': 'hemmelig'}" \
   -H "Content-Type: application/json"    
 ```
@@ -52,7 +52,7 @@ Et token varer i 6 timer, eller til klienten eksplisitt kaller /logout. Klienter
 De kan eventuelt kontrollere om tokenet fremdeles er gyldig slik:
 
 ```bash
-$ curl https://www.vegvesen.no/ws/no/vegvesen/ikt/sikkerhet/aaa/validate \
+$ curl https://aaa-api.atlas.vegvesen.no/validate \
   -d "{'token':'mitt_token'}" \
   -H "Content-Type: application/json"    
 ```
@@ -85,7 +85,7 @@ hindre at den når fram til APIet. Klienten vil da motta en 302 FOUND-respons.
 Et token kan eksplisitt ugyldiggjøres ved å kalle /logout med tokenet som payload:
 
 ```bash
-$ curl https://www.vegvesen.no/ws/no/vegvesen/ikt/sikkerhet/aaa/logout \
+$ curl https://aaa-api.atlas.vegvesen.no/logout \
   -d "{'token':'mitt_token'}" \
   -H "Content-Type: application/json"    
 ```
@@ -96,7 +96,7 @@ Oversikt over endepunkter for autentisering i ulike miljøer:
 
 Miljø|URL
 -|-|-
-STM|https://www.utv.vegvesen.no/ws/no/vegvesen/ikt/sikkerhet/aaa/autentiser
-ATM|https://www.test.vegvesen.no/ws/no/vegvesen/ikt/sikkerhet/aaa/autentiser
-PROD|https://www.vegvesen.no/ws/no/vegvesen/ikt/sikkerhet/aaa/autentiser
+STM|https://aaa-api.utv.atlas.vegvesen.no/autentiser
+ATM|https://aaa-api.test.atlas.vegvesen.no/autentiser
+PROD|https://aaa-api.atlas.vegvesen.no/autentiser
 Docker|http://localhost:8010/ws/no/vegvesen/ikt/sikkerhet/aaa/autentiser
