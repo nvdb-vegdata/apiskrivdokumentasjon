@@ -20,6 +20,7 @@ I en tidligere versjon av NVDB API Skriv var dette valgfritt, men i dagens versj
 
 Anrop fra klienter til NVDB API Skriv krever at requesten inneholder et gyldig autentiseringstoken, pakket i en cookie.
 Autentiseringstokenet etableres med et anrop til Statens vegvesen sin [AAA-tjeneste](https://en.wikipedia.org/wiki/AAA_(computer_security)).
+AAA-tjenesten har autogenerert [API-dokumentasjon](https://aaa-api.atlas.vegvesen.no/dokumentasjon/api/index.html#/aaa-API).
  
 #### Innlogging
 
@@ -95,7 +96,7 @@ $ curl https://aaa-api.atlas.vegvesen.no/logout \
 Oversikt over endepunkter for autentisering i ulike miljøer:
 
 Miljø|URL
--|-|-
+-|-
 STM|https://aaa-api.utv.atlas.vegvesen.no/autentiser
 ATM|https://aaa-api.test.atlas.vegvesen.no/autentiser
 PROD|https://aaa-api.atlas.vegvesen.no/autentiser
