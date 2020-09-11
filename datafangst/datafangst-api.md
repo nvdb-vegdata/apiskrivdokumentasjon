@@ -99,6 +99,12 @@ FeatureCollections i kontrakt
  GET /api/v1/contract/{contractId}/featurecollection
  ```
  
+##### Parameter
+`destination` kan benyttes for å hente FeatureCollections fra `NVDB` eller `FKB`. Dersom parameteret ikke benyttes returneres alle FeatureCollections for kontrakten, altså både fra `NVDB` og `FKB`.
+ ```
+ GET /api/v1/contract/{contractId}/featurecollection?destination=FKB
+ ```
+ 
 ##### Forespørsel
 Eksempel
  ```
