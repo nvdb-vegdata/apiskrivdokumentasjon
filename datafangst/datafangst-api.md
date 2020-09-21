@@ -62,7 +62,7 @@ Authorization: Basic *********
 ````
 HTTP/1.1 200 OK
 ````
-Payload med kontrakter med id og navn
+Payload med kontrakter med id, navn og arkiveringsstatus
 
 ---
 
