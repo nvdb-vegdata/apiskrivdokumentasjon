@@ -1,5 +1,5 @@
 ---
-category: 7#Datarettigheter
+category: 8#Datarettigheter
 title: API-referanse
 order: 2
 permalink: /datarettigheter/api-referanse

@@ -7,7 +7,7 @@ permalink: /laaser/introduksjon
 
 ## Introduksjon til låser
 
-En lås er et objekt i NVDB som indikerer at en prosess jobber med spesifikke vegobjekttyper og/eller deler av vegnettet.
+En _lås_ er et objekt i NVDB som indikerer at en prosess jobber med spesifikke vegobjekttyper og/eller deler av vegnettet.
 Låser brukes for å hindre [race conditions](https://en.wikipedia.org/wiki/Race_condition) når flere klienter skal oppdatere eller registrere vegobjekter eller vegnett i NVDB samtidig.
 Siden data i NVDB er komplekse og sammensatte holder det ikke med transaksjonsisolering og tradisjonelle låsemekanismer som tabell- og radlåser i databasen.
 
