@@ -5,7 +5,7 @@ order: 2
 permalink: /binære-objekter/api-referanse
 ---
 
-## API-referanse
+## API-referanse for binære objekter
 
 ### Innhold
 

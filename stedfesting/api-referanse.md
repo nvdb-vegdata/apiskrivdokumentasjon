@@ -5,7 +5,7 @@ order: 2
 permalink: /stedfesting/api-referanse
 ---
 
-## API-referanse [BETA]
+## API-referanse for stedfesting [BETA]
 
 ### Innhold
 

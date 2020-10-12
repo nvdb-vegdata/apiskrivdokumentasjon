@@ -1,11 +1,11 @@
 ---
-category: 5#Datarettigheter
+category: 7#Datarettigheter
 title: API-referanse
 order: 2
 permalink: /datarettigheter/api-referanse
 ---
 
-## API-referanse
+## API-referanse for datarettigheter
 
 ### Innhold
 
