@@ -97,7 +97,7 @@ Content-Type: application/xml; charset=UTF-8
 
 ### Søke etter låser
 
-Henter en liste av låser i NVDB som tilfredstiller angitte søkekriterier.
+Henter en liste av låser i NVDB som tilfredsstiller angitte søkekriterier.
 
 #### Mønster
 

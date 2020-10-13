@@ -88,7 +88,7 @@ Content-Type: application/xml; charset=UTF-8
 
 ### Søke etter oppdrag
 
-Henter en liste av oppdrag i NVDB som tilfredstiller angitte søkekriterier.
+Henter en liste av oppdrag i NVDB som tilfredsstiller angitte søkekriterier.
 
 #### Mønster
 
@@ -174,7 +174,7 @@ Content-Type: application/xml; charset=UTF-8
 
 ### Søke etter transaksjoner
 
-Henter en liste av transaksjoner i NVDB som tilfredstiller angitte søkekriterier.
+Henter en liste av transaksjoner i NVDB som tilfredsstiller angitte søkekriterier.
 
 #### Mønster
 
@@ -209,7 +209,9 @@ nettelementId|Heltall|Angir id for nettelementet en ønsker transaksjonene for.
 fraDato|Dato|Angir tidligste dato for ønskede transaksjoner. 
 eier|Tekst|Angir brukernavn til eier av ønskede transaksjoner. 
 
-Minst én av parametrene ```endringssettId```, ```oppdragId```, ```vegobjektId``` og ```nettelementId``` må angis.
+Minst én av parametrene ```endringssettId```, ```oppdragId```, ```vegobjektId``` og ```nettelementId``` må angis. Men
+parameter ```endringssettId``` og ```oppdragId``` kan ikke brukes samtidig. Samme begrensning gjelder for parameter
+```vegobjektId``` og ```nettelementId```
 
 ##### Hode
 

@@ -314,8 +314,9 @@ Content-Type: application/xml; charset=UTF-8
 
 ### Kansellere behandling av et endringssett
 
-Kansellerer et endringssett og markerer at det kan slettes fra NVDB API Skriv sin lokale database. Et endringssett som allerede
-er under behandling eller er ferdigbehandlet kan ikke kanselleres.
+Kansellerer et endringssett og markerer at det kan slettes fra NVDB API Skriv sin lokale database. Et endringssett som
+er ferdigbehandlet kan ikke kanselleres. Et endringssett med fremdriftskode BEHANDLES kan kanselleres så lenge
+det ikke er i er sluttfasen av behandlingen der data blir skrevet til NVDB.
 
 #### Mønster
 
