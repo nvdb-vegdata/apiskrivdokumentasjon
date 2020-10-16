@@ -69,17 +69,20 @@ X-Client: MinKlientApplikasjon
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <vegobjekter xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
-    <vegobjekt typeId="95" tempId="skiltpunkt#1">
-        <gyldighetsperiode>
-            <startdato>2020-01-01</startdato>
-        </gyldighetsperiode>
-        <egenskaper>
-            <egenskap typeId="4794">
-                <verdi>srid=5973;POINT Z(270196.99 7041858.13 15.72)</verdi>
-            </egenskap>
-        </egenskaper>
-        <assosiasjoner/>
-    </vegobjekt>
+  <vegobjekt typeId="95" tempId="skiltpunkt#1">
+    <gyldighetsperiode>
+      <startdato>2020-01-01</startdato>
+    </gyldighetsperiode>
+    <egenskaper>
+      <egenskap typeId="4794">
+        <geometri>
+          <srid>5973</srid>srid>
+          <wkt>POINT Z(270196.99 7041858.13 15.72)</wkt>
+        </geometri>
+      </egenskap>
+    </egenskaper>
+    <assosiasjoner/>
+  </vegobjekt>
 </vegobjekter>
 ```
 
@@ -113,24 +116,24 @@ Content-Type: application/xml; charset=UTF-8
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <stedfestingResultat xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
-    <vegobjekt tempId="skiltpunkt#1">
-        <stedfesting>
-            <oversikt>
-                <veg>
-                    <kategori>F</kategori>
-                    <fase>V</fase>
-                    <nummer>6690</nummer>
-                </veg>
-                <lengde>0.0</lengde>
-            </oversikt>
-            <punkt veglenkesekvensNvdbId="2510771" posisjon="0.1429407">
-                <geometri>
-                    <srid>5973</srid>
-                    <wkt>POINT (270192.0336852201 7041858.010694844)</wkt>
-                </geometri>
-            </punkt>
-        </stedfesting>
-    </vegobjekt>
+  <vegobjekt tempId="skiltpunkt#1">
+    <stedfesting>
+      <oversikt>
+        <veg>
+          <kategori>F</kategori>
+          <fase>V</fase>
+          <nummer>6690</nummer>
+        </veg>
+        <lengde>0.0</lengde>
+      </oversikt>
+      <punkt veglenkesekvensNvdbId="2510771" posisjon="0.1429407">
+        <geometri>
+          <srid>5973</srid>
+          <wkt>POINT (270192.0336852201 7041858.010694844)</wkt>
+        </geometri>
+      </punkt>
+    </stedfesting>
+  </vegobjekt>
 </stedfestingResultat>
 ```
 
@@ -142,14 +145,14 @@ Content-Type: application/xml; charset=UTF-8
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <stedfestingResultat xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
-    <vegobjekt tempId="skiltpunkt#1">
-        <feil>
-            <feil kode="UGYLDIG_EGENSKAPSTYPE">
-                <melding>Egenskapstypen Geometri, punkt (4795) er ikke del av vegobjekttypen Skiltpunkt (95)</melding>
-                <referanse>https://datakatalogen.vegdata.no/95</referanse>
-                <egenskapTypeId>4795</egenskapTypeId>
-            </feil>
-        </feil>
-    </vegobjekt>
+  <vegobjekt tempId="skiltpunkt#1">
+    <feil>
+      <feil kode="UGYLDIG_EGENSKAPSTYPE">
+        <melding>Egenskapstypen Geometri, punkt (4795) er ikke del av vegobjekttypen Skiltpunkt (95)</melding>
+        <referanse>https://datakatalogen.vegdata.no/95</referanse>
+        <egenskapTypeId>4795</egenskapTypeId>
+      </feil>
+    </feil>
+  </vegobjekt>
 </stedfestingResultat>
 ```

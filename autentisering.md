@@ -31,7 +31,7 @@ $ curl https://aaa-api.atlas.vegvesen.no/autentiser \
   -d "{'username': 'olanor', 'password': 'hemmelig'}" \
   -H "Content-Type: application/json"    
 ```
-Dersom passordet inneholder _æ_, _ø_, eller _å_ må tegnsettet ISO 8859-1 brukes i requesten.
+Requesten skal bruke tegnsettet UTF-8.
 
 Responsen fra /autentiser inneholder tre felt:
  
