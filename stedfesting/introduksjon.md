@@ -8,15 +8,17 @@ permalink: /stedfesting/introduksjon
 ## Introduksjon til stedfesting [BETA]
 
 NVDB API Skriv tilbyr et endepunkt for å generere gyldig punkt- eller strekningsstedfesting for vegobjekter.
-Stedfestingen (vegnettstilknytningen) beregnes ved å "projisere" vegobjektets geometri ned på nærmeste relevante vegnett. Forutsetningen er
-derfor at vegobjektene har minst én geometriegenskap. Stedfestingsendepunktet tar høyde for faktorer som:
+Stedfestingen (vegnettstilknytningen) beregnes ved å "projisere" vegobjektets geometri ned på nærmeste relevante vegnett på
+vegtrasénivå. Forutsetningen er derfor at vegobjektene har minst én geometriegenskap. Stedfestingsendepunktet tar høyde for
+faktorer som:
  
 * Vegobjektets levetid (begrenser gyldig vegnett for stedfesting)
-* Hvorvidt vegobjekttypen tillates stedfestet på konnekteringsveglenker
+* Om vegobjekttypen tillater stedfesting på konnekteringsveglenker
 * Minimumslengde for strekningsstedfesting
+* Om vegobjekttypen krever at stedfestingen er innenfor stedfestingen til morobjektet
 
 Beregnet strekningsstedfesting kan bestå av flere stedfestingselementer (flere veglenkesekvenser). I så fall beskriver den
-en navigerbar, sammenhengende rute langs en og samme veg. En veg i dette tilfellet er kombinasjonen av vegkategori,
+en sammenhengende rute langs en og samme veg. En veg i dette tilfellet er kombinasjonen av vegkategori,
 vegfase og vegnummer.
 
 Responsen fra endepunktet, dersom en stedfesting lot seg beregne, er garantert å være gyldig for det aktuelle vegobjektet

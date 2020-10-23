@@ -18,7 +18,7 @@ permalink: /stedfesting/api-referanse
 Dette kommando-endepunktet beregner gyldig stedfesting for vegobjekter med geometriegenskap(er). Responsen kan brukes
 direkte på de samme vegobjektene i et endringssett.
 
-Dersom requesten ikke angir ønsket veg (vegkategori, vegfase og vegnummer) for stedfestingen, beregnes stedfestingen til nærmeste
+Dersom requesten ikke angir relevante veger (vegkategori, vegfase og vegnummer) for stedfestingen, beregnes stedfestingen til nærmeste
 vegnett med vegkategori E, R, F eller K.
 
 Dette endepunktet gir synkron respons. Responstiden er korrellert med antall vegobjekter i payloaden.
@@ -27,24 +27,13 @@ Dette endepunktet gir synkron respons. Responstiden er korrellert med antall veg
 
 ```
 POST /nvdb/apiskriv/rest/v3/stedfest
-     ?maksimumAvstandTilVeg={tall}
-     &vegkategori={Vegkategori}
-     &fase={Vegfase}
-     &vegnummer={tall}
-     &typeVeg={liste av TypeVeg}
 ```
 
 #### Request
 
 ##### Parametere
 
-Navn|Type|Beskrivelse
--|-|-
-maksimumAvstandTilVeg|Heltall|Angir hvor mange meter utenfor vegobjektgeometrien det skal søkes etter relevant vegnett (obligatorisk)
-vegkategori|Vegkategori|Angir hvilken vegkategori relevant vegnett kan ha (obligatorisk når fase er angitt). For lovlige verdier se [Vegkategori](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/vegkategori.xsd)
-fase|Vegfase|Angir hvilken vegfase relevant vegnett kan ha (obligatorisk når vegnummer er angitt). For lovlige verdier se [Vegfase](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/vegfase.xsd)
-vegnummer|Heltall|Angir hvilket vegnummer relevant vegnett kan ha
-typeVeg|TypeVeg-liste|Angir hvilke typeVeg-verdier (kommaseparert) relevant vegnett kan ha. For lovlige verdier se [TypeVeg](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/typeveg.xsd)
+Ingen.
         
 ##### Hode
 
@@ -57,7 +46,16 @@ X-Client|Tekst|Angir navnet på klientapplikasjonen
 
 ##### Payload
 
-Entitet av type [StedviltVegobjektListe](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/stedfest.xsd).
+Entitet av type [Stedfest](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/stedfest.xsd).
+
+I subelementet ```<parametere>``` kan det angis opplysninger som avgrenser eller gir hint om ønsket stedfesting:
+
+* ```<maksimumAvstandTilVeg>``` Angir hvor mange meter utenfor vegobjektgeometrien det skal søkes etter relevant vegnett (obligatorisk).
+* ```<veger>``` angir en liste av veger som det er relevant å stedfeste på. Hvert innslag i listen beskrives med et ```<veg>``` -element som har følgende subelementer:
+  * ```<kategori>``` angir vegkategori for vegen (obligatorisk). For lovlige verdier se [Vegkategori](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/vegkategori.xsd).
+  * ```<fase>``` angir vegfase for vegen. For lovlige verdier se [Vegfase](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/vegfase.xsd).
+  * ```<nummer>``` angir vegnummer for vegen.
+* ```<typeVeger>``` angir en liste over type veger som det er relevant å stedfeste på. Hvert innslag i listen beskrives med et ```<typeVeg>``` -element med lovlige verdier fra [TypeVeg](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/typeveg.xsd).
 
 ##### Eksempel
 
@@ -68,22 +66,40 @@ Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
 X-Client: MinKlientApplikasjon
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<vegobjekter xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
-  <vegobjekt typeId="95" tempId="skiltpunkt#1">
-    <gyldighetsperiode>
-      <startdato>2020-01-01</startdato>
-    </gyldighetsperiode>
-    <egenskaper>
-      <egenskap typeId="4794">
-        <geometri>
-          <srid>5973</srid>srid>
-          <wkt>POINT Z(270196.99 7041858.13 15.72)</wkt>
-        </geometri>
-      </egenskap>
-    </egenskaper>
-    <assosiasjoner/>
-  </vegobjekt>
-</vegobjekter>
+<stedfest xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
+  <parametere>
+    <maksimalAvstandTilVeg>100</maksimalAvstandTilVeg>
+    <veger>
+      <veg>
+        <kategori>F</kategori>
+        <fase>V</fase>
+        <nummer>6690</nummer>
+      </veg>
+    </veger>
+    <typeVeger>
+      <typeVeg>ENKEL_BILVEG</typeVeg>
+      <typeVeg>KANALISERT_VEG</typeVeg>
+      <typeVeg>RAMPE</typeVeg>
+      <typeVeg>RUNDKJØRING</typeVeg>
+    </typeVeger>        
+  </parametere>
+  <vegobjekter>
+    <vegobjekt typeId="95" tempId="skiltpunkt#1">
+      <gyldighetsperiode>
+        <startdato>2020-01-01</startdato>
+      </gyldighetsperiode>
+      <egenskaper>
+        <egenskap typeId="4794">
+          <geometri>
+            <srid>5973</srid>srid>
+            <wkt>POINT Z(270196.99 7041858.13 15.72)</wkt>
+          </geometri>
+        </egenskap>
+      </egenskaper>
+      <assosiasjoner/>
+    </vegobjekt>
+  </vegobjekter>
+</stedfest>
 ```
 
 #### Respons
