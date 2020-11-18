@@ -33,7 +33,7 @@ Navn|Type|Beskrivelse
 Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload, f.eks. image/png
 Content-Disposition|Tekst|Hvis en ønsker å angi et filnavn for egen referanse, f.eks. filename="N808080-1.png"
 Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
-Authorization|Bearer med id-token fra OpenId Connect.
+Authorization|Autentiseringstoken|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
 X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
@@ -108,7 +108,7 @@ GET /nvdb/apiskriv/rest/v3/binaer/{id}
 Navn|Type|Beskrivelse
 -|-|-
 Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
-Authorization|Bearer med id-token fra OpenId Connect.
+Authorization|Autentiseringstoken|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
 X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 

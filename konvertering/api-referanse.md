@@ -39,7 +39,7 @@ Navn|Type|Beskrivelse
 Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for responsen: application/json eller application/xml. Content-Type benyttes hvis ikke annet er oppgitt.
 Content-Type|MediaType|Må være application/json
 Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
-Authorization|Bearer med id-token fra OpenId Connect.
+Authorization|Autentiseringstoken|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
 X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
@@ -187,7 +187,7 @@ Navn|Type|Beskrivelse
 Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for responsen: application/json eller application/xml. application/xml benyttes hvis ikke annet er oppgitt.
 Content-Type|MediaType|Må være text/plain
 Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
-Authorization|Bearer med id-token fra OpenId Connect.
+Authorization|Autentiseringstoken|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
 X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 

@@ -42,7 +42,7 @@ Navn|Type|Beskrivelse
 Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml
 Accept|MediaType|Angir ønsket media-type for responsen: application/json eller application/xml. Content-Type benyttes hvis ikke annet er oppgitt.
 Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
-Authorization|Bearer med id-token fra OpenId Connect.
+Authorization|Autentiseringstoken|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen
 X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
