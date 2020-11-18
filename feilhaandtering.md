@@ -18,7 +18,7 @@ HTTP-status|Typiske årsaker
 -|-
 302&nbsp;FOUND|Requesten mangler autentiseringstoken, eller autentiseringstokenet er utløpt
 400&nbsp;BAD&nbsp;REQUEST|Payloaden er ikke formatert i henhold til skjema
-401&nbsp;UNAUTHORIZED|Requesten manglet eller hadde et ugyldig [autentiseringstoken](autentisering.md)
+401&nbsp;UNAUTHORIZED|Requesten mangler eller har et ugyldig [autentiseringstoken](autentisering.md)
 403&nbsp;FORBIDDEN|Anropende bruker er ikke autorisert for endepunktet, eller har ikke tilgang til den ressursen som etterspørres
 404&nbsp;NOT&nbsp;FOUND|Ressursen som ble etterspurt i requesten ble ikke funnet
 405&nbsp;METHOD&nbsp;NOT&nbsp;ALLOWED|Requesten brukte ugyldig HTTP-verb på ressursen
