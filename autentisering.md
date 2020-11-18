@@ -8,9 +8,9 @@ permalink: /autentisering
 
 Anrop fra klienter til NVDB API Skriv krever at requesten inneholder et gyldig autentiseringstoken. Dette kan gjøres på to måter:
 
-* OpenId Connect - Klienten etablerer et id-token gjennom [OpenId Connect](https://en.wikipedia.org/wiki/OpenID_Connect) -pålogging og leverer dette i requester
+* **OpenId Connect** - Klienten etablerer et id-token gjennom [OpenId Connect](https://en.wikipedia.org/wiki/OpenID_Connect) -pålogging og leverer dette i requester
 til NVDB API Skriv i form av et Bearer-token i en Authorization-header.
-* AAA - klienten etablerer et IPlanetDirectoryPro-token gjennom anrop til AAA-tjenesten og leverer dette i requester til NVDB API Skriv i form av en cookie.
+* **AAA** - klienten etablerer et IPlanetDirectoryPro-token gjennom anrop til AAA-tjenesten og leverer dette i requester til NVDB API Skriv i form av en cookie.
 
 Anbefalt autentisering er via id-token fra OpenId Connect. Muligheten til å autentisere via cookie vil opphøre i nær framtid.
 
@@ -34,7 +34,7 @@ $ curl https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/authenticate \
   -H "Content-Type: application/json"    
 ```
 
-Requesten skal bruke tegnsettet UTF-8. Feltet ```realm``` skal angir brukerens **identity realm** (brukertype). Tillatte verdier er:
+Requesten skal bruke tegnsettet UTF-8. Feltet ```realm``` angir brukerens *identity realm* (brukertype). Tillatte verdier er:
 
 Realm|Beskrivelse
 -|-
