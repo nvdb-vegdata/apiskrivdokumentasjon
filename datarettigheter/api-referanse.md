@@ -20,7 +20,7 @@ Henter datarettighetene som er tildelt en spesifikk bruker.
 #### Mønster
 
 ```
-GET /nvdb/apiskriv/rest/v1/autorisasjon/{brukernavn}
+GET /rest/v1/autorisasjon/{brukernavn}
 ```
 
 #### Request
@@ -38,7 +38,7 @@ X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 ##### Eksempel
 
 ```
-GET /nvdb/apiskriv/rest/v1/autorisasjon/exttxa HTTP/1.1
+GET /rest/v1/autorisasjon/exttxa HTTP/1.1
 Accept: application/xml
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
@@ -55,7 +55,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [Autorisasjon](https://www.vegvesen.no/nvdb/apiskriv/rest/v1/autorisasjon/autorisasjon.xsd).
+Entitet av type [Autorisasjon](https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/autorisasjon/autorisasjon.xsd).
 
 ##### Eksempel
 

@@ -18,7 +18,7 @@ gjenspeiles i URLen til endepunktet som eksponerer entiteten/ressursen.
  
 #### Eksempel
 
-Gjeldende versjon for endringssett-entiteten er 3. Registrering av og uthenting av endringssett gjøres derfor via URLen /nvdb/apiskriv/rest/v3/endringssett.
+Gjeldende versjon for endringssett-entiteten er 3. Registrering av og uthenting av endringssett gjøres derfor via URLen /rest/v3/endringssett.
 Skjemaet for endringssett-entiteten som støttes av dette endepunktet definerer et navnerom (targetNamespace) som inneholder leddet "v3":
 
 ```xml
@@ -52,7 +52,7 @@ Skjemaet for endringssett-entiteten som støttes av dette endepunktet definerer 
 </xs:schema>
 ```
 
-NVDB API Skriv støtter også v2 av endringssett via URLen /nvdb/apiskriv/rest/v2/endringssett. Denne versjonen av entiteten er
+NVDB API Skriv støtter også v2 av endringssett via URLen /rest/v2/endringssett. Denne versjonen av entiteten er
 vesentlig forskjellig fra og derfor ikke kompatibel med v3:
 
 ```xml

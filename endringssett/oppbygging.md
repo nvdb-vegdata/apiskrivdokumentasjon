@@ -67,7 +67,7 @@ Et endringssett med alle operasjoner vil kunne se slik ut:
 </endringssett>
 ```
 
-En formell beskrivelse av endringssett-strukturen kan lastes ned i form av et [XML-skjema](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+En formell beskrivelse av endringssett-strukturen kan lastes ned i form av et [XML-skjema](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 
 Elementet ```<datakatalogversjon>``` er obligatorisk og skal angi den datakatalogversjonen som klienten la til grunn når endringssettet
 ble dannet. Dersom denne avviker fra den gjeldende versjonen i NVDB vil behandlingsresultatet inneholde en advarsel om dette. Hvis det
@@ -112,7 +112,7 @@ Verdien rammes inn av en CDATA-klausul slik at alle typer dataformater kan bruke
 
 ```<registrer>``` -elementet definerer én eller flere nye vegobjekter for registrering i NVDB. Et nytt vegobjekt får en unik
 id i NVDB og gis automatisk versjonsnummer 1. For komplett XML-skjema se complexType ```NyttVegobjekt```
-i [endringssett.xsd](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+i [endringssett.xsd](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 
 ```<vegobjekt>``` -elementet har to obligatoriske attributter:
 
@@ -234,7 +234,7 @@ observerbare endringer et vegobjekt har gjennomgått i sin levetid.
 Selv om det bare er snakk om små endringer, f.eks. en egenskap som får ny verdi, må alle andre egenskaper,
 assosiasjonene og stedfestingen angis. Den nye versjon blir etablert nøyaktig slik den er angitt i endringssettet.
 Ved små endringer er det som regel mer hensiktsmessig å bruke [delvis oppdatering](#delvis-oppdatering). For komplett XML-skjema
-se complexType ```OppdatertVegobjekt``` i [endringssett.xsd](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+se complexType ```OppdatertVegobjekt``` i [endringssett.xsd](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 
 ```<vegobjekt>``` -elementet har tre obligatoriske attributter:
 
@@ -297,7 +297,7 @@ for detaljer.
 Delvis oppdatering har konseptuelt samme bruksformål som (full) [oppdatering](#oppdatering), men tillater klienten å bare angi de
 elementene som faktisk endres. Dette gjelder enten endringen er i en egenskap, en assosiasjon eller stedfestingen.
 
-For komplett XML-skjema se complexType ```DelvisOppdatertVegobjekt``` i [endringssett.xsd](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+For komplett XML-skjema se complexType ```DelvisOppdatertVegobjekt``` i [endringssett.xsd](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 
 ```<vegobjekt>``` har de samme fem subelementene som full oppdatering, men kun ```<gyldighetsperiode>``` er obligatorisk
 (ved overskriving er ```<validering>``` med subelement ```<lestFraNvdb>``` også obligatorisk). I tillegg må det angis
@@ -402,7 +402,7 @@ Dersom man ønsker å fjerne et enkelt stedfestingselement fra listen brukes att
 Lukking innebærer at gjeldende (siste) versjon av et vegobjekt settes historisk, det vil si at det får angitt en sluttdato. Dette markerer
 typisk at vegobjektet ble demontert eller fjernet fra vegen.
 
-For komplett XML-skjema se complexType ```LukketVegobjekt``` i [endringssett.xsd](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+For komplett XML-skjema se complexType ```LukketVegobjekt``` i [endringssett.xsd](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 
 ```<vegobjekt>``` -elementet har tre obligatoriske attributter:
 
@@ -453,7 +453,7 @@ endringer skal utføres med [oppdatering](#oppdatering).
 Selv om det bare er snakk om små endringer, f.eks. en egenskap som får ny verdi, må alle andre egenskaper,
 assosiasjonene og stedfestingen angis. Den korrigerte versjonen blir overskrevet med de elementene slik de er angitt i endringssettet.
 Ved små endringer er det som regel mer hensiktsmessig å bruke [delvis korrigering](#delvis-korrigering). For komplett XML-skjema
-se complexType ```KorrigertVegobjekt``` i [endringssett.xsd](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+se complexType ```KorrigertVegobjekt``` i [endringssett.xsd](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 
 ```<vegobjekt>``` -elementet har tre obligatoriske attributter:
 
@@ -521,7 +521,7 @@ For detaljer se egen seksjon [om valideringsdirektiver](#om-valideringsdirektive
 Delvis korrigering har konseptuelt samme bruksformål som (full) [korrigering](#korrigering), men tillater klienten å bare angi de
 elementene som faktisk endres. Dette gjelder enten endringen er i en egenskap, en assosiasjon eller stedfestingen.
 
-For komplett XML-skjema se complexType ```DelvisKorrigertVegobjekt``` i [endringssett.xsd](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+For komplett XML-skjema se complexType ```DelvisKorrigertVegobjekt``` i [endringssett.xsd](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 
 Innholdet i ```<egenskaper>```, ```<assosiasjoner>``` og ```<stedfesting>``` er det samme som for [delvis oppdatering](#delvis-oppdatering), inkludert muligheten
 for å angi inkrementell oppdatering av datterobjekt-id'er i en assosiasjon og stedfestingselementer i stedfestingen.
@@ -546,7 +546,7 @@ Fjerning kan brukes til å slette data i NVDB som ikke skulle vært der i utgang
 er hensiktsmessig å ta vare på. Merk at fjerning er en ikke-reversibel operasjon og at fjerning også kan påvirke andre vegobjekter
 gjennom mor-datter-hierarkier. 
 
-For komplett XML-skjema se complexType ```FjernetVegobjekt``` i [endringssett.xsd](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+For komplett XML-skjema se complexType ```FjernetVegobjekt``` i [endringssett.xsd](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 
 ```<vegobjekt>``` -elementet har to obligatoriske attributter:
 
@@ -1005,7 +1005,7 @@ Både ```<punkt>``` og ```<linje>``` -elementer kan ha ytterligere subelementer 
 krever eller tillater det:
 
 * ```<retning>``` angir om vegobjektet er orientert i en bestemt retning og må i så fall oppgis relativt til veglenkesekvensretningen. Lovlige verdier er ```MED``` og ```MOT```.
-* ```<sideposisjon>``` angir plassering av vegobjektet på tvers av vegen. Lovlige verdier er definert av typen ```RelativRetning``` i [XML-skjemaet](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+* ```<sideposisjon>``` angir plassering av vegobjektet på tvers av vegen. Lovlige verdier er definert av typen ```RelativRetning``` i [XML-skjemaet](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 * ```<kjørefelt>``` angir hvilke kjørefelt vegobjektet er plassert i. Se [datakatalogen](https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/793/11431.json?pretty=true) for lovlige feltkoder.
 
 ### Om valideringsdirektiver

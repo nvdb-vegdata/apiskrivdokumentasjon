@@ -27,7 +27,7 @@ Konverteringen har følgende egenskaper:
 #### Mønster
 
 ```
-POST /nvdb/apiskriv/rest/v3/konverter/sosiGeoJson
+POST /rest/v3/konverter/sosiGeoJson
 ```
 
 #### Request
@@ -50,7 +50,7 @@ Dokument på SOSI-GeoJSON-format
 ##### Eksempel
 
 ```
-POST /nvdb/apiskriv/rest/v3/konverter/sosiGeoJson HTTP/1.1
+POST /rest/v3/konverter/sosiGeoJson HTTP/1.1
 Accept: application/xml
 Content-Type: application/json
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
@@ -107,7 +107,7 @@ Content-Type|MediaType|Angir media-type for payloaden: application/json eller ap
 
 ##### Payload
 
-Entitet av type [Endringssett](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+Entitet av type [Endringssett](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 
 ##### Eksempel
 
@@ -175,7 +175,7 @@ Konverteringen har følgende egenskaper:
 #### Mønster
 
 ```
-POST /nvdb/apiskriv/rest/v3/konverter/sosi
+POST /rest/v3/konverter/sosi
 ```
 
 #### Request
@@ -198,7 +198,7 @@ Dokument på SOSI-NVDB-format
 ##### Eksempel
 
 ```
-POST /nvdb/apiskriv/rest/v3/konverter/sosi HTTP/1.1
+POST /rest/v3/konverter/sosi HTTP/1.1
 Accept: application/xml
 Content-Type: text/plain
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
@@ -247,7 +247,7 @@ Content-Type|MediaType|Angir media-type for payloaden: application/json eller ap
 
 ##### Payload
 
-Entitet av type [Endringssett](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+Entitet av type [Endringssett](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 
 ##### Eksempel
 

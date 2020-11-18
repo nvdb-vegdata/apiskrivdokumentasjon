@@ -26,7 +26,7 @@ valideringer. Oppdater med overskriv=JA trigger følgeoppdateringer som før.
 * Mulighet for å inkludere klientspesifikk informasjon ('kontekst') i endringssettet.
 * Effektdato kan angis individuelt per vegobjekt. 
 
-[Skjemaet for endringssett](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd) har en ny og utvidet struktur.
+[Skjemaet for endringssett](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd) har en ny og utvidet struktur.
 Endringene omfatter både navngivning, struktur og nye elementer. 
 
 #### Navneendringer

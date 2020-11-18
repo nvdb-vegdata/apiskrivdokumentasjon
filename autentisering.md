@@ -83,7 +83,7 @@ JWT'en i feltet ```idToken``` kan deretter brukes for en ny kort periode i requr
 Id-tokenet angis som verdi for en Authorization-header med prefix "Bearer". En forespørsel for å liste ut brukerens endringssett kan se slik ut:
 
 ```bash
-$ curl https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett \
+$ curl https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett \
   -H "X-Client: curl" \
   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ..."
 ```
@@ -159,7 +159,7 @@ Responsen fra /validate forteller om tokenet fremdeles er gyldig og hvilket bruk
 Tokenets navn og verdi settes som en cookie på alle kall mot NVDB API Skriv. En forespørsel for å liste ut brukerens endringssett kan se slik ut:
 
 ```bash
-$ curl https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett \
+$ curl https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett \
   -H "X-Client: curl" \
   -H "Cookie: iPlanetDirectoryProOAM= AQIC5wM2LY4SfcyhHz1Irgsf6pbxoeuY3k9XqvbRtB4-4No.*AAJTSQACMDIAAlNLABMzMDUyMTI1NzE2ODA4ODU0OTczAAJTMQACMDM.*"
 ```

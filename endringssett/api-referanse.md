@@ -35,7 +35,7 @@ Dette endepunktet gir synkron respons og medfører ingen endringer i NVDB.
 #### Mønster
 
 ```
-POST /nvdb/apiskriv/rest/v3/endringssett/validator
+POST /rest/v3/endringssett/validator
      ?skipLocation={JA|NEI}
      &skipAssociations={JA|NEI}
      &useObjectList={JA|NEI}
@@ -64,12 +64,12 @@ X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Payload
 
-Entitet av type [Endringssett](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+Entitet av type [Endringssett](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 
 ##### Eksempel
 
 ```xml
-POST /nvdb/apiskriv/rest/v3/endringssett/validator HTTP/1.1
+POST /rest/v3/endringssett/validator HTTP/1.1
 Content-Type: application/xml
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
@@ -111,7 +111,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [Status](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/status.xsd).
+Entitet av type [Status](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/status.xsd).
 
 Dersom endringssettet ble godkjent vil subelementet ```<fremdrift>``` angi ```UTFØRT```. Dersom det ble funnet feil angis dette
 med verdien ```AVVIST``` og feilene beskrives i detalj under subelementet ```<resultat>```. Uavhengig av valideringsresultat
@@ -167,7 +167,7 @@ ikke før eksplisitt [start-kommando](#starte-behandling-av-endringssett) sendes
 #### Mønster
 
 ```
-POST /nvdb/apiskriv/rest/v3/endringssett
+POST /rest/v3/endringssett
 ```
 
 #### Request
@@ -193,7 +193,7 @@ Ingen.
 ##### Eksempel
 
 ```xml
-POST /nvdb/apiskriv/rest/v3/endringssett HTTP/1.1
+POST /rest/v3/endringssett HTTP/1.1
 Content-Type: application/xml
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
@@ -233,7 +233,7 @@ Location|URI|Angir hvor endringssettet kan hentes.
 
 ##### Payload
 
-Entitet av type [Ressurser](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/ressurser.xsd).
+Entitet av type [Ressurser](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/ressurser.xsd).
 
 Inneholder URIer for requester som den nye endringssettressursen kan anropes med.
 
@@ -242,15 +242,15 @@ Inneholder URIer for requester som den nye endringssettressursen kan anropes med
 ```xml
 HTTP/1.1 201 Created
 Content-Type: application/xml; charset=UTF-8
-Location: https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037
+Location: https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ressurser xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
-  <ressurs rel="self" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037"/>
-  <ressurs rel="start" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/start"/>
-  <ressurs rel="kanseller" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/kanseller"/>
-  <ressurs rel="status" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/status"/>
-  <ressurs rel="fremdrift" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/fremdrift"/>
+  <ressurs rel="self" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037"/>
+  <ressurs rel="start" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/start"/>
+  <ressurs rel="kanseller" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/kanseller"/>
+  <ressurs rel="status" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/status"/>
+  <ressurs rel="fremdrift" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/fremdrift"/>
 </ressurser>
 ```
 <br/>
@@ -266,7 +266,7 @@ Når behandlingen er fullført, kan detaljert behandlingsresultat hentes med [st
 #### Mønster
 
 ```
-POST /nvdb/apiskriv/rest/v3/endringssett/{id}/start
+POST /rest/v3/endringssett/{id}/start
 ```
 
 #### Request
@@ -284,7 +284,7 @@ X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 ##### Eksempel
 
 ```
-POST /nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/start HTTP/1.1
+POST /rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/start HTTP/1.1
 Accept: application/xml
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
@@ -301,7 +301,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [Ressurser](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/ressurser.xsd).
+Entitet av type [Ressurser](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/ressurser.xsd).
 
 Inneholder relevante URIer for requester som endringssettressursen kan anropes med.
 
@@ -313,9 +313,9 @@ Content-Type: application/xml; charset=UTF-8
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ressurser xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
-  <ressurs rel="fremdrift" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/fremdrift"/>
-  <ressurs rel="status" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/status"/>
-  <ressurs rel="self" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037"/>
+  <ressurs rel="fremdrift" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/fremdrift"/>
+  <ressurs rel="status" src="https://nvdbapiskriv.atlas.vegvesen.no//rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/status"/>
+  <ressurs rel="self" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037"/>
 </ressurser>
 ```
 <br/>

@@ -104,7 +104,7 @@ For hvert registrert vegobjekt under ```<resultat>``` angir attributtene ```temp
 ### Varselkoder
 
 De fleste varselkodene som genereres av API Skriv indikerer en uregelmessighet i forhold til datakatalogen eller andre valideringsregler.
-I behandlingsresultatet angis koden som en streng, ikke en enumerert type i [XML-skjemaet](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/status.xsd).
+I behandlingsresultatet angis koden som en streng, ikke en enumerert type i [XML-skjemaet](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/status.xsd).
 Kodene kan med andre ord endre ordlyd uten at statusendepunktet eller navnerommet versjoneres. Klienter frarådes derfor å implementere logikk som er avhengig av eksakt staving av
 varselkodene. 
 

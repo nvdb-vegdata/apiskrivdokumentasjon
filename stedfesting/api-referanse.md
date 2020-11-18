@@ -26,7 +26,7 @@ Dette endepunktet gir synkron respons. Responstiden er korrellert med antall veg
 #### Mønster
 
 ```
-POST /nvdb/apiskriv/rest/v3/stedfest
+POST /rest/v3/stedfest
 ```
 
 #### Request
@@ -48,21 +48,21 @@ X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Payload
 
-Entitet av type [Stedfest](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/stedfest.xsd).
+Entitet av type [Stedfest](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfest/stedfest.xsd).
 
 I subelementet ```<parametere>``` kan det angis opplysninger som avgrenser eller gir hint om ønsket stedfesting:
 
 * ```<maksimumAvstandTilVeg>``` Angir hvor mange meter utenfor vegobjektgeometrien det skal søkes etter relevant vegnett (obligatorisk).
 * ```<veger>``` angir en liste av veger som det er relevant å stedfeste på. Hvert innslag i listen beskrives med et ```<veg>``` -element som har følgende subelementer:
-  * ```<kategori>``` angir vegkategori for vegen (obligatorisk). For lovlige verdier se [Vegkategori](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/vegkategori.xsd).
-  * ```<fase>``` angir vegfase for vegen. For lovlige verdier se [Vegfase](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/vegfase.xsd).
+  * ```<kategori>``` angir vegkategori for vegen (obligatorisk). For lovlige verdier se [Vegkategori](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfest/vegkategori.xsd).
+  * ```<fase>``` angir vegfase for vegen. For lovlige verdier se [Vegfase](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfest/vegfase.xsd).
   * ```<nummer>``` angir vegnummer for vegen.
-* ```<typeVeger>``` angir en liste over type veger som det er relevant å stedfeste på. Hvert innslag i listen beskrives med et ```<typeVeg>``` -element med lovlige verdier fra [TypeVeg](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/typeveg.xsd).
+* ```<typeVeger>``` angir en liste over type veger som det er relevant å stedfeste på. Hvert innslag i listen beskrives med et ```<typeVeg>``` -element med lovlige verdier fra [TypeVeg](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfest/typeveg.xsd).
 
 ##### Eksempel
 
 ```xml
-POST /nvdb/apiskriv/rest/v3/stedfest HTTP/1.1
+POST /rest/v3/stedfest HTTP/1.1
 Content-Type: application/xml
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
@@ -115,7 +115,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [StedfestingResultat](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/stedfest/stedfest-resultat.xsd).
+Entitet av type [StedfestingResultat](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfest/stedfest-resultat.xsd).
 
 Beregnet stedfesting for hvert vegobjekt ledsages av et ```<oversikt>``` -element med beskrivelse av veg og målt
 lengde (meter) for stedfestingen. Hvert stedfestingselement vil i tillegg ha et ```<geometri>``` -subelement med geometrien

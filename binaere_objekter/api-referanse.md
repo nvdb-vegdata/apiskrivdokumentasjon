@@ -22,7 +22,7 @@ Laster opp et binært objekt og responderer med en id som deretter kan brukes so
 #### Mønster
 
 ```
-POST /nvdb/apiskriv/rest/v3/binaer
+POST /rest/v3/binaer
 ```
 #### Request
 
@@ -44,7 +44,7 @@ Binærdata.
 ##### Eksempel
 
 ```
-POST /nvdb/apiskriv/rest/v3/binaer HTTP/1.1
+POST /rest/v3/binaer HTTP/1.1
 Content-Type: image/png
 Content-Disposition: filename="N808080-1.png"
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
@@ -70,7 +70,7 @@ UUID for det registrerte binærobjektet formatert som JSON-streng.
 ```
 HTTP/1.1 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: https://www.vegvesen.no/nvdb/apiskriv/rest/v3/binaer/12d57307-8ba8-4866-8373-153768cfbd09
+Location: https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/binaer/12d57307-8ba8-4866-8373-153768cfbd09
 
 "12d57307-8ba8-4866-8373-153768cfbd09"
 ```
@@ -82,7 +82,7 @@ Location: https://www.vegvesen.no/nvdb/apiskriv/rest/v3/binaer/12d57307-8ba8-486
 Et binært objekt kan lastes opp via filopplasting fra en nettside med følgende HTML-fragment:
 
 ```html
-<form method="post" action="/nvdb/apiskriv/rest/v3/binaer" enctype="multipart/form-data">
+<form method="post" action="/rest/v3/binaer" enctype="multipart/form-data">
   <!-- Viktig: name="content" -->
   <input type="file" name="content"/>
   <input type="submit"/>
@@ -98,7 +98,7 @@ Tillater nedlasting av tidligere opplastede binærdata.
 #### Mønster
 
 ```
-GET /nvdb/apiskriv/rest/v3/binaer/{id}
+GET /rest/v3/binaer/{id}
 ```
 
 #### Request
@@ -115,7 +115,7 @@ X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 ##### Eksempel
 
 ```
-GET /nvdb/apiskriv/rest/v3/binaer/12d57307-8ba8-4866-8373-153768cfbd09 HTTP/1.1
+GET /rest/v3/binaer/12d57307-8ba8-4866-8373-153768cfbd09 HTTP/1.1
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
 X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18

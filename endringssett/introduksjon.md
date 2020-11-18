@@ -43,7 +43,7 @@ Sekvensdiagrammet under angir hvordan en klient skal kommunisere med APIet for �
 
 Arbeidsflyten i et "happy day"-scenario består av følgende steg:
 
-1. Klienten registrerer et nytt endringssett med en POST-request til /nvdb/apiskriv/rest/v3/endringssett. APIet kontrollerer at
+1. Klienten registrerer et nytt endringssett med en POST-request til /rest/v3/endringssett. APIet kontrollerer at
 det er _velformet_, det vil si syntaktisk og semantisk korrekt oppbygd. I så fall blir det lagret i en intern database i APIet og gitt en
 _universelt unik identifikator_ ([UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
 
