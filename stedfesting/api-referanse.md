@@ -41,8 +41,10 @@ Navn|Type|Beskrivelse
 -|-|-
 Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml
 Accept|MediaType|Angir ønsket media-type for responsen: application/json eller application/xml. Content-Type benyttes hvis ikke annet er oppgitt.
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Payload
 
@@ -62,8 +64,9 @@ I subelementet ```<parametere>``` kan det angis opplysninger som avgrenser eller
 ```xml
 POST /nvdb/apiskriv/rest/v3/stedfest HTTP/1.1
 Content-Type: application/xml
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <stedfest xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">

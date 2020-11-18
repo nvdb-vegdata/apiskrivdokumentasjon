@@ -32,8 +32,10 @@ En respons får samme format som requesten, med mindre noe annet er angitt med e
 
 ### Forutsetninger
 
-* Alle requester til NVDB API Skriv må inneholde et gyldig autentiseringstoken i form av en cookie. Tokenet produseres av
-en [tjeneste](autentisering.md) hos Statens vegvesen gitt et godkjent brukernavn og passord i etaten.
+* Alle requester skal ha følgende headere:
+  * ```X-Client``` skal angi navnet på klienten som anroper APIet.
+  * ```X-Request-ID``` skal angi en unik identifikator (UUID) for requesten. Denne gjenbrukes i eventuelle requester som NVDB API Skriv gjør til andre baksystemer.
+* Alle requester må inneholde et gyldig [autentiseringstoken](autentisering.md), enten i form av en cookie eller som en Authorization-header.
 * Brukeren må ha [relevante roller](tilgangskontroll.md#tilgang-til-endepunkter-og-ressurser) i Statens vegvesens LDAP-register.
 * Dersom brukeren skal registrere eller vedlikeholde data i NVDB, må hun være tildelt [datarettigheter](tilgangskontroll.md#datarettigheter) i NVDB API Skriv.
 Datarettigheter gir tilgang til spesifikke geografiske områder, vegtyper og vegobjekttyper.
@@ -44,9 +46,9 @@ NVDB API Skriv er tilgjengelig i tre ulike miljøer hos Statens vegvesen:
 
 Miljø|Formål|Basis-URL
 -|-|-
-STM|Systemtesting|https://www.utv.vegvesen.no/nvdb/apiskriv/
-ATM|Akseptansetesting|https://www.test.vegvesen.no/nvdb/apiskriv/
-PROD|Produksjonsdrift|https://www.vegvesen.no/nvdb/apiskriv/
+STM|Systemtesting|https://nvdbapiskriv-stm.utv.atlas.vegvesen.no/
+ATM|Akseptansetesting|https://nvdbapiskriv.test.atlas.vegvesen.no/
+PROD|Produksjonsdrift|https://nvdbapiskriv.atlas.vegvesen.no/
 
 De tre miljøene benytter hver sine instanser av NVDB. NVDB i STM og ATM blir jevnlig oppdatert med dump fra PROD.
 

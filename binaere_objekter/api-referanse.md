@@ -32,8 +32,10 @@ Navn|Type|Beskrivelse
 -|-|-
 Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload, f.eks. image/png
 Content-Disposition|Tekst|Hvis en ønsker å angi et filnavn for egen referanse, f.eks. filename="N808080-1.png"
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Payload
 
@@ -45,8 +47,9 @@ Binærdata.
 POST /nvdb/apiskriv/rest/v3/binaer HTTP/1.1
 Content-Type: image/png
 Content-Disposition: filename="N808080-1.png"
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 
 .PNG........IHDR.............:~.U....IDATx.cj.......U.o....IEND.B`.
 ```
@@ -104,15 +107,18 @@ GET /nvdb/apiskriv/rest/v3/binaer/{id}
 
 Navn|Type|Beskrivelse
 -|-|-
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Eksempel
 
 ```
 GET /nvdb/apiskriv/rest/v3/binaer/12d57307-8ba8-4866-8373-153768cfbd09 HTTP/1.1
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 ```
 
 #### Respons

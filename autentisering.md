@@ -6,20 +6,106 @@ permalink: /autentisering
 
 ## Autentisering
 
-### Identifikasjon av klienter
+Anrop fra klienter til NVDB API Skriv krever at requesten inneholder et gyldig autentiseringstoken. Dette kan gjøres på to måter:
 
-Alle klienter som anroper NVDB API Skriv må identifisere seg ved å angi ```X-Client``` som header i alle requester:
+* OpenId Connect - Klienten etablerer et id-token gjennom [OpenId Connect](https://en.wikipedia.org/wiki/OpenID_Connect) -pålogging og leverer dette i requester
+til NVDB API Skriv i form av et Bearer-token i en Authorization-header.
+* AAA - klienten etablerer et IPlanetDirectoryPro-token gjennom anrop til AAA-tjenesten og leverer dette i requester til NVDB API Skriv i form av en cookie.
 
+Anbefalt autentisering er via id-token fra OpenId Connect. Muligheten til å autentisere via cookie vil opphøre i nær framtid.
+
+
+### Autentisering via OpenId Connect (OAuth2)
+
+Autentisering via OpenId Connect må realiseres på ulike måter avhengig av type klient. Dersom klienten er en nettleser (SPA-applikasjon) eller en native mobil-app må denne realisere
+såkalt [OpenId Connect implicit flow](https://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth ) for å få opprettet et gyldig id-token for sluttbrukeren.
+Det finnes en [demo-applikasjon](https://atlas-docs.atlas.vegvesen.no/atlas-dokumentasjon/latest/for_utviklere/demoapplikasjon.html) som illustrerer hvordan dette kan implementeres.  
+
+Dersom klienten er en skrivebordsapplikasjon (tykk klient) eller et baksystem (tjenestebruker), kan dette realiseres ved å anrope egne autentiseringsendepunkter i NVDB API Skriv. Seksjonene under beskriver dette.
+
+#### Innlogging
+
+For å logge inn må man ha en Vegvesen-bruker i det aktuelle miljøet (STM, ATM eller PROD). Et id-token for PROD etableres ved
+å sende inn brukernavn og passord slik:
+
+```bash
+$ curl https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/authenticate \
+  -d "{'username': 'olanor', 'password': 'hemmelig', 'realm': 'EMPLOYEE'}" \
+  -H "Content-Type: application/json"    
 ```
-X-Client: NavnPåDinKlient
+
+Requesten skal bruke tegnsettet UTF-8. Feltet ```realm``` skal angir brukerens **identity realm** (brukertype). Tillatte verdier er:
+
+Realm|Beskrivelse
+-|-
+EMPLOYEE|Personlig bruker ansatt i Statens vegvesen
+SERVICE_ACCOUNT|Tjenestebruker
+EXTERNAL|Personlig ekstern bruker, ikke ansatt i Statens vegvesen
+
+Responsen fra /authenticate inneholder tre felt:
+ 
+```json
+{  
+  "idToken": "eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...", 
+  "accessToken": "eyJ0eXAiOiJKV1QiLCJ6aXAiOiJOT05FIiwia2lkIjoia1d2OXpQbzVHbFFMamptQk5HR0FtYTJrUTJjPSIsImFsZyI6IlJTMjU2In0...",
+  "refreshToken": "eyJ0eXAiOiJKV1QiLCJ6aXAiOiJOT05FIiwia2lkIjoia1d2OXpQbzVHbFFMamptQk5HR0FtYTJrUTJjPSIsImFsZyI6IlJTMjU2In0..."
+}
 ```
 
-I en tidligere versjon av NVDB API Skriv var dette valgfritt, men i dagens versjon er headeren obligatorisk.
+Hvert av feltene har et [JSON Web Token](https://en.wikipedia.org/wiki/JSON_Web_Token) (JWT) som verdi.
 
-### Identifikasjon av brukere
+JWT'en i feltet ```idToken``` skal brukes i Authorization-headere i requester til NVDB API Skriv.
 
-Anrop fra klienter til NVDB API Skriv krever at requesten inneholder et gyldig autentiseringstoken, pakket i en cookie.
-Autentiseringstokenet etableres med et anrop til Statens vegvesen sin [AAA-tjeneste](https://en.wikipedia.org/wiki/AAA_(computer_security)).
+#### Fornyelse av id-token
+
+Et id-token varer i svært kort tid, ofte bare 15 minutter. Klienten kan hente utløpstiden til id-tokenet fra JWT-strukturen. For å unngå at sluttbrukeren må logge seg på på nytt hver gang id-tokenet er utløpt, kan et nytt id-token
+utstedes ved å bruke refresh-tokenet fra authenticate-responsen:
+
+```bash
+$ curl https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/refresh \
+  -d "{'refreshToken': 'eyJ0eXAiOiJKV1QiLCJ6aXAiOiJOT05FIiwia2lkIjoia1d2OXpQbzVHbFFMamptQk5HR0FtYTJrUTJjPSIsImFsZyI6IlJTMjU2In0...', 'realm': 'EMPLOYEE'}" \
+  -H "Content-Type: application/json"    
+```
+
+Responsen fra /refresh inneholder to felt:
+ 
+```json
+{  
+  "idToken": "eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...", 
+  "accessToken": "eyJ0eXAiOiJKV1QiLCJ6aXAiOiJOT05FIiwia2lkIjoia1d2OXpQbzVHbFFMamptQk5HR0FtYTJrUTJjPSIsImFsZyI6IlJTMjU2In0..."
+}
+```
+
+JWT'en i feltet ```idToken``` kan deretter brukes for en ny kort periode i requrester til NVDB API Skriv, inntil det må fornyes igjen.
+
+#### Bruk av id-token
+
+Id-tokenet angis som verdi for en Authorization-header med prefix "Bearer". En forespørsel for å liste ut brukerens endringssett kan se slik ut:
+
+```bash
+$ curl https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett \
+  -H "X-Client: curl" \
+  -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ..."
+```
+
+Dersom en request mot NVDB API Skriv mangler eller bruker et ugyldig/utløpt id-token vil det responderes med 401 UNAUTHORIZED.
+
+#### Påloggingsendepunkter
+
+Oversikt over endepunkter for autentisering i ulike miljøer:
+
+Miljø|URL
+-|-
+STM|https://nvdbapiskriv-stm.utv.atlas.vegvesen.no/rest/v1/oidc/authenticate
+ATM|https://nvdbapiskriv.test.atlas.vegvesen.no/rest/v1/oidc/authenticate
+PROD|https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/authenticate
+
+
+### Autentisering via AAA-tjenesten
+
+Denne autentiseringmetoden er under avvikling. Alle klienter anmodes om å bruke OpenId Connect.
+
+Autentiseringstokenet etableres her med et anrop til Statens vegvesen sin [AAA-tjeneste](https://en.wikipedia.org/wiki/AAA_(computer_security)).
 AAA-tjenesten har autogenerert [API-dokumentasjon](https://aaa-api.atlas.vegvesen.no/dokumentasjon/api/index.html#/aaa-API).
  
 #### Innlogging

@@ -30,16 +30,19 @@ GET /nvdb/apiskriv/rest/v1/autorisasjon/{brukernavn}
 Navn|Type|Beskrivelse
 -|-|-
 Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for responsen: application/json eller application/xml. application/xml benyttes hvis ikke annet er oppgitt.
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Eksempel
 
 ```
 GET /nvdb/apiskriv/rest/v1/autorisasjon/exttxa HTTP/1.1
 Accept: application/xml
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 ```
 
 #### Respons

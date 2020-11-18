@@ -57,8 +57,10 @@ Navn|Type|Beskrivelse
 -|-|-
 Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml
 Accept|MediaType|Angir ønsket media-type for responsen: application/json eller application/xml. Content-Type benyttes hvis ikke annet er oppgitt.
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Payload
 
@@ -69,8 +71,9 @@ Entitet av type [Endringssett](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/end
 ```xml
 POST /nvdb/apiskriv/rest/v3/endringssett/validator HTTP/1.1
 Content-Type: application/xml
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <endringssett xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
@@ -175,8 +178,10 @@ Navn|Type|Beskrivelse
 -|-|-
 Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for payload: application/json eller application/xml.
 Accept|MediaType|Angir ønsket media-type for responsen: application/json eller application/xml. Content-Type benyttes hvis ikke annet er oppgitt.
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 X-NVDB-DryRun|Boolsk|Angir om dette er en prøvekjøring (gjør ingen endringer i NVDB) av et endringssett.
 X-NVDB-DryRun-NoLocking|Boolsk|Som over, men unnlater å etablere låser i NVDB.
 X-NVDB-Delay|Heltall|Angir antall sekunder behandlingen skal vente mellom fullført validering og (eventuelt) effektuering i NVDB. Benyttes kun til testformål.
@@ -190,8 +195,9 @@ Ingen.
 ```xml
 POST /nvdb/apiskriv/rest/v3/endringssett HTTP/1.1
 Content-Type: application/xml
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <endringssett xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
@@ -270,16 +276,19 @@ POST /nvdb/apiskriv/rest/v3/endringssett/{id}/start
 Navn|Type|Beskrivelse
 -|-|-
 Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for responsen: application/json eller application/xml. application/xml benyttes hvis ikke annet er oppgitt.
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Eksempel
 
 ```
 POST /nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/start HTTP/1.1
 Accept: application/xml
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 ```
 
 #### Respons
@@ -331,8 +340,10 @@ POST /nvdb/apiskriv/rest/v3/endringssett/{id}/kanseller
 Navn|Type|Beskrivelse
 -|-|-
 Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for responsen: application/json eller application/xml. application/xml benyttes hvis ikke annet er oppgitt.
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 #### Payload
 
@@ -342,8 +353,9 @@ Ingen.
 ```
 POST /nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/kanseller HTTP/1.1
 Accept: application/xml
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 ```
 
 #### Respons
@@ -394,8 +406,10 @@ POST /nvdb/apiskriv/rest/v3/endringssett/{id}/restart
 Navn|Type|Beskrivelse
 -|-|-
 Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for responsen: application/json eller application/xml. application/xml benyttes hvis ikke annet er oppgitt.
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Payload
 
@@ -406,8 +420,9 @@ Ingen.
 ```
 POST /nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/restart HTTP/1.1
 Accept: application/xml
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 ```
 
 #### Respons
@@ -459,16 +474,19 @@ GET /nvdb/apiskriv/rest/v3/endringssett/{id}/fremdrift
 Navn|Type|Beskrivelse
 -|-|-
 Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for responsen: application/json eller application/xml. application/xml benyttes hvis ikke annet er oppgitt.
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Eksempel
 
 ```
 GET /nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/fremdrift HTTP/1.1
 Accept: application/xml
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 ```
 
 #### Respons
@@ -512,15 +530,18 @@ GET /nvdb/apiskriv/rest/v3/endringssett/{id}/fremdriftOgÅrsak
 
 Navn|Type|Beskrivelse
 -|-|-
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Eksempel
 
 ```
 GET /nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/fremdriftOgÅrsak HTTP/1.1
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 ```
 
 #### Respons
@@ -575,16 +596,19 @@ inkluderVarsler|Boolsk|Angir om valideringsvarsler (feil, advarsler og notabener
 Navn|Type|Beskrivelse
 -|-|-
 Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for responsen: application/json eller application/xml. application/xml benyttes hvis ikke annet er oppgitt.
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Eksempel
 
 ```
 GET /nvdb/apiskriv/rest/v3/endringssett/8ff65469-2424-4ed2-8b58-a5a2a3c7a408/status HTTP/1.1
 Accept: application/xml
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 ```
 
 #### Respons
@@ -668,16 +692,19 @@ inkluderVarsler|Boolsk|Angir om valideringsvarsler (feil, advarsler og notabener
 Navn|Type|Beskrivelse
 -|-|-
 Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for responsen: application/json eller application/xml. application/xml benyttes hvis ikke annet er oppgitt.
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Eksempel
 
 ```
 GET /nvdb/apiskriv/rest/v3/endringssett/8ff65469-2424-4ed2-8b58-a5a2a3c7a408 HTTP/1.1
 Accept: application/xml
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 ```
 
 #### Respons
@@ -795,16 +822,19 @@ brukernavnEllerKlient|Tekst|Angir brukernavn for eier eller ansvarlig, eller reg
 Navn|Type|Beskrivelse
 -|-|-
 Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/media-types/media-types.xhtml) for responsen: application/json eller application/xml. application/xml benyttes hvis ikke annet er oppgitt.
-Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken
+Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
+Authorization|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
+X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
 
 ##### Eksempel
 
 ```
 GET /nvdb/apiskriv/rest/v3/endringssett?antall=1 HTTP/1.1
 Accept: application/xml
-Cookie: iPlanetDirectoryOAM=AQIC5wM2LY4SfczXL0v42tkJK__EjrzGGl9PTJsJMYKuzLo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...
 X-Client: MinKlientApplikasjon
+X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 ```
 
 #### Respons
