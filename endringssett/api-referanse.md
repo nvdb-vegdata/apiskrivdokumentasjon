@@ -368,7 +368,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [Ressurser](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/ressurser.xsd).
+Entitet av type [Ressurser](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/ressurser.xsd).
 
 Inneholder relevante URIer for requester som endringssettressursen kan anropes med.
 
@@ -380,8 +380,8 @@ Content-Type: application/xml; charset=UTF-8
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ressurser xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
-  <ressurs rel="status" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/status"/>
-  <ressurs rel="self" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037"/>
+  <ressurs rel="status" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/status"/>
+  <ressurs rel="self" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037"/>
 </ressurser>
 ```
 <br/>
@@ -435,7 +435,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [Ressurser](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/ressurser.xsd).
+Entitet av type [Ressurser](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/ressurser.xsd).
 
 Inneholder relevante URIer for requester som endringssettressursen kan anropes med.
 
@@ -447,9 +447,9 @@ Content-Type: application/xml; charset=UTF-8
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ressurser xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
-  <ressurs rel="fremdrift" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/fremdrift"/>
-  <ressurs rel="status" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/status"/>
-  <ressurs rel="self" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037"/>
+  <ressurs rel="fremdrift" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/fremdrift"/>
+  <ressurs rel="status" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037/status"/>
+  <ressurs rel="self" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/63de0209-18b3-43d7-9944-69a3bc6d4037"/>
 </ressurser>
 ```
 <br/>
@@ -499,7 +499,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [Fremdrift](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/fremdrift.xsd).
+Entitet av type [Fremdrift](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/fremdrift.xsd).
 
 ##### Eksempel
 
@@ -554,9 +554,9 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Tekst bestående av [fremdriftskode](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/fremdrift.xsd) og dersom denne er 
-VENTER eller AVVIST, kolon etterfulgt av [venteårsak](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/venteÅrsak.xsd)
-eller [avvistårsak](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/avvistÅrsak.xsd)
+Tekst bestående av [fremdriftskode](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/fremdrift.xsd) og dersom denne er 
+VENTER eller AVVIST, kolon etterfulgt av [venteårsak](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/venteÅrsak.xsd)
+eller [avvistårsak](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/avvistÅrsak.xsd)
 
 ##### Eksempel
 
@@ -621,7 +621,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [Status](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/status.xsd).
+Entitet av type [Status](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/status.xsd).
 
 Dersom endringssettet ble utført og effektuert i NVDB vil tildelte id'er for registrerte vegobjekter angis i
 ```<resultat>``` -elementet.
@@ -657,9 +657,9 @@ Content-Type: application/xml; charset=UTF-8
     <tidspunkt>2020-05-29T10:27:17</tidspunkt>
   </transaksjon>
   <ressurser>
-    <ressurs rel="self" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/8ff65469-2424-4ed2-8b58-a5a2a3c7a408/status"/>
-    <ressurs rel="endringssett" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/8ff65469-2424-4ed2-8b58-a5a2a3c7a408"/>
-    <ressurs rel="oppdrag" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v1/oppdrag/14534547"/>
+    <ressurs rel="self" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/8ff65469-2424-4ed2-8b58-a5a2a3c7a408/status"/>
+    <ressurs rel="endringssett" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/8ff65469-2424-4ed2-8b58-a5a2a3c7a408"/>
+    <ressurs rel="oppdrag" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oppdrag/14534547"/>
   </ressurser>
 </status>
 ```
@@ -717,7 +717,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [Endringssett](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett.xsd).
+Entitet av type [Endringssett](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett.xsd).
 
 ##### Eksempel
 
@@ -769,9 +769,9 @@ Content-Type: application/xml; charset=UTF-8
       <tidspunkt>2020-05-29T10:27:17</tidspunkt>
     </transaksjon>
     <ressurser>
-      <ressurs rel="self" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/8ff65469-2424-4ed2-8b58-a5a2a3c7a408/status"/>
-      <ressurs rel="endringssett" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/8ff65469-2424-4ed2-8b58-a5a2a3c7a408"/>
-      <ressurs rel="oppdrag" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v1/oppdrag/14534547"/>
+      <ressurs rel="self" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/8ff65469-2424-4ed2-8b58-a5a2a3c7a408/status"/>
+      <ressurs rel="endringssett" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/8ff65469-2424-4ed2-8b58-a5a2a3c7a408"/>
+      <ressurs rel="oppdrag" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oppdrag/14534547"/>
     </ressurser>
   </status>
 </endringssett>
@@ -813,8 +813,8 @@ sorterPå|Tekst|Angir sortingsnøkkel. Tillatte verdier: TID.
 sorterStigende|Boolsk|Angir om endringssettene skal sorteres stigende.
 fraEpochMs|Heltall|Angir første mottakstidspunkt for ønskede endringssett i form av antall millisekunder siden 1. januar 1970. 
 tilEpochMs|Heltall|Angir siste mottakstidspunkt for ønskede endringssett i form av antall millisekunder siden 1. januar 1970.
-status|Tekst|Angir fremdriftskoden til ønskede endringssett. Gyldige verdier defineres av typen [Fremdrift](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/fremdrift.xsd).
-årsak|Tekst|Angir venteårsak eller avvistårsak til ønskede endringssett. Gyldige verdier defineres av typen [VenteÅrsak](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/venteÅrsak.xsd) og [AvvistÅrsak](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/avvistÅrsak.xsd)
+status|Tekst|Angir fremdriftskoden til ønskede endringssett. Gyldige verdier defineres av typen [Fremdrift](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/fremdrift.xsd).
+årsak|Tekst|Angir venteårsak eller avvistårsak til ønskede endringssett. Gyldige verdier defineres av typen [VenteÅrsak](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/venteÅrsak.xsd) og [AvvistÅrsak](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/avvistÅrsak.xsd)
 brukernavnEllerKlient|Tekst|Angir brukernavn for eier eller ansvarlig, eller registrerende klient til ønskede endringssett.  
 
 ##### Hode
@@ -847,7 +847,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [EndringssettListe](https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/endringssett-liste.xsd).
+Entitet av type [EndringssettListe](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/endringssett-liste.xsd).
 
 Innholdet i endringssettet er ikke med i responsen, kun ```<status>``` -elementet (uten ```<resultat>```).
 
@@ -872,8 +872,8 @@ Content-Type: application/xml; charset=UTF-8
         <tidspunkt>2020-05-29T10:27:17</tidspunkt>
       </transaksjon>
       <ressurser>
-        <ressurs rel="self" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/2b0f19a0-f8ac-480d-9e4e-0e6346b17fdb/status"/>
-        <ressurs rel="endringssett" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/endringssett/2b0f19a0-f8ac-480d-9e4e-0e6346b17fdb"/>
+        <ressurs rel="self" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/2b0f19a0-f8ac-480d-9e4e-0e6346b17fdb/status"/>
+        <ressurs rel="endringssett" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett/2b0f19a0-f8ac-480d-9e4e-0e6346b17fdb"/>
       </ressurser>
     </status>
     <datakatalogversjon>2.20</datakatalogversjon>

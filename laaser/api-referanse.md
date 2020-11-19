@@ -60,7 +60,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [Lås](https://www.vegvesen.no/nvdb/apiskriv/rest/v1/lås/lås.xsd).
+Entitet av type [Lås](https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/lås/lås.xsd).
 
 ##### Eksempel
 
@@ -159,7 +159,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [LåsListe](https://www.vegvesen.no/nvdb/apiskriv/rest/v1/lås/lås-liste.xsd).
+Entitet av type [LåsListe](https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/lås/lås-liste.xsd).
 
 ##### Eksempel
 

@@ -61,7 +61,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [Oppdrag](https://www.vegvesen.no/nvdb/apiskriv/rest/v1/oppdrag/oppdrag.xsd).
+Entitet av type [Oppdrag](https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oppdrag/oppdrag.xsd).
 
 ##### Eksempel
 
@@ -81,8 +81,8 @@ Content-Type: application/xml; charset=UTF-8
   </bruker>
   <tjenesteregel>VEGNETTSOPPDRAG</tjenesteregel>
   <ressurser>
-    <ressurs rel="self" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v1/oppdrag/3466724"/>
-    <ressurs rel="transaksjoner" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v1/transaksjon?oppdragId=3466724"/>
+    <ressurs rel="self" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oppdrag/3466724"/>
+    <ressurs rel="transaksjoner" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/transaksjon?oppdragId=3466724"/>
   </ressurser>
 </oppdrag>
 ```
@@ -103,6 +103,7 @@ GET /nvdb/apiskriv/rest/v1/oppdrag
     &sorterStigende={JA/NEI}
     &fraDato={dato}
     &eier={navn}
+    &tjenesteregel={kode}
 ```
  
 #### Request
@@ -117,6 +118,7 @@ sorterPå|Tekst|Angir sortingsnøkkel. Tillatte verdier: BRUKERNAVN og TID.
 sorterStigende|Boolsk|Angir om oppdragene skal sorteres stigende.
 fraDato|Dato|Angir tidligste dato for ønskede oppdrag. 
 eier|Tekst|Angir brukernavn til eier av ønskede oppdrag. 
+tjenesteregel|Tekst|Angir tjenesteregel til ønskede oppdrag. Gyldige verdier defineres av typen [Tjenesteregel](https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oppdrag/tjenesteregel.xsd).
 
 ##### Hode
 
@@ -148,7 +150,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [OppdragListe](https://www.vegvesen.no/nvdb/apiskriv/rest/v1/oppdrag/oppdrag-liste.xsd).
+Entitet av type [OppdragListe](https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oppdrag/oppdrag-liste.xsd).
 
 ##### Eksempel
 
@@ -169,8 +171,8 @@ Content-Type: application/xml; charset=UTF-8
     </bruker>
     <tjenesteregel>VEGNETTSOPPDRAG</tjenesteregel>
     <ressurser>
-      <ressurs rel="self" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v1/oppdrag/3466724"/>
-      <ressurs rel="transaksjoner" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v1/transaksjon?oppdragId=3466724"/>
+      <ressurs rel="self" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oppdrag/3466724"/>
+      <ressurs rel="transaksjoner" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/transaksjon?oppdragId=3466724"/>
     </ressurser>
   </oppdrag>
 </oppdragliste>
@@ -249,7 +251,7 @@ Content-Type|MediaType|Angir [media-type](https://www.iana.org/assignments/media
 
 ##### Payload
 
-Entitet av type [TransaksjonListe](https://www.vegvesen.no/nvdb/apiskriv/rest/v1/transaksjon/transaksjon-liste.xsd).
+Entitet av type [TransaksjonListe](https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/transaksjon/transaksjon-liste.xsd).
 
 ##### Eksempel
 
@@ -273,14 +275,14 @@ Content-Type: application/xml; charset=UTF-8
             <objektversjon>1</objektversjon>
             <startdato>2016-09-20</startdato>
             <ressurser>
-              <ressurs rel="objekt" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v3/les/vegobjekt/83/737948714/1"/>
+              <ressurs rel="objekt" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/les/vegobjekt/83/737948714/1"/>
             </ressurser>
           </objekt>
         </objekter>
       </objekttype>
     </objekttyper>
     <ressurser>
-      <ressurs rel="oppdrag" src="https://www.vegvesen.no/nvdb/apiskriv/rest/v1/oppdrag/3466723"/>
+      <ressurs rel="oppdrag" src="https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oppdrag/3466723"/>
     </ressurser>
   </transaksjon>
 </transaksjoner>
