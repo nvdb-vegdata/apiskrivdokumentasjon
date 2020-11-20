@@ -39,7 +39,7 @@ Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/med
 Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
 Authorization|Autentiseringstoken|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
-X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
+X-Request-ID|UUID|Angir unik korrelasjonsidentifikator for requesten.
 
 ##### Eksempel
 
@@ -128,7 +128,7 @@ Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/med
 Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
 Authorization|Autentiseringstoken|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
-X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
+X-Request-ID|UUID|Angir unik korrelasjonsidentifikator for requesten.
 
 ##### Eksempel
 
@@ -229,7 +229,7 @@ Accept|MediaType|Angir ønsket [media-type](https://www.iana.org/assignments/med
 Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
 Authorization|Autentiseringstoken|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
-X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
+X-Request-ID|UUID|Angir unik korrelasjonsidentifikator for requesten.
 
 ##### Eksempel
 

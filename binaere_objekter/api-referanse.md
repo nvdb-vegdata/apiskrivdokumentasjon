@@ -35,7 +35,7 @@ Content-Disposition|Tekst|Hvis en ønsker å angi et filnavn for egen referanse,
 Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
 Authorization|Autentiseringstoken|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
-X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
+X-Request-ID|UUID|Angir unik korrelasjonsidentifikator for requesten.
 
 ##### Payload
 
@@ -110,7 +110,7 @@ Navn|Type|Beskrivelse
 Cookie|Informasjonskapsler|Angir gyldig autentiseringstoken. NB! Under avvikling.
 Authorization|Autentiseringstoken|Bearer med id-token fra OpenId Connect.
 X-Client|Tekst|Angir navnet på klientapplikasjonen.
-X-Request-ID|Tekst|Angir unik korrelasjonsidentifikator (UUID) for requesten.
+X-Request-ID|UUID|Angir unik korrelasjonsidentifikator for requesten.
 
 ##### Eksempel
 
