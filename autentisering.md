@@ -130,7 +130,8 @@ Operasjon kan være ```authenticate```, ```refresh``` eller ```client-config```.
 
 ### Autentisering via AAA-tjenesten
 
-Denne autentiseringmetoden er under avvikling. Alle klienter anmodes om å bruke OpenId Connect.
+Denne autentiseringmetoden er under avvikling. Alle klienter anmodes om å bruke OpenId Connect. I en overgangsperiode har NVDB API Skriv aktivert
+automatisk konvertering av autentiseringstoken fra AAA til motsvarende autentiseringstoken fra OpenId Connect.
 
 Autentiseringstokenet etableres her med et anrop til Statens vegvesen sin [AAA-tjeneste](https://en.wikipedia.org/wiki/AAA_(computer_security)).
 AAA-tjenesten har autogenerert [API-dokumentasjon](https://aaa-api.atlas.vegvesen.no/dokumentasjon/api/index.html#/aaa-API).
