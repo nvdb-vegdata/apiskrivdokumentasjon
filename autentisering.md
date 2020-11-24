@@ -10,20 +10,28 @@ Anrop fra klienter til NVDB API Skriv krever at requesten inneholder et gyldig a
 
 * **OpenId Connect** - Klienten etablerer et id-token gjennom [OpenId Connect](https://en.wikipedia.org/wiki/OpenID_Connect) -pålogging og leverer dette i requester
 til NVDB API Skriv i form av et Bearer-token i en Authorization-header.
-* **AAA** - klienten etablerer et IPlanetDirectoryPro-token gjennom anrop til AAA-tjenesten og leverer dette i requester til NVDB API Skriv i form av en cookie.
+* **AAA** - Klienten etablerer et IPlanetDirectoryPro-token gjennom anrop til AAA-tjenesten og leverer dette i requester til NVDB API Skriv i form av en cookie.
 
 Anbefalt autentisering er via id-token fra OpenId Connect. Muligheten til å autentisere via cookie vil opphøre i nær framtid.
 
 
-### Autentisering via OpenId Connect (OAuth2)
+### Autentisering via OpenId Connect
 
-Autentisering via OpenId Connect må realiseres på ulike måter avhengig av type klient. Dersom klienten er en nettleser (SPA-applikasjon) eller en native mobil-app må denne realisere
-såkalt [OpenId Connect implicit flow](https://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth ) for å få opprettet et gyldig id-token for sluttbrukeren.
-Det finnes en [demo-applikasjon](https://atlas-docs.atlas.vegvesen.no/atlas-dokumentasjon/latest/for_utviklere/demoapplikasjon.html) som illustrerer hvordan dette kan implementeres.  
+Autentisering via OpenId Connect må realiseres på ulike måter avhengig av type klient.
 
-Dersom klienten er en skrivebordsapplikasjon (tykk klient) eller et baksystem (tjenestebruker), kan dette realiseres ved å anrope egne autentiseringsendepunkter i NVDB API Skriv. Seksjonene under beskriver dette.
+#### Web-baserte klienter
 
-#### Innlogging
+Dersom klienten er en nettleser (SPA-applikasjon) eller en native mobil-app må denne realisere
+såkalt [OpenId Connect implicit flow](https://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth) for å få opprettet et gyldig id-token for sluttbrukeren.
+Det finnes en [demo-applikasjon](https://atlas-docs.atlas.vegvesen.no/atlas-dokumentasjon/latest/for_utviklere/demoapplikasjon.html) (kun tilgjengelig i Statens vegvesens lokalnett) som illustrerer hvordan dette kan implementeres.  
+
+Ved realisering av denne typen autentiseringsflyt trenger klienten informasjon om token-utsteder m.m. Dette kan hentes fra endepunktet https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/client-config.
+
+#### Ikke web-baserte klienter
+
+Dersom klienten er en skrivebordsapplikasjon (tykk klient) eller et baksystem (tjenestebruker), kan OIDC-autentisering realiseres ved å anrope egne autentiseringsendepunkter i NVDB API Skriv. Seksjonene under beskriver dette.
+
+##### Innlogging
 
 For å logge inn må man ha en Vegvesen-bruker i det aktuelle miljøet (STM, ATM eller PROD). Et id-token for PROD etableres ved
 å sende inn brukernavn og passord slik:
@@ -56,7 +64,15 @@ Hvert av feltene har et [JSON Web Token](https://en.wikipedia.org/wiki/JSON_Web_
 
 JWT'en i feltet ```idToken``` skal brukes i Authorization-headere i requester til NVDB API Skriv.
 
-#### Fornyelse av id-token
+Dersom autentisering mislykkes, f.eks. ved ugyldig brukernavn eller passord, indikeres dette med tomt objekt i responsen:
+
+```json
+{  
+  
+}
+```
+
+##### Fornyelse av id-token
 
 Et id-token varer i svært kort tid, ofte bare 15 minutter. Klienten kan hente utløpstiden til id-tokenet fra JWT-strukturen. For å unngå at sluttbrukeren må logge seg på på nytt hver gang id-tokenet er utløpt, kan et nytt id-token
 utstedes ved å bruke refresh-tokenet fra authenticate-responsen:
@@ -78,9 +94,18 @@ Responsen fra /refresh inneholder to felt:
 
 JWT'en i feltet ```idToken``` kan deretter brukes for en ny kort periode i requrester til NVDB API Skriv, inntil det må fornyes igjen.
 
+Et refresh-token har noen timers varighet og fornying vil således før eller siden mislykkes. Responsen fra refresh-endepunktet indikerer dette ved å respondere med tomt objekt:
+
+```json
+{  
+  
+}
+```
+
 #### Bruk av id-token
 
-Id-tokenet angis som verdi for en Authorization-header med prefix "Bearer". En forespørsel for å liste ut brukerens endringssett kan se slik ut:
+Etter at vellykket pålogging er ferdig og et OIDC id-token er etablert skal dette angis som verdi for en Authorization-header med prefix "Bearer"
+i alle requester til NVDB API Skriv. En forespørsel for å liste ut brukerens endringssett kan se slik ut:
 
 ```bash
 $ curl https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett \
@@ -90,15 +115,15 @@ $ curl https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/endringssett \
 
 Dersom en request mot NVDB API Skriv mangler eller bruker et ugyldig/utløpt id-token vil det responderes med 401 UNAUTHORIZED.
 
-#### Påloggingsendepunkter
+#### Autentiseringsendepunkter
 
-Oversikt over endepunkter for autentisering i ulike miljøer:
+Oversikt over endepunkter for OIDC-autentisering i ulike miljøer:
 
 Miljø|URL
 -|-
-STM|https://nvdbapiskriv-stm.utv.atlas.vegvesen.no/rest/v1/oidc/authenticate
-ATM|https://nvdbapiskriv.test.atlas.vegvesen.no/rest/v1/oidc/authenticate
-PROD|https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/authenticate
+STM|https://nvdbapiskriv-stm.utv.atlas.vegvesen.no/rest/v1/oidc/{authenticate|refresh|client-config}
+ATM|https://nvdbapiskriv.test.atlas.vegvesen.no/rest/v1/oidc/{authenticate|refresh|client-config}
+PROD|https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/{authenticate|refresh|client-config}
 
 
 ### Autentisering via AAA-tjenesten
