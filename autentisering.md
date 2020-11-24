@@ -26,7 +26,7 @@ såkalt [OpenId Connect implicit flow](https://openid.net/specs/openid-connect-c
 Det finnes en [demo-applikasjon](https://atlas-docs.atlas.vegvesen.no/atlas-dokumentasjon/latest/for_utviklere/demoapplikasjon.html) (kun tilgjengelig i Statens vegvesens lokalnett) som illustrerer hvordan dette kan implementeres.  
 
 Ved realisering av denne typen autentiseringsflyt trenger klienten informasjon om token-utsteder m.m. Dette kan hentes fra endepunktet https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/client-config/{realm},
-der {realm} er enten ```employee``` eller ```external```, avhengig av hvilken identity realm sluttbrukeren tilhører.
+der {realm} er enten ```employee``` eller ```external```, avhengig av hvilken *identity realm* sluttbrukeren tilhører. Se [seksjon under](#innlogging) for beskrivelse av realms.
 
 #### Ikke web-baserte klienter
 
@@ -43,7 +43,7 @@ $ curl https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/authenticate \
   -H "Content-Type: application/json"    
 ```
 
-Requesten skal bruke tegnsettet UTF-8. Feltet ```realm``` angir brukerens *identity realm* (brukertype). Tillatte verdier er:
+Requesten skal bruke tegnsettet UTF-8. Feltet ```realm``` angir brukerens identity realm (brukertype). Tillatte verdier er:
 
 Realm|Beskrivelse
 -|-
