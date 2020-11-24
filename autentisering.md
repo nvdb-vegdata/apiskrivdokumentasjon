@@ -121,10 +121,11 @@ Oversikt over endepunkter for OIDC-autentisering i ulike miljøer:
 
 Miljø|URL
 -|-
-STM|https://nvdbapiskriv-stm.utv.atlas.vegvesen.no/rest/v1/oidc/{authenticate|refresh|client-config}
-ATM|https://nvdbapiskriv.test.atlas.vegvesen.no/rest/v1/oidc/{authenticate|refresh|client-config}
-PROD|https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/{authenticate|refresh|client-config}
+STM|https://nvdbapiskriv-stm.utv.atlas.vegvesen.no/rest/v1/oidc/{operasjon}
+ATM|https://nvdbapiskriv.test.atlas.vegvesen.no/rest/v1/oidc/{operasjon}
+PROD|https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/{operasjon}
 
+Operasjon kan være ```authenticate```, ```refresh``` eller ```client-config```.
 
 ### Autentisering via AAA-tjenesten
 
