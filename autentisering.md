@@ -25,7 +25,8 @@ Dersom klienten er en nettleser (SPA-applikasjon) eller en native mobil-app må 
 såkalt [OpenId Connect implicit flow](https://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth) for å få opprettet et gyldig id-token for sluttbrukeren.
 Det finnes en [demo-applikasjon](https://atlas-docs.atlas.vegvesen.no/atlas-dokumentasjon/latest/for_utviklere/demoapplikasjon.html) (kun tilgjengelig i Statens vegvesens lokalnett) som illustrerer hvordan dette kan implementeres.  
 
-Ved realisering av denne typen autentiseringsflyt trenger klienten informasjon om token-utsteder m.m. Dette kan hentes fra endepunktet https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/client-config.
+Ved realisering av denne typen autentiseringsflyt trenger klienten informasjon om token-utsteder m.m. Dette kan hentes fra endepunktet https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/client-config/{realm},
+der {realm} er enten ```employee``` eller ```external```, avhengig av hvilken identity realm sluttbrukeren tilhører.
 
 #### Ikke web-baserte klienter
 
