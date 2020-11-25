@@ -264,6 +264,7 @@ Content-Type: application/xml; charset=UTF-8
   <transaksjon>
     <oppdragId>3466724</oppdragId>
     <tidspunkt>2016-09-20T09:12:46</tidspunkt>
+    <brukernavn>olanor</brukernavn>
     <objekttyper>
       <objekttype>
         <typeId>83</typeId>
