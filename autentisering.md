@@ -43,7 +43,7 @@ $ curl https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/authenticate \
   -H "Content-Type: application/json"    
 ```
 
-Requesten skal bruke tegnsettet UTF-8. Feltet ```realm``` angir brukerens identity realm (brukertype). Tillatte verdier er:
+Requesten skal bruke tegnsettet UTF-8. Feltet ```realm``` er valgfritt og angir brukerens identity realm (brukertype). Tillatte verdier er:
 
 Realm|Beskrivelse
 -|-
@@ -51,9 +51,14 @@ EMPLOYEE|Personlig bruker ansatt i Statens vegvesen
 SERVICE_ACCOUNT|Tjenestebruker
 EXTERNAL|Personlig ekstern bruker, ikke ansatt i Statens vegvesen
 
+Dersom feltet utelates benyttes realm ```EMPLOYEE```.
+
 Responsen fra /authenticate inneholder tre felt:
  
 ```json
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
 {  
   "idToken": "eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...", 
   "accessToken": "eyJ0eXAiOiJKV1QiLCJ6aXAiOiJOT05FIiwia2lkIjoia1d2OXpQbzVHbFFMamptQk5HR0FtYTJrUTJjPSIsImFsZyI6IlJTMjU2In0...",
@@ -68,9 +73,10 @@ JWT'en i feltet ```idToken``` skal brukes i Authorization-headere i requester ti
 Dersom autentisering mislykkes, f.eks. ved ugyldig brukernavn eller passord, indikeres dette med tomt objekt i responsen:
 
 ```json
-{  
-  
-}
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{ }
 ```
 
 ##### Fornyelse av id-token
@@ -84,9 +90,14 @@ $ curl https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/refresh \
   -H "Content-Type: application/json"    
 ```
 
+Feltet ```realm``` er valgfritt og angir brukerens identity realm ved autentisering (se over). Dersom feltet utelates benyttes realm ```EMPLOYEE```.
+
 Responsen fra /refresh inneholder to felt:
  
 ```json
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
 {  
   "idToken": "eyJ0eXAiOiJKV1QiLCJraWQiOiJrV3Y5elBvNUdsUUxqam1CTkdHQW1hMmtRMmM9IiwiYWxnIjoiUlMyNTYifQ...", 
   "accessToken": "eyJ0eXAiOiJKV1QiLCJ6aXAiOiJOT05FIiwia2lkIjoia1d2OXpQbzVHbFFMamptQk5HR0FtYTJrUTJjPSIsImFsZyI6IlJTMjU2In0..."
@@ -98,9 +109,10 @@ JWT'en i feltet ```idToken``` kan deretter brukes for en ny kort periode i requr
 Et refresh-token har noen timers varighet og fornying vil således før eller siden mislykkes. Responsen fra refresh-endepunktet indikerer dette ved å respondere med tomt objekt:
 
 ```json
-{  
-  
-}
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{ }
 ```
 
 #### Bruk av id-token
@@ -150,6 +162,9 @@ Requesten skal bruke tegnsettet UTF-8.
 Responsen fra /autentiser inneholder tre felt:
  
 ```json
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
 {  
   "status": true, 
   "token": "AQIC5wM2LY4SfcyhHz1Irgsf6pbxoeuY3k9XqvbRtB4-4No.*AAJTSQACMDIAAlNLABMzMDUyMTI1NzE2ODA4ODU0OTczAAJTMQACMDM.*",
@@ -175,6 +190,9 @@ $ curl https://aaa-api.atlas.vegvesen.no/validate \
 Responsen fra /validate forteller om tokenet fremdeles er gyldig og hvilket brukernavn dette gjelder for:
 
 ```json
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
 {  
   "valid": true, 
   "uid": "olanor", 
