@@ -189,6 +189,7 @@ VEGLENKESEKVENS_UGYLDIG_PÅ_TIDSPUNKT|Stedfestingen refererer til en veglenkesek
 STEDFESTET_PÅ_KONNEKTERINGSVEGLENKE|Stedfestingen har en posisjon/posisjonsintervall inne på en konnekteringsveglenke, men vegobjekttypen tillater ikke dette.
 STEDFESTET_PÅ_UGYLDIG_TOPOLOGINIVÅ|Stedfestingen refererer til en veglenkesekvens som representerer et topologinivå som vegobjekttypen ikke kan stedfestes på. De fleste vegobjekttype skal stedfestes på vegtrasénivå.
 FORENKLET_GEOMETRI|Geometriegenskapen ble forenklet ved at parvise nabopunkter som var for tette ble redusert til ett punkt.
+NORMALISERT_GEOMETRI|Geometriegenskapen ble angitt med enkelgeometri, men skal ha multigeometri. Verdien ble konvertert til multigeometri med ett element.
 IRREGULÆR_GEOMETRI|Geometriegenskaper er ikke topologisk velformet, f.eks. for få punkter eller polygon som krysser seg selv.
 GEOMETRI_MED_INKONSEKVENT_HØYDE|Geometriegenskapen har høyde-koordinat bare i noen punkter. Høyde, eller z-verdi, må angis i alle er ingen punkter.
 UGYLDIG_KVALITETSPARAMETER|Geometriegenskapen har en kvalitetsparameter med ugyldig verdi.
