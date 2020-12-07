@@ -53,6 +53,7 @@ Entitet av type [Stedfest](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfe
 I subelementet ```<parametere>``` kan det angis opplysninger som avgrenser eller gir hint om ønsket stedfesting:
 
 * ```<maksimumAvstandTilVeg>``` Angir hvor mange meter utenfor vegobjektgeometrien det skal søkes etter relevant vegnett (obligatorisk).
+* ```<beregnSideposisjon>``` Angir hvorvidt sideposisjon skal beregnes for stedfestingselementene. Standardverdi er ```false```.
 * ```<veger>``` angir en liste av veger som det er relevant å stedfeste på. Hvert innslag i listen beskrives med et ```<veg>``` -element som har følgende subelementer:
   * ```<kategori>``` angir vegkategori for vegen (obligatorisk). For lovlige verdier se [Vegkategori](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfest/vegkategori.xsd).
   * ```<fase>``` angir vegfase for vegen. For lovlige verdier se [Vegfase](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfest/vegfase.xsd).
@@ -72,6 +73,7 @@ X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 <stedfest xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
   <parametere>
     <maksimalAvstandTilVeg>100</maksimalAvstandTilVeg>
+    <beregnSideposisjon>false</beregnSideposisjon>
     <veger>
       <veg>
         <kategori>F</kategori>
