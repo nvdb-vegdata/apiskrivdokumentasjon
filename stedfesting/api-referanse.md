@@ -73,7 +73,6 @@ X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
 <stedfest xmlns="http://nvdb.vegvesen.no/apiskriv/domain/changeset/v3">
   <parametere>
     <maksimalAvstandTilVeg>100</maksimalAvstandTilVeg>
-    <beregnSideposisjon>false</beregnSideposisjon>
     <veger>
       <veg>
         <kategori>F</kategori>
@@ -86,7 +85,8 @@ X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
       <typeVeg>KANALISERT_VEG</typeVeg>
       <typeVeg>RAMPE</typeVeg>
       <typeVeg>RUNDKJØRING</typeVeg>
-    </typeVeger>        
+    </typeVeger>
+    <beregnSideposisjon>false</beregnSideposisjon>
   </parametere>
   <vegobjekter>
     <vegobjekt typeId="95" tempId="skiltpunkt#1">
