@@ -29,7 +29,7 @@ I denne fanen vises en oversikt over alle [låser](laaser/introduksjon.md) i NVD
 Lengst til venstre på hver linje i listen vises et slette-ikon, dersom brukeren har rettighet til å slette låsen. En bruker med rollen 0_bruker_fagdata, kan bare slette låser han/hun har etablert selv.
 En bruker med rollen 9_system_admin kan slette alle låser.
 
-Ved å klikke ett av innslagene i listen får man en detaljvisning av den valgte låsen. En **Fjern** lås-knapp er tilgjengelig dersom brukeren har tilstrekkelige roller for å slette låser.
+Ved å klikke ett av innslagene i listen får man en detaljvisning av den valgte låsen. En **Fjern lås**-knapp er tilgjengelig dersom brukeren har tilstrekkelige roller for å slette låser.
 
 ### Oppdrag
 
