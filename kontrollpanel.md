@@ -10,5 +10,5 @@ Kontrollpanel er NVDB API Skriv sin administrasjonsklient. Dette er en webapplik
 I applikasjonen kan man se på systemstatus, overvåke behandling av endringssett, undersøke sentrale data i NVDB, samt redigere tilgangsrettigheter og systeminnstillinger.
 Det siste er kun tilgjengelig for brukere med 9_system_admin-rollen.
 
-![Kontrollpanel](../assets/kontrollpanel.png "Kontrollpanel")
+![Kontrollpanel](./assets/kontrollpanel.png "Kontrollpanel")
 

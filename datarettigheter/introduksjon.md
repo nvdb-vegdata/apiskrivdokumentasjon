@@ -9,7 +9,7 @@ permalink: /datarettigheter/introduksjon
 
 Datarettigheter definerer hvilke vegobjekttyper (HVA) en bruker har rett til å manipulere og på hvilken del av vegnettet
 (HVOR) disse vegobjektene må være stedfestet for å kunne manipulere dem. Datarettigheter tildeles personlige brukere og
-tjenestebrukere av en API-administrator via [kontrollpanelet](kontrollpanel.md) til NVDB API Skriv. API-administratorer har automatisk
+tjenestebrukere av en API-administrator via [kontrollpanelet](../kontrollpanel.md) til NVDB API Skriv. API-administratorer har automatisk
 alle datarettigheter.
 
 NVDB API Skriv tilbyr et endepunkt for å hente datarettighetene en bruker er tildelt. Endepunktet kan f.eks. brukes

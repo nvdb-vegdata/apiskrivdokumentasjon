@@ -75,7 +75,7 @@ samme forløp som i sekvensdiagrammet over.
 
 Arbeidsflytens kompleksitet krever at klienter som integrerer med NVDB API Skriv må realisere en form for porteføljeovervåking som gjør det enkelt
 for brukeren å følge med på behandlingen av sine endringssett og inspisere behandingsresultatet dersom noen ble avvist. I sin enkleste form
-kan en slik porteføljeovervåking realiseres som en lenke til endringssettet i NVDB API Skriv sitt [Kontrollpanel](kontrollpanel.md):
+kan en slik porteføljeovervåking realiseres som en lenke til endringssettet i NVDB API Skriv sitt [Kontrollpanel](../kontrollpanel.md):
 /nvdb/apiskriv/kontrollpanel/#/jobs/view/{id}
 
 ### Koder for behandlingsfremdrift
