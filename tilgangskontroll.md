@@ -8,7 +8,7 @@ permalink: /tilgangskontroll
 
 Tilgangskontroll eller autorisasjon i NVDB API Skriv reguleres i to nivåer: endepunktsnivå og datanivå. En request med
 godkjent autentiseringstoken autoriseres basert på de rollene brukeren har i Statens vegvesens LDAP-register og mer
-finkornede datarettigheter tildelt via Kontrollpanelet til NVDB API Skriv.
+finkornede datarettigheter tildelt via [kontrollpanelet](kontrollpanel.md) til NVDB API Skriv.
 
 ### Tilgang til endepunkter og ressurser
 
@@ -44,7 +44,7 @@ stedfestet for å kunne manipulere dem. Sistnevnte defineres ved hjelp av følge
 * Vegkategorier (Europaveg, riksveg, fylkesveg osv.)
 * Typer veg (Kanalisert veg, enkel bilveg, rampe, rundkjøring osv.)
 
-Datarettigheter tildeles personlige brukere og tjenestebrukere av en API-administrator via Kontrollpanelet til NVDB API Skriv.
+Datarettigheter tildeles personlige brukere og tjenestebrukere av en API-administrator via [kontrollpanelet](kontrollpanel.md) til NVDB API Skriv.
 API-administratoren selv har automatisk alle datarettigheter.
 
 Dersom et endringssett manipulerer vegobjekter av en type eller i et område brukeren ikke har datarettigheter til blir det avvist under

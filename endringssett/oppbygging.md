@@ -1051,5 +1051,5 @@ med det nye/endrede vegobjektet. Direktivet er valgfritt og standardinnstilling 
 Subelementet ```<reduserPunkttetthet>``` brukes ved registrering, korrigering eller oppdatering. NVDB API Skriv vil normalt
 avvise for tette punkter i geometriegenskaper. Ved å angi ```JA``` for dette direktivet vil punkter som er for tette opp til
 nabopunkter bli fjernet automatisk. Hvor tette to nabopunkter tillates å være reguleres av valideringsinnstillinger i 
-NVDB API Skriv sitt Kontrollpanel. Dersom punktreduksjon utføres varsles dette med notabene i endringssettets [behandlingsresultat](behandlingsresultat.md).
+NVDB API Skriv sitt [kontrollpanel](kontrollpanel.md). Dersom punktreduksjon utføres varsles dette med notabene i endringssettets [behandlingsresultat](behandlingsresultat.md).
 Direktivet er valgfritt og standardinnstilling er ```NEI```.

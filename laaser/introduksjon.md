@@ -24,7 +24,7 @@ Når det skal etableres låser underveis i behandlingen av et endringssett, kan 
 Behandlingen kan da ikke fortsette før de blokkerende låsene er borte. I denne situasjonen havner endringssettet midlertidig i status VENTER med venteårsak VENTER_PÅ_LÅS.
 NVDB API Skriv vil automatisk gjenoppta behandlingen etter en liten pause. Dersom de blokkerende låsene ennå ikke har forsvunnet, gjentas denne syklusen med stadig lengre ventetid
 mellom hvert forsøk. Dersom man opplever at et endringssett blokkeres urimelig lengde, det vil si en uke eller mer, kan brukeren finne ut hvem som eier de blokkerende låsene ved å gå
-inn på detaljvisningen for endringssettet i Kontrollpanelet. Eieren bør da kontaktes og vedkommende vil kunne avgjøre om låsene er "avglemt" og kan fjernes, eller om de må leve videre inntil han/hun er
+inn på detaljvisningen for endringssettet i [kontrollpanelet](kontrollpanel.md). Eieren bør da kontaktes og vedkommende vil kunne avgjøre om låsene er "avglemt" og kan fjernes, eller om de må leve videre inntil han/hun er
 ferdig med databearbeidingen og kan sjekke dem inn i NVDB. Langlevde låser har som nevnt oftest opphav i gamle klienter som bruker klassisk API. Når disse etter hvert migreres over
 til NVDB API Skriv, vil blokkerende låser bli et mindre problem.
 
