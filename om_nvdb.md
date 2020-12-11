@@ -1,6 +1,6 @@
 ---
 title: Om NVDB
-order: 7
+order: 8
 permalink: /om-nvdb
 ---
 
@@ -17,13 +17,13 @@ Vegobjekter, som stedfestes til vegnettet, er den andre viktige delen av NVDB. D
 Eksempler på vegobjekttyper:
 
 * Fartsgrense
-*  Trafikkmengde
-*  Trafikkulykke
-*  Skiltplate
-*  Rekkverk
-*  Belysningspunkt
-*  Tunnel
-*  Bomstasjon
+* Trafikkmengde
+* Trafikkulykke
+* Skiltplate
+* Rekkverk
+* Belysningspunkt
+* Tunnel
+* Bomstasjon
 
 Vegobjekttypene kan deles inn i to kategorier:
 
@@ -86,13 +86,13 @@ Et vegobjekt har egenskaper med tilhørende verdier. Hver egenskapstype er angit
 }
 ```
 
-Datakatalogen inneholder informasjon om blant annet egenskapstypene datatype, for eksempel _tekst_, _tall_ eller _enum_. For egenskapstyper av type enum er det definert et sett av tillatte verdier.
+Datakatalogen inneholder informasjon om blant annet egenskapstypenes datatype, for eksempel _tekst_, _tall_ eller _enum_. For egenskapstyper av datatype enum er det definert et sett av tillatte verdier.
 
 #### Koordinater
 
 Et vegobjekt er koordinatfestet, som gjør at det kan vises på kart. Dette kan være enten punkt-, linje- eller flategeometri. Koordinatene er lagret i projeksjonen UTM33 i NVDB-databasen, men det er også mulig å hente WGS84-koordinater gjennom NVDB API Les.
 
-De fleste vegobjekter har en geometri som er utledet fra vegnettet, og er derfor plassert langs vegens senterlinje. Egengeometri blir mer og mer utbredt. Om et objekt har egengeometri eller ikke, er eksplisitt angitt i responsen fra NVDB API Les.
+De fleste vegobjekter har en geometri som er utledet fra vegnettet, og er derfor plassert langs vegens senterlinje. Egengeometri blir imidlertid mer og mer utbredt. Om et vegobjekt har egengeometri eller ikke, er eksplisitt angitt i responsen fra NVDB API Les.
 
 ```json
 { "geometri": "POINT Z (271441.3500267718 7039309.464531345, 0)" }
@@ -101,7 +101,8 @@ De fleste vegobjekter har en geometri som er utledet fra vegnettet, og er derfor
 
 #### Stedfesting til vegnettet
 
-Et vegobjekt er stedfestet til vegnettets lenke-node-struktur. Et punktobjekt er entydig stedfestet med en veglenkesekvens-id + en relativ posisjon på veglenkesekvensen mellom 0 og 1\. Strekningsobjekter stedfestes med en eller flere veglenkesekvenssegmenter, definert av veglenkesekvens-id og fra- og til-posisjon. Det kan også angis egenskaper for stedfestingen: Sideposisjon, kjørefelt og retning.
+Et vegobjekt er stedfestet til vegnettets lenke-node-struktur. Et punktobjekt er entydig stedfestet med en veglenkesekvens-id + en relativ posisjon på veglenkesekvensen mellom 0 og 1.
+Strekningsobjekter stedfestes med en eller flere veglenkesekvenssegmenter, definert av veglenkesekvens-id og fra- og tilposisjon. Det kan også angis egenskaper for stedfestingen: Sideposisjon, kjørefelt og retning.
 
 Veglenkesekvensposisjonen er først og fremst nyttig for de som har bruk for objektets posisjon på det topologiske vegnettet.
 
