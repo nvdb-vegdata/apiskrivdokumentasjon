@@ -23,11 +23,11 @@ PROD|Produksjonsdrift|<https://nvdbapiskriv.atlas.vegvesen.no/generator>
 
 ### Test case
 
-Panelet til venstre viser en liste over forhåndsdefinerte test cases. Et test case består av et endringssett og en samling suksesskriterier ([asserts](https://en.wikipedia.org/wiki/Assertion_(software_development)))
+Panelet til venstre viser en liste over forhåndsdefinerte test cases. Et test case består av et [endringssett](endringssett/introduksjon.md) og en samling suksesskriterier ([asserts](https://en.wikipedia.org/wiki/Assertion_(software_development)))
 som beskriver forventet innhold i behandlingsresultatet etter at endringssettet har gått gjennom NVDB API Skriv.
 
 Listen kan filtreres ved å angi søkeord i redigeringsfeltet over. I tillegg kan man velge mellom XML- og JSON-format på endringssettene. NVDB API Skriv støtter fortsatt versjon 2 av endringssettformatet og dette kan aktiveres med en egen
-nedtrekksmeny. Antall test case for versjon 2 er betydelig mindre enn for versjon 3, fordi støtte for vegnett først ble introdusert i siste versjon.
+nedtrekksmeny. Antall test case for versjon 2 er imidlertid betydelig mindre enn for versjon 3 siden støtte for vegnett først ble introdusert i siste versjon.
 
 ### Kjøring
 
@@ -40,15 +40,16 @@ Endringssettet sendes inn i kontekst av den brukeren som åpnet Generator-applik
 
 Redigeringsfeltet som heter *Forsinkelse* brukes til å angi antall sekunder NVDB API Skriv skal vente etter at behandlingen av endringssettet er ferdig og før det effektueres til NVDB. Feltet brukes primært i forbindelse med feilsøk.
 
-Avkrysningsboksen **Prøvekjøring** angir om endringssettet skal behandles i såkalt *dry run-modus*, det vil si uten at det gjennomføres databasetransaksjoner mot NVDB.
+Avkrysningsboksen **Prøvekjøring** angir om endringssettet skal behandles i såkalt *dry run*-modus, det vil si uten at det gjennomføres databasetransaksjoner mot NVDB. Denne skal som hovedregel være avkrysset. NB! Uten avkrysning vil et gyldig
+endringssett bli fullstendig behandlet og NVDB blir oppdatert.
 
 ### Redigering
 
 Ved å klikke **Rediger** kan man gjøre endringer i det aktive endringssettet. For å tilbakestille til opprinnelig endringssett klikker man **Nullstill**.
 
-Dersom man vil prøve ut et helt nytt endringssett uten å redigere test casene kan man aktivere Kladd øverst i test case-listen.
+Dersom man vil prøve ut et helt nytt endringssett uten å redigere test casene kan man aktivere *Kladd* øverst i test case-listen.
 
 ### Øvrige funksjoner
 
-Ved å klikke **SQL**-knappen for et test case med gyldig endringssett (uten valideringsfeil) får man generert SQL-setningen(e) som må til for å oppdatere NVDB i tråd med operasjonene i endringssettet. Merk at det er kun innholdet i endringssettet
-som "oversettes" til SQL. Eventuelle følgeoppdateringer som normalt legges til endringssettet under behandling er ikke med.
+Ved å klikke **SQL**-knappen for et test case med gyldig endringssett (uten valideringsfeil) får man generert [SQL](https://en.wikipedia.org/wiki/SQL)-setningen(e) som må til for å oppdatere NVDB i tråd med operasjonene i endringssettet.
+Merk at det er kun innholdet i endringssettet som "oversettes" til SQL. Eventuelle følgeoppdateringer som normalt legges til endringssettet under behandling er ikke med.
