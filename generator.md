@@ -11,5 +11,13 @@ I applikasjonen kan man sende inn forhåndsdefinerte test case, observere arbeid
 
 ![Generator](./assets/generator.png "Generator")
 
+Generator er tilgjengelig på følgende URLer:
+
+Miljø|Formål|Basis-URL
+-|-|-
+STM|Systemtesting|[https://nvdbapiskriv-stm.utv.atlas.vegvesen.no/generator]()
+ATM|Akseptansetesting|[https://nvdbapiskriv.test.atlas.vegvesen.no/generator]()
+PROD|Produksjonsdrift|[https://nvdbapiskriv.atlas.vegvesen.no/generator]()
+
 ### Test case
 

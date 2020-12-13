@@ -11,6 +11,14 @@ I applikasjonen kan man se på systemstatus, overvåke behandling av endringsset
 
 ![Kontrollpanel](./assets/kontrollpanel.png "Kontrollpanel")
 
+Kontrollpanel er tilgjengelig på følgende URLer:
+
+Miljø|Formål|Basis-URL
+-|-|-
+STM|Systemtesting|[https://nvdbapiskriv-stm.utv.atlas.vegvesen.no/kontrollpanel]()
+ATM|Akseptansetesting|[https://nvdbapiskriv.test.atlas.vegvesen.no/kontrollpanel]()
+PROD|Produksjonsdrift|[https://nvdbapiskriv.atlas.vegvesen.no/kontrollpanel]()
+
 Ved å klikke på elementene i den horisontale menyen øverst i skjermbildet aktiveres ulike faner.
 
 ### Endringssett
