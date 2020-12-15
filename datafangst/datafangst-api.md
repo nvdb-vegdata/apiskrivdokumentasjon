@@ -371,6 +371,11 @@ Det er den samme strukturen som brukes, men det er noe variasjon i hvilke proper
 
 For eksisterende vegobjekter er det valgfritt å oppgi "geometry"-elementet. Hvis dette ikke oppgis brukes geometri fra NVDB, og hvis "geometry" er oppgitt vil den erstatte eksisterende geometri i NVDB når vegobjektet sendes inn til NVDB.
 
+#### Geometri
+Definisjon av geometri følger GeoJSON-standarden, men type geometri må være en type som er tillatt for vegobjekttypen i henhold til Datakatalogen. 
+
+Datafangst har tidligere godtatt import av multigeometrier der Datakatalogen bare spesifiserer enkeltgeometrier, men dette vil bli avvist som valideringsfeil fra desember 2020 eller januar 2021.
+
 #### Properties
 
 Følgende egenskaper kan defineres under "properties" i et geoJson-objekt.
@@ -382,7 +387,7 @@ i feilmeldinger fra API.
 
 
 ##### dataCatalogVersion
-Hvilken versjon av Datakatalogen som er brukt som grunnlag ved opprettelse av objektet. Siste versjonsnummer
+Hvilken versjon av som er brukt som grunnlag ved opprettelse av objektet. Siste versjonsnummer
 finner man på https://nvdbapiles-v3.atlas.vegvesen.no/status.json. 
 Datakatalog-definisjoner er tilgjengelige på https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekttyper/{typeId}.json 
 og http://labs.vegdata.no/nvdb-datakatalog.
