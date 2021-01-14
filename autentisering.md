@@ -232,4 +232,4 @@ Miljø|URL
 STM|https://aaa-api.utv.atlas.vegvesen.no/autentiser
 ATM|https://aaa-api.test.atlas.vegvesen.no/autentiser
 PROD|https://aaa-api.atlas.vegvesen.no/autentiser
-Docker|http://localhost:8010/ws/no/vegvesen/ikt/sikkerhet/aaa/autentiser
+Docker|http://localhost:8010/aaa-api/autentiser

@@ -50,7 +50,7 @@ X-Request-ID|UUID|Angir unik korrelasjonsidentifikator for requesten.
 
 Entitet av type [Stedfest](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfest/stedfest.xsd).
 
-I subelementet ```<parametere>``` kan det angis opplysninger som avgrenser eller gir hint om ønsket stedfesting:
+I subelementet ```<parametere>``` kan det angis opplysninger som avgrenser eller gir hint om ønsket stedfesting. Hvert subelement er vagfritt, med mindre noe annet er angitt:
 
 * ```<maksimumAvstandTilVeg>``` Angir hvor mange meter utenfor vegobjektgeometrien det skal søkes etter relevant vegnett (obligatorisk).
 * ```<beregnSideposisjon>``` Angir hvorvidt sideposisjon skal beregnes for stedfestingselementene. Standardverdi er ```false```.
@@ -59,6 +59,10 @@ I subelementet ```<parametere>``` kan det angis opplysninger som avgrenser eller
   * ```<fase>``` angir vegfase for vegen. For lovlige verdier se [Vegfase](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfest/vegfase.xsd).
   * ```<nummer>``` angir vegnummer for vegen.
 * ```<typeVeger>``` angir en liste over type veger som det er relevant å stedfeste på. Hvert innslag i listen beskrives med et ```<typeVeg>``` -element med lovlige verdier fra [TypeVeg](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfest/typeveg.xsd).
+* ```<forankring>``` angir forankringspunkter som stedfestingen skal ta utgangstpunkt i stedet for vegobjektgeometriene. Elementet har følgende subelementer:
+  * ```<srid>``` angir koordinatreferansesystem for ankerpunktene (obligatorisk).
+  * ```<startWkt>``` angir geometrisk ankerpunkt (f.eks. "POINT (123 456)") for starten på ønsket stedfesting (obligatorisk). Punktet må befinne seg i rimelig nærhet til ønsket veg.
+  * ```<sluttWkt>``` angir geometrisk ankerpunkt for slutten på ønsket stedfesting (obligatorisk dersom vegobjekttypen krever strekningsstedfesting). Punktet må befinne seg i rimelig nærhet til ønsket veg. 
 
 ##### Eksempel
 
@@ -87,6 +91,10 @@ X-Request-ID: edf1f9eb-38dd-46e3-a250-52b810277b18
       <typeVeg>RUNDKJØRING</typeVeg>
     </typeVeger>
     <beregnSideposisjon>false</beregnSideposisjon>
+    <forankring>
+      <srid>5973</srid>srid>
+      <startWkt>POINT (270195 7041859)</startWkt>
+    </forankring>
   </parametere>
   <vegobjekter>
     <vegobjekt typeId="95" tempId="skiltpunkt#1">
