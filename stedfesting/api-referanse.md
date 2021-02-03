@@ -59,7 +59,7 @@ I subelementet ```<parametere>``` kan det angis opplysninger som avgrenser eller
   * ```<fase>``` angir vegfase for vegen. For lovlige verdier se [Vegfase](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfest/vegfase.xsd).
   * ```<nummer>``` angir vegnummer for vegen.
 * ```<typeVeger>``` angir en liste over type veger som det er relevant å stedfeste på. Hvert innslag i listen beskrives med et ```<typeVeg>``` -element med lovlige verdier fra [TypeVeg](https://nvdbapiskriv.atlas.vegvesen.no/rest/v3/stedfest/typeveg.xsd).
-* ```<forankring>``` angir forankringspunkter som stedfestingen skal ta utgangstpunkt i stedet for vegobjektgeometriene. Elementet har følgende subelementer:
+* ```<forankring>``` angir forankringspunkter som stedfestingen skal ta utgangspunkt i i stedet for vegobjektgeometriene. Elementet har følgende subelementer:
   * ```<srid>``` angir koordinatreferansesystem for ankerpunktene (obligatorisk).
   * ```<startWkt>``` angir geometrisk ankerpunkt (f.eks. "POINT (123 456)") for starten på ønsket stedfesting (obligatorisk). Punktet må befinne seg i rimelig nærhet til ønsket veg.
   * ```<sluttWkt>``` angir geometrisk ankerpunkt for slutten på ønsket stedfesting (obligatorisk dersom vegobjekttypen krever strekningsstedfesting). Punktet må befinne seg i rimelig nærhet til ønsket veg. 
