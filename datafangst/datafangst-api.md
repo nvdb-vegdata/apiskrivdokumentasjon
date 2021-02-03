@@ -429,7 +429,7 @@ samt andre eksisterende attributter fra NVDB dersom objektet har andre attributt
 innsendingen. Det er altså kun endringer som skal oppgis her.
 
 
-##### geometryAttributtes
+##### geometryAttributes
 
 En egen struktur som beskriver kvalitet og andre egenskaper for geometri. Denne bør oppgis ved ny eller endret geometri.
 
