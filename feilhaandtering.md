@@ -25,6 +25,7 @@ HTTP-status|Typiske årsaker
 406&nbsp;NOT&nbsp;ACCEPTABLE|Ressursen kan ikke leveres i den [media-type](http://www.iana.org/assignments/media-types/media-types.xhtml) som requesten ber om i Accept-headeren
 415&nbsp;UNSUPPORTED&nbsp;MEDIA&nbsp;TYPE|Requestens payload har ikke gyldig format
 422&nbsp;UNPROCESSABLE&nbsp;ENTITY|Requestens payload er velformet, men kan ikke behandles på grunn av semantiske feil
+429&nbsp;TOO&nbsp;MANY&nbsp;REQUESTS|Klienten har sent for mange requester i løpet av en periode ("rate limiting").
 500&nbsp;INTERNAL&nbsp;SERVER&nbsp;ERROR|Behandling av requesten ble avbrutt av en uventet hendelse, vanligvis en programfeil i NVDB API Skriv
 
 ### Feilmeldinger
