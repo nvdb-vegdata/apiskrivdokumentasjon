@@ -24,12 +24,16 @@ i webgrensesnittet.
 
 Se beskrivelse per operasjon for hvilken status som angir vellykket innsending.
 
-Ved feilsituasjoner vil du kunne få følgende status-responser:
+Ved feilsituasjoner vil du kunne få følgende HTTP status-responser:
 
-* 404: Alle operasjoner returnerer med 404 Not found dersom objektet med den oppgitte id ikke finnes. 
-* 401: Om brukeren ikke er innlogget returneres 401 unauhtorized
-* 403: Om brukeren ikke har tilgang til kontrakten returneres 403 Forbidden. 
-* 400: Dersom innsendt payload ikke er velformet geoJSON vil 400 Bad request bli returnert. 
+* 400: Dersom innsendt payload ikke er velformet geoJSON eller ved andre problemer med parametre vil "400 Bad request" bli returnert. 
+* 401: Om brukeren ikke er innlogget returneres "401 unauhtorized".
+* 403: Om brukeren ikke har tilgang til kontrakten returneres "403 Forbidden". 
+* 404: Alle operasjoner returnerer med "404 Not found" dersom objektet med den oppgitte id ikke finnes. 
+* 405: Feilkode hvis man forsøker å legge til eller erstatte featurecollection som ikke er opprettet fra API.
+* 409: Feilkode hvis en featurecollection ikke kan oppdateres fordi en tidligere oppdatering ikke er ferdigbehandlet. Applikasjonen bør prøve oppdatering igjen etter en liten pause.
+* 413: Innsendt featureCollection er større en største tillatte størrelse. Del opp innsending og prøv igjen.
+* 500: Intern serverfeil. Bør rapporteres, med eksempel på request som utløser feilen.
 
 **Forespørsler:**
 
