@@ -43,7 +43,9 @@ $ curl https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/authenticate \
   -H "Content-Type: application/json"    
 ```
 
-Requesten skal bruke tegnsettet UTF-8. Feltet ```realm``` er valgfritt og angir brukerens identity realm (brukertype). Tillatte verdier er:
+Requesten skal bruke tegnsettet UTF-8. Implementasjonen av OIDC i Docker-imaget gir vellykket autentisering når brukernavnet er identisk med passordet.
+
+Feltet ```realm``` er valgfritt og angir brukerens identity realm (brukertype). Tillatte verdier er:
 
 Realm|Beskrivelse
 -|-
@@ -137,6 +139,7 @@ Miljø|URL
 STM|https://nvdbapiskriv-stm.utv.atlas.vegvesen.no/rest/v1/oidc/{operasjon}
 ATM|https://nvdbapiskriv.test.atlas.vegvesen.no/rest/v1/oidc/{operasjon}
 PROD|https://nvdbapiskriv.atlas.vegvesen.no/rest/v1/oidc/{operasjon}
+Docker|http://localhost:8010/nvdb/apiskriv/rest/v1/oidc/{operasjon}
 
 Operasjon kan være ```authenticate```, ```refresh``` eller ```client-config```.
 
@@ -157,7 +160,7 @@ $ curl https://aaa-api.atlas.vegvesen.no/autentiser \
   -d "{'username': 'olanor', 'password': 'hemmelig'}" \
   -H "Content-Type: application/json"    
 ```
-Requesten skal bruke tegnsettet UTF-8.
+Requesten skal bruke tegnsettet UTF-8. Implementasjonen av AAA i Docker-imaget gir vellykket autentisering når brukernavnet er identisk med passordet. 
 
 Responsen fra /autentiser inneholder tre felt:
  
