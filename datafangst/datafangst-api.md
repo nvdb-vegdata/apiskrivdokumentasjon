@@ -118,6 +118,32 @@ Payload med vegobjekttyper som er med i objektlista til angitt kontrakt.
 
 ---
 
+#### Hent objekter
+Henter alle vegobjekter i en kontrakt med en gitt destinasjon.
+
+##### Mønster
+```
+GET /api/v1/contract/{contractId}/objects
+```
+
+##### Forespørsel
+Eksempel
+```
+GET /api/v1/contract/52fbcce9-ccb9-4f50-8bcd-0047f85038e8/objects?destination=NVDB HTTP/1.1
+Host: datafangst.vegvesen.no
+Authorization: Basic *********
+```
+
+Request-parameteret `destination` brukes for å angi om man vil hente ut data som skal til NVDB eller FKB. Dersom parameteret ikke er angitt vil vegobjekter med destinasjon NVDB returneres.
+
+##### Respons
+````
+HTTP/1.1 200 OK
+````
+Payload med feature collection som inneholder alle vegobjekter i kontrakten med angitt destinasjon.
+
+---
+
 ### Feature Collection
 
 #### Hent feature collections for kontrakt
