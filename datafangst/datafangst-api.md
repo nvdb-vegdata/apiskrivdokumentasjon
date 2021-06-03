@@ -129,7 +129,7 @@ Henter oppgitt feature collection
  
 ##### Mønster
  ```
- GET /api/v1/contract/{contractId}/featurecollection/{collectionId}
+ GET /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}
  ```
  
 ##### Forespørsel
@@ -182,7 +182,7 @@ Erstatt den oppgitte feature collection
  
 ##### Mønster
  ```
-PUT /api/v1/contract/{contractId}/featurecollection/{collectionId}
+PUT /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}
  ```
  
 ##### Forespørsel
@@ -209,7 +209,7 @@ Hent prosesseringsstatus for innsendt feature collection.
  
 ##### Mønster
  ```
-GET /api/v1/contract/{contractId}/featurecollection/{collectionId}/status
+GET /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/status
  ```
  
 ##### Forespørsel
