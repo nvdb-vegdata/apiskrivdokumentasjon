@@ -59,7 +59,7 @@ GET /api/v1/contract
 Eksempel
 ```
 GET /api/v1/contract HTTP/1.1
-Host: datafangst.kantega.no
+Host: datafangst.vegvesen.no
 Authorization: Basic *********
 ```
 ##### Respons
@@ -82,7 +82,7 @@ GET /api/v1/contract/{contractId}
 Eksempel
 ```
 GET /api/v1/contract/52fbcce9-ccb9-4f50-8bcd-0047f85038e8 HTTP/1.1
-Host: datafangst.kantega.no
+Host: datafangst.vegvesen.no
 Authorization: Basic *********
 ```
 ##### Respons
@@ -113,7 +113,7 @@ FeatureCollections i kontrakt
 Eksempel
  ```
  GET /api/v1/contract/52fbcce9-ccb9-4f50-8bcd-0047f85038e8/featurecollection HTTP/1.1
- Host: datafangst.kantega.no
+ Host: datafangst.vegvesen.no
  Authorization: Basic *********
  ```
 ##### Respons
@@ -136,7 +136,7 @@ Henter oppgitt feature collection
 Eksempel
  ```
 GET /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/fc7b536b-eba2-47a3-82d4-4ae3a0f59883 HTTP/1.1
-Host: datafangst.kantega.no
+Host: datafangst.vegvesen.no
 Authorization: Basic *********
  ```
 ##### Respons
@@ -162,7 +162,7 @@ Payload med feature collection som  [geoJSON](#format)
  Eksempel
   ```
  POST /api/v1/contract/52fbcce9-ccb9-4f50-8bcd-0047f85038e8/featurecollection HTTP/1.1
- Host: datafangst.kantega.no
+ Host: datafangst.vegvesen.no
  Content-Type: application/geo+json
  Authorization: Basic *********
   ```
@@ -189,7 +189,7 @@ PUT /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}
 Eksempel
  ```
 PUT /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/fc7b536b-eba2-47a3-82d4-4ae3a0f59883 HTTP/1.1
-Host: datafangst.kantega.no
+Host: datafangst.vegvesen.no
 Content-Type: application/geo+json
 Authorization: Basic *********
 ```
@@ -216,7 +216,7 @@ GET /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/status
 Eksempel
  ```
 GET /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/fc7b536b-eba2-47a3-82d4-4ae3a0f59883/status HTTP/1.1
-Host: datafangst.kantega.no
+Host: datafangst.vegvesen.no
 Authorization: Basic *********
 ```
 
@@ -243,7 +243,7 @@ GET /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/featur
 Eksempel
  ```
 GET /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/feature/52073785-7f8f-4746-9607-6e70e6d8651e HTTP/1.1
-Host: datafangst.kantega.no
+Host: datafangst.vegvesen.no
 Authorization: Basic *********
 ```
 
@@ -267,7 +267,7 @@ POST /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/featu
 Eksempel
  ```
 POST /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/feature/ HTTP/1.1
-Host: datafangst.kantega.no
+Host: datafangst.vegvesen.no
 Content-Type: application/geo+json
 Authorization: Basic *********
 ```
@@ -294,7 +294,7 @@ PUT /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/featur
 Eksempel
  ```
 PUT /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/feature/52073785-7f8f-4746-9607-6e70e6d8651e HTTP/1.1
-Host: datafangst.kantega.no
+Host: datafangst.vegvesen.no
 Content-Type: application/geo+json
 Authorization: Basic *********
 ```
@@ -321,7 +321,7 @@ DELETE /api/v1/contract/{contractId}/featurecollection/{featurecollectionid}/fea
 Eksempel
  ```
 Delete /api/v1/contract/e853091c-5eef-4879-9352-a384c1ea68f4/featurecollection/feature/52073785-7f8f-4746-9607-6e70e6d8651e HTTP/1.1
-Host: datafangst.kantega.no
+Host: datafangst.vegvesen.no
 Authorization: Basic *********
 ```
 
