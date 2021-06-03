@@ -93,6 +93,31 @@ Payload med informasjon om kontrakten
 
 ---
 
+#### Hent objektliste
+Henter objektliste.
+
+##### Mønster
+```
+GET /api/v1/contract/{contractId}/objectlist
+```
+
+##### Forespørsel
+Eksempel
+```
+GET /api/v1/contract/52fbcce9-ccb9-4f50-8bcd-0047f85038e8/objectlist?destination=FKB HTTP/1.1
+Host: datafangst.vegvesen.no
+Authorization: Basic *********
+```
+
+Request-parameteret `destination` brukes for å angi om man vil hente ut NVDB-objektliste eller FKB-objektliste. Dersom parameteret ikke er angitt vil NVDB-objektliste returneres.
+##### Respons
+````
+HTTP/1.1 200 OK
+````
+Payload med vegobjekttyper som er med i objektlista til angitt kontrakt.
+
+---
+
 ### Feature Collection
 
 #### Hent feature collections for kontrakt
