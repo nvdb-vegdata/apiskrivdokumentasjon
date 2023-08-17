@@ -4,6 +4,23 @@ title: Datafangst-API
 order: 2
 permalink: /datafangst/datafangst-api
 ---
+
+## Nye datafangst 
+
+En helt ny versjon av Datafangst (Datafangst 2.0) er lansert, totalt nyskrevet fra scratch. Denne versjonen er p.t. (per august 2023) IKKE 
+klar til å overta alle produksjonsoppgaver, men interesserte kan prøve ut ny arbeidsflyt med reelle produksjonsdata. 
+Hvis man holder seg innenfor løsningens begrensninger (f.eks små datasett) så fungerer den nye løsningen bra. For eksempel kan man 
+laste opp små datasett med nye objekt, gjøre  stedfesting til vegnett, opprette relasjoner (kalt sammenkobling) og lagre til NVDB. 
+
+Den nye løsningen, inklusive API dokumentasjon (swagger) er beskrevet her: https://nvdb.atlas.vegvesen.no/docs/produkter/datafang/
+
+Både brukerdokumentasjon og API dokumentasjon er p.t. noe uferdig, men vil raskt bli bedre. 
+
+Den nye løsningen er under aktiv utvikling og vil få mere funksjonalitet,  bli mer robust mot datafeil i NVDB og en hel rekke andre ting. 
+
+Lenke til nye Datafangst: https://datafangst.atlas.vegvesen.no/ 
+
+Resten av dette dokumenet beskriver Datafangst 1.0, som fremdeles har hovedtyngden av produksjonsoppgaver. 
  
 ## Datafangst-API
 Datafangst har et API som støtter [geoJSON-formatet](#format).
