@@ -5,6 +5,13 @@ order: 1
 permalink: /stedfesting/introduksjon
 ---
 
+# Nytt endepunkt for [NVDB api SKRIV dokumentasjon](https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv)
+
+NVDB api SKRIV V3 dokumentasjon er flyttet til [https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv](https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv)
+
+API'et blir jo aktivt vedlikeholdt og videreutviklet, så vi anbefaler sterkt at dere legger om til den nyeste versjonen av dokumentasjonen. 
+
+
 ## Introduksjon til stedfesting [BETA]
 
 NVDB API Skriv tilbyr et endepunkt for å generere gyldig punkt- eller strekningsstedfesting for vegobjekter.

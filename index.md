@@ -3,6 +3,12 @@ title: Oversikt
 order: 1
 ---
 
+# Nytt endepunkt for [NVDB api SKRIV dokumentasjon](https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv)
+
+NVDB api SKRIV V3 dokumentasjon er flyttet til [https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv](https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv)
+
+API'et blir jo aktivt vedlikeholdt og videreutviklet, så vi anbefaler sterkt at dere legger om til den nyeste versjonen av dokumentasjonen. 
+
 ## Oversikt
 
 NVDB API Skriv eksponerer et sett med REST-baserte endepunkter for registrering og vedlikehold av data i

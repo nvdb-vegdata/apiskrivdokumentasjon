@@ -4,6 +4,13 @@ order: 8
 permalink: /om-nvdb
 ---
 
+# Nytt endepunkt for [NVDB api SKRIV dokumentasjon](https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv)
+
+NVDB api SKRIV V3 dokumentasjon er flyttet til [https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv](https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv)
+
+API'et blir jo aktivt vedlikeholdt og videreutviklet, så vi anbefaler sterkt at dere legger om til den nyeste versjonen av dokumentasjonen. 
+
+
 ## Om NVDB
 
 For å kunne ta i bruk NVDB API Skriv på en effektiv måte, er det en fordel å ha kunnskap om hvordan NVDBs datamodell er bygd opp.

@@ -5,6 +5,13 @@ order: 1
 permalink: /laaser/introduksjon
 ---
 
+# Nytt endepunkt for [NVDB api SKRIV dokumentasjon](https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv)
+
+NVDB api SKRIV V3 dokumentasjon er flyttet til [https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv](https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv)
+
+API'et blir jo aktivt vedlikeholdt og videreutviklet, så vi anbefaler sterkt at dere legger om til den nyeste versjonen av dokumentasjonen. 
+
+
 ## Introduksjon til låser
 
 En _lås_ er et objekt i NVDB som indikerer at en prosess jobber med spesifikke vegobjekttyper og/eller deler av vegnettet.

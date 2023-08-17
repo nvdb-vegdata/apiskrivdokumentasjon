@@ -5,6 +5,13 @@ order: 1
 permalink: /datarettigheter/introduksjon
 ---
 
+# Nytt endepunkt for [NVDB api SKRIV dokumentasjon](https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv)
+
+NVDB api SKRIV V3 dokumentasjon er flyttet til [https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv](https://nvdb.atlas.vegvesen.no/docs/category/nvdb-api-skriv)
+
+API'et blir jo aktivt vedlikeholdt og videreutviklet, så vi anbefaler sterkt at dere legger om til den nyeste versjonen av dokumentasjonen. 
+
+
 ## Introduksjon til datarettigheter
 
 Datarettigheter definerer hvilke vegobjekttyper (HVA) en bruker har rett til å manipulere og på hvilken del av vegnettet
