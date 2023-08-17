@@ -12,13 +12,14 @@ klar til å overta alle produksjonsoppgaver, men interesserte kan prøve ut ny a
 Hvis man holder seg innenfor løsningens begrensninger (f.eks små datasett) så fungerer den nye løsningen bra. For eksempel kan man 
 laste opp små datasett med nye objekt, gjøre  stedfesting til vegnett, opprette relasjoner (kalt sammenkobling) og lagre til NVDB. 
 
-Den nye løsningen, inklusive API dokumentasjon (swagger) er beskrevet her: https://nvdb.atlas.vegvesen.no/docs/produkter/datafang/
+Lenke til nye Datafangst: [https://datafangst.atlas.vegvesen.no](https://datafangst.atlas.vegvesen.no) 
+
+Den nye løsningen, inklusive API dokumentasjon (swagger) er beskrevet her: [https://nvdb.atlas.vegvesen.no/docs/produkter/datafang/](https://nvdb.atlas.vegvesen.no/docs/produkter/datafang/)
 
 Både brukerdokumentasjon og API dokumentasjon er p.t. noe uferdig, men vil raskt bli bedre. 
 
 Den nye løsningen er under aktiv utvikling og vil få mere funksjonalitet,  bli mer robust mot datafeil i NVDB og en hel rekke andre ting. 
-
-Lenke til nye Datafangst: https://datafangst.atlas.vegvesen.no/ 
+Grunnprinsippene for tilgang til NVDB og hvordan data skal lastes opp og bearbeides er likt, men implementasjon og API er selvfølgelig ikke likt. 
 
 Resten av dette dokumenet beskriver Datafangst 1.0, som fremdeles har hovedtyngden av produksjonsoppgaver. 
  
